@@ -1,0 +1,1244 @@
+<title>Hikvision Access Points</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f2f5f4; --surface: #ffffff; --surface-2: #e9edeb;
+    --line: #d7dedb; --line-strong: #b9c4bf;
+    --ink: #16201d; --ink-muted: #59655f; --ink-faint: #8b968f;
+    --accent: #17647a; --accent-ink: #ffffff; --accent-soft: #e0eef1;
+    --wall: #a3670f; --wall-soft: #f7ecd7;
+    --ceiling: #0f7a6f; --ceiling-soft: #e0f0ec;
+    --outdoor: #3c4f8a; --outdoor-soft: #e6e9f6;
+    --wifi6: #17647a; --wifi6-soft: #e0eef1;
+    --wifi5: #6b746e; --wifi5-soft: #eceeec;
+    --band24: #b26a1a; --band5: #2565a8;
+    --good: #1f7a4d;
+    --shadow: 0 1px 2px rgba(20,30,27,0.06), 0 8px 24px -12px rgba(20,30,27,0.18);
+    --radius: 7px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101615; --surface: #182120; --surface-2: #1e2928;
+      --line: #2b3735; --line-strong: #3c4a47;
+      --ink: #e8ede9; --ink-muted: #a2ada6; --ink-faint: #6f7c76;
+      --accent: #4bb7cf; --accent-ink: #08161a; --accent-soft: rgba(75,183,207,0.14);
+      --wall: #dc9a3e; --wall-soft: rgba(220,154,62,0.14);
+      --ceiling: #45c2ae; --ceiling-soft: rgba(69,194,174,0.14);
+      --outdoor: #96a4e6; --outdoor-soft: rgba(150,164,230,0.14);
+      --wifi6: #4bb7cf; --wifi6-soft: rgba(75,183,207,0.16);
+      --wifi5: #99a29c; --wifi5-soft: rgba(153,162,156,0.14);
+      --band24: #e0a458; --band5: #6fa8dc;
+      --good: #4ec98a;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #101615; --surface: #182120; --surface-2: #1e2928;
+    --line: #2b3735; --line-strong: #3c4a47;
+    --ink: #e8ede9; --ink-muted: #a2ada6; --ink-faint: #6f7c76;
+    --accent: #4bb7cf; --accent-ink: #08161a; --accent-soft: rgba(75,183,207,0.14);
+    --wall: #dc9a3e; --wall-soft: rgba(220,154,62,0.14);
+    --ceiling: #45c2ae; --ceiling-soft: rgba(69,194,174,0.14);
+    --outdoor: #96a4e6; --outdoor-soft: rgba(150,164,230,0.14);
+    --wifi6: #4bb7cf; --wifi6-soft: rgba(75,183,207,0.16);
+    --wifi5: #99a29c; --wifi5-soft: rgba(153,162,156,0.14);
+    --band24: #e0a458; --band5: #6fa8dc;
+    --good: #4ec98a;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(circle at top left, rgba(23,100,122,0.12), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(15,122,111,0.10), transparent 24%),
+      linear-gradient(180deg, rgba(255,255,255,0.28), transparent 30%),
+      radial-gradient(circle at 1px 1px, var(--line) 1px, transparent 0) 0 0/28px 28px,
+      var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px; line-height: 1.55;
+  }
+  html[lang="he"] body, html[lang="he"] h1, html[lang="he"] h2, html[lang="he"] h3, html[lang="he"] h4 {
+    font-family: "IBM Plex Sans Hebrew", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  }
+  h1, h2, h3, h4 {
+    font-family: "IBM Plex Sans Condensed", "IBM Plex Sans", sans-serif;
+    font-weight: 700; text-wrap: balance; margin: 0; color: var(--ink);
+  }
+  p { margin: 0; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; direction: ltr; unicode-bidi: isolate; }
+  a { color: var(--accent); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px 80px; }
+
+  header.top {
+    position: relative;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.66), rgba(255,255,255,0.36));
+    box-shadow: var(--shadow);
+    padding: 32px 28px 24px;
+    margin: 18px auto 36px;
+    max-width: 1080px;
+    backdrop-filter: blur(6px);
+  }
+  .top-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace; font-size: 12.5px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent);
+    display: inline-flex; align-items: center; gap: 8px; margin-bottom: 10px;
+    background: var(--accent-soft);
+    padding: 7px 10px; border-radius: 999px; border: 1px solid rgba(23,100,122,0.15);
+  }
+  .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); display: inline-block; box-shadow: 0 0 0 5px rgba(23,100,122,0.10); }
+  .langsw { display: flex; gap: 4px; margin-bottom: 10px; }
+  .langbtn {
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em;
+    padding: 7px 10px; border-radius: 8px; border: 1px solid var(--line-strong);
+    background: rgba(255,255,255,0.24); color: var(--ink-muted); cursor: pointer; transition: transform .12s ease, border-color .12s ease, background .12s ease;
+  }
+  .langbtn.active { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); box-shadow: 0 6px 16px -10px rgba(23,100,122,0.8); }
+  .langbtn:hover:not(.active) { border-color: var(--accent); color: var(--ink); transform: translateY(-1px); }
+  .langbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .theme-toggle {
+    display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line-strong); background: rgba(255,255,255,0.18); color: var(--ink); cursor: pointer; transition: transform .12s ease, border-color .12s ease, background .12s ease;
+  }
+  .theme-toggle:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  header.top h1 { font-size: clamp(28px, 4.2vw, 40px); letter-spacing: -0.01em; }
+  header.top .sub { margin-top: 12px; max-width: 62ch; color: var(--ink-muted); font-size: 16px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 18px; }
+  .meta-row span {
+    display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border-radius: 999px; border: 1px solid var(--line);
+    background: rgba(255,255,255,0.34); font-size: 12px; color: var(--ink-faint); font-family: "IBM Plex Mono", monospace;
+  }
+
+  .top-layout {
+    display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(260px, 420px); align-items: center; gap: 24px;
+  }
+  .top-visual {
+    position: relative; min-height: 220px;
+  }
+  .visual-frame {
+    position: relative; height: 100%; min-height: 220px; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow);
+    background: linear-gradient(135deg, rgba(23,100,122,0.12), rgba(15,122,111,0.08));
+  }
+  .visual-frame img {
+    display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.9) contrast(1.06);
+  }
+  .float-card {
+    position: absolute; right: 18px; bottom: 18px; min-width: 180px; background: rgba(16, 22, 21, 0.82); color: white; border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(8px); border-radius: 14px; padding: 12px 14px; box-shadow: 0 18px 34px -18px rgba(0,0,0,0.8);
+  }
+  .float-card .mini-label {
+    display: block; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; margin-bottom: 5px;
+  }
+  .float-card strong {
+    display: block; font-family: "IBM Plex Mono", monospace; font-size: 18px; letter-spacing: -0.03em; margin-bottom: 3px;
+  }
+  .float-card small {
+    display: block; font-size: 11px; opacity: 0.8;
+  }
+
+  .showcase-grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 8px; margin-bottom: 18px;
+  }
+  .showcase-item {
+    margin: 0; position: relative; overflow: hidden; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); min-height: 180px;
+  }
+  .showcase-item img {
+    display: block; width: 100%; height: 160px; object-fit: cover; filter: saturate(0.9) contrast(1.04);
+  }
+  .showcase-item figcaption {
+    padding: 10px 12px 12px; font-size: 12px; color: var(--ink-muted); font-family: "IBM Plex Mono", monospace; letter-spacing: 0.03em;
+  }
+
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+  .section-head h2 { font-size: 21px; letter-spacing: -0.005em; }
+  .section-head .count { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--ink-faint); }
+  section.block { margin-bottom: 52px; }
+
+  .picker {
+    display: flex; flex-direction: column; gap: 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.66));
+    border: 1px solid var(--line); border-radius: 18px; padding: 24px 26px 26px; box-shadow: var(--shadow);
+  }
+  .picker input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+  .step-label { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14.5px; margin-bottom: 11px; }
+  .stepno { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--ceiling)); color: var(--accent-ink); font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+  .opts { display: flex; flex-wrap: wrap; gap: 9px; }
+  .opt {
+    display: flex; flex-direction: column; gap: 3px; padding: 12px 15px; border: 1px solid var(--line-strong); border-radius: 10px; cursor: pointer; font-size: 13.5px; font-weight: 500; min-width: 165px; line-height: 1.3; transition: border-color .12s ease, background .12s ease, transform .12s ease, box-shadow .12s ease;
+  }
+  .opt small { font-weight: 400; color: var(--ink-muted); font-size: 11.5px; }
+  .picker input:checked + .opt { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px rgba(23,100,122,0.16); }
+  .opt:hover { transform: translateY(-1px); border-color: var(--accent); }
+  .picker input:focus-visible + .opt { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .q2-wall, .q2-ceiling, .q2-outdoor, .result { display: none; }
+  .hint { font-size: 13px; color: var(--ink-faint); font-style: italic; }
+  .result { flex-direction: column; gap: 12px; border-top: 1px dashed var(--line-strong); padding-top: 18px; }
+  .result .rtag { font-family: "IBM Plex Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--good); }
+  .result .rmodel { font-family: "IBM Plex Mono", monospace; font-size: 23px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+  .result .why { font-size: 14.5px; color: var(--ink); line-height: 1.55; max-width: 66ch; }
+  .result .rspecs { display: flex; flex-wrap: wrap; gap: 7px; }
+  .result .rspecs span { font-family: "IBM Plex Mono", monospace; font-size: 12px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 4px; padding: 3px 9px; color: var(--ink-muted); }
+  .result .jump { align-self: flex-start; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+
+  .filters {
+    display: flex; flex-wrap: wrap; gap: 20px; align-items: center; padding: 14px 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.68));
+    border: 1px solid var(--line); border-radius: 16px; margin-bottom: 28px; position: sticky; top: 12px; z-index: 5; box-shadow: var(--shadow);
+  }
+  .filter-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .filter-group .flabel { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); margin-right: 2px; }
+  .filters input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+  .pill {
+    display: inline-flex; align-items: center; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line-strong); font-size: 13px; font-weight: 500; color: var(--ink-muted); cursor: pointer; user-select: none; transition: background .12s ease, color .12s ease, border-color .12s ease, transform .12s ease;
+  }
+  .filters input:checked + .pill { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); box-shadow: 0 8px 18px -12px rgba(23,100,122,0.8); }
+  .pill:hover { transform: translateY(-1px); }
+  .filters input:focus-visible + .pill { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .catalog { display: flex; flex-direction: column; gap: 44px; }
+  .cat-section .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 14px; }
+  .card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.84), rgba(255,255,255,0.68));
+    border: 1px solid var(--line); border-inline-start: 4px solid var(--cat-color, var(--line-strong)); border-radius: 16px; box-shadow: var(--shadow); padding: 16px 18px 14px; scroll-margin-top: 90px; transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 1px 2px rgba(20,30,27,0.06), 0 18px 34px -18px rgba(20,30,27,0.24); }
+  .card:target { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .card[data-cat="wall"] { --cat-color: var(--wall); }
+  .card[data-cat="ceiling"] { --cat-color: var(--ceiling); }
+  .card[data-cat="outdoor"] { --cat-color: var(--outdoor); }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .card h3 { font-family: "IBM Plex Mono", monospace; font-size: 16.5px; font-weight: 600; letter-spacing: -0.01em; direction: ltr; unicode-bidi: isolate; }
+  .card .tagline { font-size: 13px; color: var(--ink-muted); margin-top: 3px; }
+  .device-visual {
+    margin: 14px 0 12px; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: linear-gradient(135deg, rgba(23,100,122,0.12), rgba(15,122,111,0.08));
+  }
+  .device-visual img {
+    display: block; width: 100%; height: 180px; object-fit: cover; object-position: center; filter: saturate(0.9) contrast(1.08);
+  }
+  .badges { display: flex; gap: 6px; flex-shrink: 0; }
+  .badge { font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; padding: 3px 7px; border-radius: 4px; white-space: nowrap; }
+  .badge.wifi6 { background: var(--wifi6-soft); color: var(--wifi6); }
+  .badge.wifi5 { background: var(--wifi5-soft); color: var(--wifi5); }
+  .quickspecs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .qs .k { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); margin-bottom: 2px; }
+  .qs .v { font-size: 14px; font-weight: 600; }
+  .qs .v .unit { font-size: 11.5px; font-weight: 500; color: var(--ink-muted); }
+  .use-for { font-size: 13.5px; color: var(--ink); line-height: 1.5; margin-bottom: 12px; }
+  .use-for b { color: var(--cat-color, var(--ink)); }
+  details.spec > summary { cursor: pointer; list-style: none; font-family: "IBM Plex Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); display: flex; align-items: center; gap: 6px; padding: 4px 0; }
+  details.spec > summary::-webkit-details-marker { display: none; }
+  details.spec > summary::before { content: "▸"; font-size: 11px; transition: transform .15s ease; }
+  details.spec[open] > summary::before { transform: rotate(90deg); }
+  html[dir="rtl"] details.spec[open] > summary::before { transform: rotate(-90deg); }
+  html[dir="rtl"] details.spec > summary::before { content: "◂"; }
+  .spec-table { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 8px; }
+  .spec-row { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; font-size: 13px; border-bottom: 1px dashed var(--line); }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-row .k { color: var(--ink-muted); flex-shrink: 0; }
+  .spec-row .v { text-align: end; font-family: "IBM Plex Mono", monospace; font-size: 12.5px; direction: ltr; unicode-bidi: isolate; }
+  .band-chip { display: inline-flex; align-items: center; gap: 4px; font-family: "IBM Plex Mono", monospace; font-size: 11px; padding: 1px 6px; border-radius: 3px; margin-left: 6px; }
+  .band-chip.b24 { background: color-mix(in srgb, var(--band24) 16%, transparent); color: var(--band24); }
+  .band-chip.b5 { background: color-mix(in srgb, var(--band5) 16%, transparent); color: var(--band5); }
+
+  .table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+  table.compare { border-collapse: collapse; width: 100%; min-width: 920px; font-size: 12.8px; }
+  table.compare th, table.compare td { padding: 9px 12px; text-align: start; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  table.compare thead th { font-family: "IBM Plex Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-faint); background: var(--surface-2); position: sticky; top: 0; }
+  table.compare tbody th { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 12.5px; color: var(--ink); background: var(--surface); position: sticky; inset-inline-start: 0; border-inline-end: 1px solid var(--line); direction: ltr; unicode-bidi: isolate; text-align: start; }
+  table.compare td { font-family: "IBM Plex Mono", monospace; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+  table.compare tbody tr:hover td, table.compare tbody tr:hover th { background: var(--surface-2); }
+  table.compare .catdot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-inline-end: 7px; vertical-align: middle; }
+  .catdot.wall { background: var(--wall); }
+  .catdot.ceiling { background: var(--ceiling); }
+  .catdot.outdoor { background: var(--outdoor); }
+
+  footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-faint); line-height: 1.6; }
+  footer a { color: var(--ink-muted); }
+
+  @media (max-width: 640px) {
+    .quickspecs { grid-template-columns: repeat(2, 1fr); }
+    .filters { position: static; }
+    header.top { padding-top: 28px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+  body[data-theme="dark"] {
+    --bg: #0d1413; --surface: #121d1b; --surface-2: #1a2725; --line: #23312f; --line-strong: #32413f; --ink: #edf2f0; --ink-muted: #b8c5c0; --ink-faint: #80908d; --accent: #7ed8eb; --accent-ink: #061b20; --accent-soft: rgba(126,216,235,0.14); --wall: #efb15b; --wall-soft: rgba(239,177,91,0.14); --ceiling: #4ed7bf; --ceiling-soft: rgba(78,215,191,0.14); --outdoor: #9eaef7; --outdoor-soft: rgba(158,174,247,0.14); --wifi6: #7ed8eb; --wifi6-soft: rgba(126,216,235,0.14); --wifi5: #b7c0bc; --wifi5-soft: rgba(183,192,188,0.14); --band24: #f0bb6b; --band5: #8eb9f7; --good: #6de0a0; --shadow: 0 1px 2px rgba(0,0,0,0.45), 0 16px 30px -20px rgba(0,0,0,0.8);
+    background:
+      radial-gradient(circle at top left, rgba(126,216,235,0.12), transparent 24%),
+      radial-gradient(circle at bottom right, rgba(78,215,191,0.12), transparent 25%),
+      linear-gradient(180deg, rgba(255,255,255,0.02), transparent 22%),
+      radial-gradient(circle at 1px 1px, var(--line) 1px, transparent 0) 0 0/28px 28px,
+      var(--bg);
+  }
+  body[data-theme="dark"] .langbtn,
+  body[data-theme="dark"] .theme-toggle,
+  body[data-theme="dark"] .meta-row span,
+  body[data-theme="dark"] .card,
+  body[data-theme="dark"] .picker,
+  body[data-theme="dark"] .filters,
+  body[data-theme="dark"] .table-scroll,
+  body[data-theme="dark"] .visual-frame {
+    background: linear-gradient(180deg, rgba(18,29,27,0.9), rgba(18,29,27,0.8));
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="top-row">
+      <div class="eyebrow" data-i18n="hdr.eyebrow">Справочник монтажника</div>
+      <div class="langsw" role="group" aria-label="Language">
+        <button type="button" class="langbtn" data-lang="ru">RU</button>
+        <button type="button" class="langbtn" data-lang="en">EN</button>
+        <button type="button" class="langbtn" data-lang="he">עב</button>
+      </div>
+      <button type="button" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+    <div class="top-layout">
+      <div>
+        <h1 data-i18n="hdr.h1">Точки доступа Hikvision DS‑3WAP</h1>
+        <p class="sub" data-i18n="hdr.sub">Восемь моделей Wi‑Fi точек доступа Hikvision, сгруппированные по типу монтажа — настенные (скрытые), потолочные и уличные. Характеристики, отличия и рекомендации по применению для подбора модели под объект.</p>
+        <div class="meta-row">
+          <span data-i18n="hdr.meta1">8 моделей</span>
+          <span class="mono">Wi‑Fi 5 / Wi‑Fi 6</span>
+          <span data-i18n="hdr.meta3">Источник — датащиты Hikvision, авг. 2026</span>
+        </div>
+      </div>
+      <div class="top-visual" aria-label="Фото сетевого оборудования">
+        <div class="visual-frame">
+          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=80" alt="Сетевое оборудование и Wi‑Fi точки доступа" />
+          <div class="float-card">
+            <span class="mini-label">Best fit</span>
+            <strong>DS‑3WAP621E‑SI</strong>
+            <small>Wi‑Fi 6 · скрытый монтаж</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="block">
+    <div class="section-head"><h2 data-i18n="picker.h2">Подбор точки доступа</h2><span class="count" data-i18n="picker.count">2 шага — получите конкретную модель</span></div>
+    <div class="picker">
+
+      <div class="step">
+        <div class="step-label"><span class="stepno">1</span><span data-i18n="picker.q1">Где будет установлена точка?</span></div>
+        <div class="opts">
+          <input type="radio" name="loc" id="loc-wall"><label class="opt" for="loc-wall"><span data-i18n="picker.loc.wall">Стена</span><small data-i18n="picker.loc.wall.sub">скрытый монтаж, стакан 86 мм</small></label>
+          <input type="radio" name="loc" id="loc-ceiling"><label class="opt" for="loc-ceiling"><span data-i18n="picker.loc.ceiling">Потолок / открыто внутри</span><small data-i18n="picker.loc.ceiling.sub">офис, зал, класс</small></label>
+          <input type="radio" name="loc" id="loc-outdoor"><label class="opt" for="loc-outdoor"><span data-i18n="picker.loc.outdoor">Улица</span><small data-i18n="picker.loc.outdoor.sub">стена, столб, фасад</small></label>
+        </div>
+      </div>
+
+      <div class="step q2-wall">
+        <div class="step-label"><span class="stepno">2</span><span data-i18n="picker.q2">Какая задача?</span></div>
+        <div class="opts">
+          <input type="radio" name="need" id="nw-basic"><label class="opt" for="nw-basic"><span data-i18n="picker.nw.basic">Обычная нагрузка</span><small data-i18n="picker.nw.basic.sub">бюджет важен</small></label>
+          <input type="radio" name="need" id="nw-heavy"><label class="opt" for="nw-heavy"><span data-i18n="picker.nw.heavy">Много устройств в комнате</span><small data-i18n="picker.nw.heavy.sub">нужен запас по скорости</small></label>
+        </div>
+      </div>
+
+      <div class="step q2-ceiling">
+        <div class="step-label"><span class="stepno">2</span><span data-i18n="picker.q2">Какая задача?</span></div>
+        <div class="opts">
+          <input type="radio" name="need" id="nc-basic"><label class="opt" for="nc-basic"><span data-i18n="picker.nc.basic">Бюджетно</span><small data-i18n="picker.nc.basic.sub">обычная нагрузка</small></label>
+          <input type="radio" name="need" id="nc-budget6"><label class="opt" for="nc-budget6"><span data-i18n="picker.nc.budget6">Бюджетно, но нужен Wi‑Fi 6</span><small data-i18n="picker.nc.budget6.sub">апгрейд без переплаты</small></label>
+          <input type="radio" name="need" id="nc-nopoe"><label class="opt" for="nc-nopoe"><span data-i18n="picker.nc.nopoe">Нет PoE‑коммутатора</span><small data-i18n="picker.nc.nopoe.sub">только 220 В на объекте</small></label>
+          <input type="radio" name="need" id="nc-heavy"><label class="opt" for="nc-heavy"><span data-i18n="picker.nc.heavy">Высокая плотность пользователей</span><small data-i18n="picker.nc.heavy.sub">нужен аплинк &gt;1 Гбит/с</small></label>
+        </div>
+      </div>
+
+      <div class="step q2-outdoor">
+        <div class="step-label"><span class="stepno">2</span><span data-i18n="picker.q2">Какая задача?</span></div>
+        <div class="opts">
+          <input type="radio" name="need" id="no-basic"><label class="opt" for="no-basic"><span data-i18n="picker.no.basic">Простые условия</span><small data-i18n="picker.no.basic.sub">бюджет важен</small></label>
+          <input type="radio" name="need" id="no-harsh"><label class="opt" for="no-harsh"><span data-i18n="picker.no.harsh">Суровый климат</span><small data-i18n="picker.no.harsh.sub">максимальная дальность</small></label>
+        </div>
+      </div>
+
+      <div class="hint" data-i18n="picker.hint">Выберите тип монтажа, затем задачу — появится рекомендованная модель.</div>
+
+      <div class="result" data-rec="521">
+        <div class="rtag" data-i18n="result.tag">Рекомендация</div>
+        <div class="rmodel mono">DS‑3WAP521‑SI</div>
+        <p class="why" data-i18n="result.521.why">Оптимальный выбор для скрытого монтажа при обычной загрузке: Wi‑Fi 5 достаточно для типовой комнаты, цена ниже, чем у 621E‑SI.</p>
+        <div class="rspecs mono" data-i18n-html="result.521.specs"><span>1167 Мбит/с</span><span>до 50 клиентов</span><span>86×86×35 мм</span><span>до 8 Вт</span></div>
+        <a class="jump" href="#card-521" data-i18n="result.jump">Полные характеристики в каталоге ↓</a>
+      </div>
+
+      <div class="result" data-rec="621e">
+        <div class="rtag" data-i18n="result.tag">Рекомендация</div>
+        <div class="rmodel mono">DS‑3WAP621E‑SI</div>
+        <p class="why" data-i18n="result.621e.why">Wi‑Fi 6 даёт запас по скорости и числу подключений — берите, если в комнате одновременно работает несколько устройств на человека (смартфон, ноутбук, ТВ) или закладываетесь на будущее.</p>
+        <div class="rspecs mono" data-i18n-html="result.621e.specs"><span>2975 Мбит/с</span><span>до 256 клиентов</span><span>WPA3</span><span>до 13 Вт</span></div>
+        <a class="jump" href="#card-621e" data-i18n="result.jump">Полные характеристики в каталоге ↓</a>
+      </div>
+
+      <div class="result" data-rec="522">
+        <div class="rtag" data-i18n="result.tag">Рекомендация</div>
+        <div class="rmodel mono">DS‑3WAP522‑SI</div>
+        <p class="why" data-i18n="result.522.why">Самый бюджетный потолочный вариант линейки — достаточно для типового офиса и переговорной без высокой плотности пользователей.</p>
+        <div class="rspecs mono" data-i18n-html="result.522.specs"><span>1167 Мбит/с</span><span>до 80 клиентов</span><span>Ø220 мм</span></div>
+        <a class="jump" href="#card-522" data-i18n="result.jump">Полные характеристики в каталоге ↓</a>
+      </div>
+
+      <div class="result" data-rec="622g">
+        <div class="rtag" data-i18n="result.tag">Рекомендация</div>
+        <div class="rmodel mono">DS‑3WAP622G‑SI</div>
+        <p class="why" data-i18n="result.622g.why">Та же ниша, что у 522‑SI, но на Wi‑Fi 6 — доплата небольшая, а прирост скорости и ёмкости заметный. Оптимальный выбор, если важен именно Wi‑Fi 6, а не максимум характеристик.</p>
+        <div class="rspecs mono" data-i18n-html="result.622g.specs"><span>1775 Мбит/с</span><span>до 100 клиентов</span><span>Ø220 мм</span></div>
+        <a class="jump" href="#card-622g" data-i18n="result.jump">Полные характеристики в каталоге ↓</a>
+      </div>
+
+      <div class="result" data-rec="6218">
+        <div class="rtag" data-i18n="result.tag">Рекомендация</div>
+        <div class="rmodel mono">DS‑3WAP6218‑EI</div>
+        <p class="why" data-i18n="result.6218.why">Берите, если на объекте нет PoE‑коммутатора: точку можно запитать адаптером 12 В от розетки. Плюс есть второй LAN‑порт под соседнее устройство — камеру или IP‑телефон.</p>
+        <div class="rspecs mono" data-i18n-html="result.6218.specs"><span>PoE или 12 В DC</span><span>2 порта LAN</span><span>1775 Мбит/с</span></div>
+        <a class="jump" href="#card-6218" data-i18n="result.jump">Полные характеристики в каталоге ↓</a>
+      </div>
+
+      <div class="result" data-rec="622e">
+        <div class="rtag" data-i18n="result.tag">Рекомендация</div>
+        <div class="rmodel mono">DS‑3WAP622E‑SI</div>
+        <p class="why" data-i18n="result.622e.why">Топ линейки для потолочного монтажа. 2.5‑гигабитный аплинк и WPA3 нужны, когда одновременно подключено много пользователей и суммарный трафик клиентов превышает 1 Гбит/с.</p>
+        <div class="rspecs mono" data-i18n-html="result.622e.specs"><span>2975 Мбит/с</span><span>2.5GbE аплинк</span><span>WPA3</span></div>
+        <a class="jump" href="#card-622e" data-i18n="result.jump">Полные характеристики в каталоге ↓</a>
+      </div>
+
+      <div class="result" data-rec="5312">
+        <div class="rtag" data-i18n="result.tag">Рекомендация</div>
+        <div class="rmodel mono">DS‑3WAP5312‑EI</div>
+        <p class="why" data-i18n="result.5312.why">Бюджетное решение для несложных уличных условий — двор, парковка, склад. IP65 и рабочий диапазон −30…+65 °C достаточны для большинства объектов.</p>
+        <div class="rspecs mono" data-i18n-html="result.5312.specs"><span>IP65</span><span>−30…+65 °C</span><span>1167 Мбит/с</span></div>
+        <a class="jump" href="#card-5312" data-i18n="result.jump">Полные характеристики в каталоге ↓</a>
+      </div>
+
+      <div class="result" data-rec="623e">
+        <div class="rtag" data-i18n="result.tag">Рекомендация</div>
+        <div class="rmodel mono">DS‑3WAP623E‑SI</div>
+        <p class="why" data-i18n="result.623e.why">Берите для действительно суровых условий и больших расстояний: IP68, направленные антенны с усилением до 10 dBi и рабочий диапазон от −30 °C.</p>
+        <div class="rspecs mono" data-i18n-html="result.623e.specs"><span>IP68</span><span>2975 Мбит/с</span><span>антенны 10/5 dBi</span></div>
+        <a class="jump" href="#card-623e" data-i18n="result.jump">Полные характеристики в каталоге ↓</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="showcase-grid" aria-label="Фото применения точек доступа">
+      <figure class="showcase-item">
+        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Офис с Wi‑Fi покрытием" />
+        <figcaption>Офис · потолочные точки</figcaption>
+      </figure>
+      <figure class="showcase-item">
+        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" alt="Гостиница и коридоры" />
+        <figcaption>Гостиница · скрытый монтаж</figcaption>
+      </figure>
+      <figure class="showcase-item">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" alt="Уличный Wi‑Fi на фасаде и столбе" />
+        <figcaption>Улица · уличные точки</figcaption>
+      </figure>
+    </div>
+
+    <div class="section-head">
+      <h2 data-i18n="catalog.h2">Все модели</h2>
+      <span class="count" data-i18n="catalog.count">полные характеристики, фильтр по типу и Wi‑Fi</span>
+    </div>
+
+    <div class="filters">
+      <div class="filter-group">
+        <span class="flabel" data-i18n="filters.mount">Монтаж</span>
+        <input type="radio" name="catfilter" id="f-all" checked><label class="pill" for="f-all" data-i18n="filters.all">Все</label>
+        <input type="radio" name="catfilter" id="f-wall"><label class="pill" for="f-wall" data-i18n="filters.wall">Настенные</label>
+        <input type="radio" name="catfilter" id="f-ceiling"><label class="pill" for="f-ceiling" data-i18n="filters.ceiling">Потолочные</label>
+        <input type="radio" name="catfilter" id="f-outdoor"><label class="pill" for="f-outdoor" data-i18n="filters.outdoor">Уличные</label>
+      </div>
+      <div class="filter-group">
+        <span class="flabel mono">Wi‑Fi</span>
+        <input type="radio" name="wififilter" id="w-all" checked><label class="pill" for="w-all" data-i18n="filters.all">Все</label>
+        <input type="radio" name="wififilter" id="w-6"><label class="pill mono" for="w-6">Wi‑Fi 6</label>
+        <input type="radio" name="wififilter" id="w-5"><label class="pill mono" for="w-5">Wi‑Fi 5</label>
+      </div>
+    </div>
+
+    <div class="catalog">
+
+      <div class="cat-section" data-section="wall">
+        <div class="section-head"><h2 style="font-size:16px;color:var(--wall)"><span data-i18n="sec.wall.h2">Настенные (in‑wall)</span></h2><span class="count" data-i18n="sec.wall.count">монтаж в стакан 86 мм</span></div>
+        <div class="cards">
+
+          <article class="card" id="card-521" data-cat="wall" data-wifi="5">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP521‑SI</h3>
+                <p class="tagline" data-i18n="c521.tagline">Wi‑Fi 5 · настенная, скрытый монтаж</p>
+              </div>
+              <div class="badges"><span class="badge wifi5 mono">WI‑FI 5</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="https://www.hubtech.co.ke/wp-content/uploads/Hikvision-DS-3WAP621E-SI.jpg" alt="DS‑3WAP521‑SI wall access point" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Скорость</div><div class="v mono" data-i18n-html="c521.qs1v">1167<span class="unit"> Мбит/с</span></div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.ports">Порты</div><div class="v mono">2× GbE</div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.clients">Клиенты</div><div class="v mono" data-i18n-html="c521.qs3v">50<span class="unit">+ реком.</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Для чего:</b> <span data-i18n="c521.use">общежития, гостиничные номера, палаты — там, где нужна скрытая точка вместо розетки, без штробления и коробов.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Полные характеристики</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Диапазоны</span><span class="v" data-i18n-html="bands.a">2.4 ГГц: 300<span class="band-chip b24">2.4G</span><br>5 ГГц: 867<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.streams">Потоки</span><span class="v" data-i18n-html="c521.streams">2×2 MU‑MIMO / диапазон</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.ports">Порты</span><span class="v">1× GbE PoE‑in + 1× GbE LAN</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Питание</span><span class="v" data-i18n-html="c521.power">802.3af/at PoE, до 8 Вт</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clientsssid">Клиенты / SSID</span><span class="v" data-i18n-html="cli.128x8">до 128 / 8 SSID</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.temp">Темп. работы</span><span class="v">0…+40 °C</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Габариты</span><span class="v" data-i18n-html="c521.dims">86×86×35 мм, 0.2 кг</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.mgmt">Управление</span><span class="v" data-i18n-html="c521.mgmt">Web / централизованно через AC</span></div>
+              </div>
+            </details>
+          </article>
+
+          <article class="card" id="card-621e" data-cat="wall" data-wifi="6">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP621E‑SI</h3>
+                <p class="tagline" data-i18n="c621e.tagline">Wi‑Fi 6 · настенная, скрытый монтаж</p>
+              </div>
+              <div class="badges"><span class="badge wifi6 mono">WI‑FI 6</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="https://shopdelta.eu/obrazki3/ds-3wap621e-si_img4_d.jpg" alt="DS‑3WAP621E‑SI access point" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Скорость</div><div class="v mono" data-i18n-html="c621e.qs1v">2975<span class="unit"> Мбит/с</span></div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.ports">Порты</div><div class="v mono">2× GbE</div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.clients">Клиенты</div><div class="v mono" data-i18n-html="c621e.qs3v">70<span class="unit">+ реком.</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Для чего:</b> <span data-i18n="c621e.use">те же сценарии, что и 521‑SI, но когда в комнате много устройств на человека (смартфон + ноутбук + ТВ) — отели бизнес‑класса, современные апартаменты.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Полные характеристики</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Диапазоны</span><span class="v" data-i18n-html="bands.b">2.4 ГГц: 575<span class="band-chip b24">2.4G</span><br>5 ГГц: 2400<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.ports">Порты</span><span class="v">1× GbE PoE‑in + 1× GbE LAN</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Питание</span><span class="v" data-i18n-html="c621e.power">802.3af/at PoE, до 13 Вт</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clientsssid">Клиенты / SSID</span><span class="v" data-i18n-html="cli.256x8">до 256 / 8 SSID</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.temp">Темп. работы</span><span class="v">0…+40 °C</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Габариты</span><span class="v" data-i18n-html="c621e.dims">86×86×44.4 мм, 0.17 кг</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.security">Безопасность</span><span class="v">WPA2/WPA3‑PSK, blocklist/allowlist</span></div>
+              </div>
+            </details>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="cat-section" data-section="ceiling">
+        <div class="section-head"><h2 style="font-size:16px;color:var(--ceiling)"><span data-i18n="sec.ceiling.h2">Потолочные (ceiling)</span></h2><span class="count" data-i18n="sec.ceiling.count">монтаж на потолок, стену, стол</span></div>
+        <div class="cards">
+
+          <article class="card" id="card-522" data-cat="ceiling" data-wifi="5">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP522‑SI</h3>
+                <p class="tagline" data-i18n="c522.tagline">Wi‑Fi 5 · потолочная</p>
+              </div>
+              <div class="badges"><span class="badge wifi5 mono">WI‑FI 5</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="https://www.almiriatechstore.co.ke/wp-content/uploads/2025/06/Hikvision-DS-3WAP522-SI-1.webp" alt="DS‑3WAP522‑SI ceiling access point" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Скорость</div><div class="v mono" data-i18n-html="c522.qs1v">1167<span class="unit"> Мбит/с</span></div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.port1">Порт</div><div class="v mono">1× GbE</div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.clients">Клиенты</div><div class="v mono" data-i18n-html="c522.qs3v">80<span class="unit">+ реком.</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Для чего:</b> <span data-i18n="c522.use">базовое покрытие небольших офисов, магазинов, переговорных — самый бюджетный потолочный вариант линейки.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Полные характеристики</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Диапазоны</span><span class="v" data-i18n-html="bands.a">2.4 ГГц: 300<span class="band-chip b24">2.4G</span><br>5 ГГц: 867<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.port1">Порт</span><span class="v" data-i18n-html="port.uplink">1× GbE PoE‑in (аплинк)</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Питание</span><span class="v" data-i18n-html="power.522">802.3af/at PoE или 12 В DC, до 11.35 Вт</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clientsssid">Клиенты / SSID</span><span class="v" data-i18n-html="cli.256x8">до 256 / 8 SSID</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.temp">Темп. работы</span><span class="v">0…+40 °C</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Габариты</span><span class="v" data-i18n-html="dims.522">Ø220×35 мм, 0.4 кг</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.mount">Монтаж</span><span class="v" data-i18n-html="mount.cwd">потолок / стена / стол</span></div>
+              </div>
+            </details>
+          </article>
+
+          <article class="card" id="card-622g" data-cat="ceiling" data-wifi="6">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP622G‑SI</h3>
+                <p class="tagline" data-i18n="c622g.tagline">Wi‑Fi 6 · потолочная, начальный уровень</p>
+              </div>
+              <div class="badges"><span class="badge wifi6 mono">WI‑FI 6</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="https://www.spy-shop.ro/media/catalog/product/cache/1/image/e091ffec11a60d65790217806e67896c/a/c/access_point_wireless_dual_band_hikvision_ds-3wap621e-si.jpg" alt="DS‑3WAP622G‑SI ceiling access point" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Скорость</div><div class="v mono" data-i18n-html="c622g.qs1v">1775<span class="unit"> Мбит/с</span></div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.port1">Порт</div><div class="v mono">1× GbE</div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.clients">Клиенты</div><div class="v mono" data-i18n-html="c622g.qs3v">100<span class="unit">+ реком.</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Для чего:</b> <span data-i18n="c622g.use">недорогой апгрейд на Wi‑Fi 6 взамен 522‑SI — классы, торговые залы, лобби с умеренной плотностью устройств.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Полные характеристики</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Диапазоны</span><span class="v" data-i18n-html="bands.c">2.4 ГГц: 574<span class="band-chip b24">2.4G</span><br>5 ГГц: 1201<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.port1">Порт</span><span class="v" data-i18n-html="port.uplink">1× GbE PoE‑in (аплинк)</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Питание</span><span class="v" data-i18n-html="power.522">802.3af/at PoE или 12 В DC, до 11.35 Вт</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clientsssid">Клиенты / SSID</span><span class="v" data-i18n-html="cli.256x8">до 256 / 8 SSID</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.temp">Темп. работы</span><span class="v">0…+40 °C</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Габариты</span><span class="v" data-i18n-html="dims.522">Ø220×35 мм, 0.4 кг</span></div>
+              </div>
+            </details>
+          </article>
+
+          <article class="card" id="card-6218" data-cat="ceiling" data-wifi="6">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP6218‑EI</h3>
+                <p class="tagline" data-i18n="c6218.tagline">Wi‑Fi 6 · потолочная, доп. LAN + питание 220 В</p>
+              </div>
+              <div class="badges"><span class="badge wifi6 mono">WI‑FI 6</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="https://rootitsupport.com/userfiles/DS-3WAP621E-SI-2.png" alt="DS‑3WAP6218‑EI access point with PoE and LAN" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Скорость</div><div class="v mono" data-i18n-html="c6218.qs1v">1775<span class="unit"> Мбит/с</span></div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.ports">Порты</div><div class="v mono">2× GbE</div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.clients">Клиенты</div><div class="v mono" data-i18n-html="c6218.qs3v">100<span class="unit">+ реком.</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Для чего:</b> <span data-i18n="c6218.use">тот же класс задач, что 622G‑SI, но пригодится там, где нет PoE‑коммутатора (можно запитать адаптером 12 В) или нужен второй LAN‑порт под соседнее устройство — камеру, IP‑телефон.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Полные характеристики</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Диапазоны</span><span class="v" data-i18n-html="bands.c">2.4 ГГц: 574<span class="band-chip b24">2.4G</span><br>5 ГГц: 1201<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.ports">Порты</span><span class="v">1× GbE PoE‑in + 1× GbE LAN</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Питание</span><span class="v" data-i18n-html="c6218.power">802.3at PoE или 12 В DC 2 А, 5.5–18 Вт</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clients">Клиенты</span><span class="v" data-i18n-html="cli.256x100">до 256 / 100 реком.</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.temp">Темп. работы</span><span class="v">0…+40 °C</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Габариты</span><span class="v" data-i18n-html="c6218.dims">Ø220×50 мм</span></div>
+              </div>
+            </details>
+          </article>
+
+          <article class="card" id="card-622e" data-cat="ceiling" data-wifi="6">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP622E‑SI</h3>
+                <p class="tagline" data-i18n="c622e.tagline">Wi‑Fi 6 · потолочная, топ линейки</p>
+              </div>
+              <div class="badges"><span class="badge wifi6 mono">WI‑FI 6</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="https://www.trippodo.com/1331060-large_default/hikvision-ds-3wap621e-si-wireless-access-point-3000-mbit-s-white-power-over-ethernet-poe.jpg" alt="DS‑3WAP622E‑SI ceiling access point" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Скорость</div><div class="v mono" data-i18n-html="c622e.qs1v">2975<span class="unit"> Мбит/с</span></div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.port1">Порт</div><div class="v mono">1× 2.5GbE</div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.clients">Клиенты</div><div class="v mono" data-i18n-html="c622e.qs3v">100<span class="unit">+ реком.</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Для чего:</b> <span data-i18n="c622e.use">максимальная плотность пользователей и трафика — большие open‑space, конференц‑залы, где суммарная скорость клиентов превышает 1 Гбит/с и нужен аплинк 2.5G; поддержка WPA3.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Полные характеристики</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Диапазоны</span><span class="v" data-i18n-html="bands.b">2.4 ГГц: 575<span class="band-chip b24">2.4G</span><br>5 ГГц: 2400<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.port1">Порт</span><span class="v">1× 2.5 Gigabit RJ45 PoE‑in</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Питание</span><span class="v" data-i18n-html="c622e.power">802.3af/at PoE или 12 В DC, до 13.5 Вт</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clientsssid">Клиенты / SSID</span><span class="v" data-i18n-html="cli.256x8">до 256 / 8 SSID</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.temp">Темп. работы</span><span class="v">0…+45 °C</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Габариты</span><span class="v" data-i18n-html="c622e.dims">Ø220×39 мм, 0.38 кг</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.security">Безопасность</span><span class="v">WPA2/WPA3‑PSK</span></div>
+              </div>
+            </details>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="cat-section" data-section="outdoor">
+        <div class="section-head"><h2 style="font-size:16px;color:var(--outdoor)"><span data-i18n="sec.outdoor.h2">Уличные (outdoor)</span></h2><span class="count" data-i18n="sec.outdoor.count">монтаж на стену, столб</span></div>
+        <div class="cards">
+
+          <article class="card" id="card-5312" data-cat="outdoor" data-wifi="5">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP5312‑EI</h3>
+                <p class="tagline" data-i18n="c5312.tagline">Wi‑Fi 5 · уличная, IP65</p>
+              </div>
+              <div class="badges"><span class="badge wifi5 mono">WI‑FI 5</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="https://logicon.qa/media/shop/products/WAP621E.png" alt="DS‑3WAP5312‑EI outdoor access point" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Скорость</div><div class="v mono" data-i18n-html="c5312.qs1v">1167<span class="unit"> Мбит/с</span></div></div>
+              <div class="qs"><div class="k" data-i18n="qs.protection">Защита</div><div class="v mono">IP65</div></div>
+              <div class="qs"><div class="k" data-i18n="qs.tempshort">Темп.</div><div class="v mono">−30…+65<span class="unit">°C</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Для чего:</b> <span data-i18n="c5312.use">недорогое покрытие простых уличных зон — дворы, парковки, складские территории, где не нужна ни максимальная скорость, ни экстремальная защита.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Полные характеристики</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Диапазоны</span><span class="v" data-i18n-html="bands.a">2.4 ГГц: 300<span class="band-chip b24">2.4G</span><br>5 ГГц: 867<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.ports">Порты</span><span class="v">1× GbE PoE‑in + 1× GbE LAN</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Питание</span><span class="v" data-i18n-html="c5312.power">802.3at PoE, тип. 9 / макс. 18 Вт</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clientsssid">Клиенты / SSID</span><span class="v" data-i18n-html="cli.128x7">до 128 / 7 SSID</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.antennas">Антенны</span><span class="v" data-i18n-html="c5312.ant">внешние, 2.4: 3.7 dBi · 5: 5 dBi</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.coverage">Радиус покрытия</span><span class="v" data-i18n-html="c5312.cov">~150 м (рекоменд.)</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Габариты</span><span class="v">65×225×32 мм, 0.34 кг</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.mount">Монтаж</span><span class="v" data-i18n-html="mount.wallpole">стена, столб</span></div>
+              </div>
+            </details>
+          </article>
+
+          <article class="card" id="card-623e" data-cat="outdoor" data-wifi="6">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP623E‑SI</h3>
+                <p class="tagline" data-i18n="c623e.tagline">Wi‑Fi 6 · уличная, IP68</p>
+              </div>
+              <div class="badges"><span class="badge wifi6 mono">WI‑FI 6</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="https://vienthonghoangthach.com/wp-content/uploads/2024/06/DS-3WAP621E-SI-hikvision-2.jpg" alt="DS‑3WAP623E‑SI outdoor rugged access point" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Скорость</div><div class="v mono" data-i18n-html="c623e.qs1v">2975<span class="unit"> Мбит/с</span></div></div>
+              <div class="qs"><div class="k" data-i18n="qs.protection">Защита</div><div class="v mono">IP68</div></div>
+              <div class="qs"><div class="k" data-i18n="qs.tempshort">Темп.</div><div class="v mono">−30…+55<span class="unit">°C</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Для чего:</b> <span data-i18n="c623e.use">суровые условия и максимальная дальность — промплощадки, стадионы, кампусы, периметровое покрытие; антенны с усилением 10 dBi (2.4 ГГц) и 5 dBi (5 ГГц) пробивают дальше и сквозь помехи.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Полные характеристики</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Диапазоны</span><span class="v" data-i18n-html="bands.b">2.4 ГГц: 575<span class="band-chip b24">2.4G</span><br>5 ГГц: 2400<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.port1">Порт</span><span class="v">1× GbE PoE‑in</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Питание</span><span class="v" data-i18n-html="c623e.power">802.3af/at PoE, 48 В DC 0.3 А, до 14.4 Вт</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clientsssid">Клиенты / SSID</span><span class="v" data-i18n-html="cli.256x8">до 256 / 8 SSID</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.storagetemp">Темп. хранения</span><span class="v">−40…+85 °C</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Габариты</span><span class="v">102×110×250 мм, 1.07 кг</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.mount">Монтаж</span><span class="v" data-i18n-html="mount.wallpole">стена, столб</span></div>
+              </div>
+            </details>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-head"><h2 data-i18n="table.h2">Сравнительная таблица</h2><span class="count" data-i18n="table.count">все параметры в одном виде</span></div>
+    <div class="table-scroll">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th data-i18n="th.model">Модель</th>
+            <th data-i18n="th.type">Тип</th>
+            <th class="mono">Wi‑Fi</th>
+            <th data-i18n="qs.speed">Скорость</th>
+            <th data-i18n="th.bandsfreq">2.4 / 5 ГГц</th>
+            <th data-i18n="lbl.ports">Порты</th>
+            <th class="mono">PoE</th>
+            <th data-i18n="th.clientsrec">Клиенты (реком.)</th>
+            <th class="mono">IP</th>
+            <th data-i18n="lbl.temp">Темп. работы</th>
+            <th data-i18n="th.weight">Вес</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><span class="catdot wall"></span>DS‑3WAP521‑SI</th>
+            <td data-i18n="type.wall">настенная</td><td class="mono">Wi‑Fi 5</td><td class="mono" data-i18n="spd.1167">1167 Мбит/с</td><td class="mono">300 / 867</td>
+            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.521">af/at, 8 Вт</td><td class="mono">50</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.521">0.2 кг</td>
+          </tr>
+          <tr>
+            <th><span class="catdot wall"></span>DS‑3WAP621E‑SI</th>
+            <td data-i18n="type.wall">настенная</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.2975">2975 Мбит/с</td><td class="mono">575 / 2400</td>
+            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.621e">af/at, 13 Вт</td><td class="mono">70</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.621e">0.17 кг</td>
+          </tr>
+          <tr>
+            <th><span class="catdot ceiling"></span>DS‑3WAP522‑SI</th>
+            <td data-i18n="type.ceiling">потолочная</td><td class="mono">Wi‑Fi 5</td><td class="mono" data-i18n="spd.1167">1167 Мбит/с</td><td class="mono">300 / 867</td>
+            <td class="mono">1× GbE</td><td class="mono" data-i18n="poe.522">af/at / 12 В DC, 11.35 Вт</td><td class="mono">80</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.522">0.4 кг</td>
+          </tr>
+          <tr>
+            <th><span class="catdot ceiling"></span>DS‑3WAP622G‑SI</th>
+            <td data-i18n="type.ceiling">потолочная</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.1775">1775 Мбит/с</td><td class="mono">574 / 1201</td>
+            <td class="mono">1× GbE</td><td class="mono" data-i18n="poe.522">af/at / 12 В DC, 11.35 Вт</td><td class="mono">100</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.522">0.4 кг</td>
+          </tr>
+          <tr>
+            <th><span class="catdot ceiling"></span>DS‑3WAP6218‑EI</th>
+            <td data-i18n="type.ceiling">потолочная</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.1775">1775 Мбит/с</td><td class="mono">574 / 1201</td>
+            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.6218">at / 12 В DC, до 18 Вт</td><td class="mono">100</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono">—</td>
+          </tr>
+          <tr>
+            <th><span class="catdot ceiling"></span>DS‑3WAP622E‑SI</th>
+            <td data-i18n="type.ceiling">потолочная</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.2975">2975 Мбит/с</td><td class="mono">575 / 2400</td>
+            <td class="mono">1× 2.5GbE</td><td class="mono" data-i18n="poe.622e">af/at / 12 В DC, 13.5 Вт</td><td class="mono">100</td><td class="mono">—</td><td class="mono">0…45 °C</td><td class="mono" data-i18n="wt.622e">0.38 кг</td>
+          </tr>
+          <tr>
+            <th><span class="catdot outdoor"></span>DS‑3WAP5312‑EI</th>
+            <td data-i18n="type.outdoor">уличная</td><td class="mono">Wi‑Fi 5</td><td class="mono" data-i18n="spd.1167">1167 Мбит/с</td><td class="mono">300 / 867</td>
+            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.5312">at, до 18 Вт</td><td class="mono" data-i18n="cli.max128">128 макс.</td><td class="mono">IP65</td><td class="mono">−30…65 °C</td><td class="mono" data-i18n="wt.5312">0.34 кг</td>
+          </tr>
+          <tr>
+            <th><span class="catdot outdoor"></span>DS‑3WAP623E‑SI</th>
+            <td data-i18n="type.outdoor">уличная</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.2975">2975 Мбит/с</td><td class="mono">575 / 2400</td>
+            <td class="mono">1× GbE</td><td class="mono" data-i18n="poe.623e">af/at 48 В, 14.4 Вт</td><td class="mono">100</td><td class="mono">IP68</td><td class="mono">−30…55 °C</td><td class="mono" data-i18n="wt.623e">1.07 кг</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p data-i18n="footer.text">Характеристики сведены из официальных даташитов и страниц продуктов Hikvision (hikvision.com, assets.hikvision.com), актуальны на август 2026. Перед закупкой и проектированием сверяйте цифры с действующим даташитом конкретной партии — производитель может менять параметры без отдельного уведомления. Все модели поддерживают автоматическую RF‑оптимизацию, интеллектуальный роуминг и централизованное управление через контроллер (AC) Hikvision.</p>
+  </footer>
+
+</div>
+
+<script>
+window.I18N = {
+ru: {
+"hdr.eyebrow":"Справочник монтажника",
+"hdr.h1":"Точки доступа Hikvision DS‑3WAP",
+"hdr.sub":"Восемь моделей Wi‑Fi точек доступа Hikvision, сгруппированные по типу монтажа — настенные (скрытые), потолочные и уличные. Характеристики, отличия и рекомендации по применению для подбора модели под объект.",
+"hdr.meta1":"8 моделей",
+"hdr.meta3":"Источник — датащиты Hikvision, авг. 2026",
+"picker.h2":"Подбор точки доступа",
+"picker.count":"2 шага — получите конкретную модель",
+"picker.q1":"Где будет установлена точка?",
+"picker.q2":"Какая задача?",
+"picker.loc.wall":"Стена","picker.loc.wall.sub":"скрытый монтаж, стакан 86 мм",
+"picker.loc.ceiling":"Потолок / открыто внутри","picker.loc.ceiling.sub":"офис, зал, класс",
+"picker.loc.outdoor":"Улица","picker.loc.outdoor.sub":"стена, столб, фасад",
+"picker.nw.basic":"Обычная нагрузка","picker.nw.basic.sub":"бюджет важен",
+"picker.nw.heavy":"Много устройств в комнате","picker.nw.heavy.sub":"нужен запас по скорости",
+"picker.nc.basic":"Бюджетно","picker.nc.basic.sub":"обычная нагрузка",
+"picker.nc.budget6":"Бюджетно, но нужен Wi‑Fi 6","picker.nc.budget6.sub":"апгрейд без переплаты",
+"picker.nc.nopoe":"Нет PoE‑коммутатора","picker.nc.nopoe.sub":"только 220 В на объекте",
+"picker.nc.heavy":"Высокая плотность пользователей","picker.nc.heavy.sub":"нужен аплинк >1 Гбит/с",
+"picker.no.basic":"Простые условия","picker.no.basic.sub":"бюджет важен",
+"picker.no.harsh":"Суровый климат","picker.no.harsh.sub":"максимальная дальность",
+"picker.hint":"Выберите тип монтажа, затем задачу — появится рекомендованная модель.",
+"result.tag":"Рекомендация",
+"result.jump":"Полные характеристики в каталоге ↓",
+"result.521.why":"Оптимальный выбор для скрытого монтажа при обычной загрузке: Wi‑Fi 5 достаточно для типовой комнаты, цена ниже, чем у 621E‑SI.",
+"result.521.specs":"<span>1167 Мбит/с</span><span>до 50 клиентов</span><span>86×86×35 мм</span><span>до 8 Вт</span>",
+"result.621e.why":"Wi‑Fi 6 даёт запас по скорости и числу подключений — берите, если в комнате одновременно работает несколько устройств на человека (смартфон, ноутбук, ТВ) или закладываетесь на будущее.",
+"result.621e.specs":"<span>2975 Мбит/с</span><span>до 256 клиентов</span><span>WPA3</span><span>до 13 Вт</span>",
+"result.522.why":"Самый бюджетный потолочный вариант линейки — достаточно для типового офиса и переговорной без высокой плотности пользователей.",
+"result.522.specs":"<span>1167 Мбит/с</span><span>до 80 клиентов</span><span>Ø220 мм</span>",
+"result.622g.why":"Та же ниша, что у 522‑SI, но на Wi‑Fi 6 — доплата небольшая, а прирост скорости и ёмкости заметный. Оптимальный выбор, если важен именно Wi‑Fi 6, а не максимум характеристик.",
+"result.622g.specs":"<span>1775 Мбит/с</span><span>до 100 клиентов</span><span>Ø220 мм</span>",
+"result.6218.why":"Берите, если на объекте нет PoE‑коммутатора: точку можно запитать адаптером 12 В от розетки. Плюс есть второй LAN‑порт под соседнее устройство — камеру или IP‑телефон.",
+"result.6218.specs":"<span>PoE или 12 В DC</span><span>2 порта LAN</span><span>1775 Мбит/с</span>",
+"result.622e.why":"Топ линейки для потолочного монтажа. 2.5‑гигабитный аплинк и WPA3 нужны, когда одновременно подключено много пользователей и суммарный трафик клиентов превышает 1 Гбит/с.",
+"result.622e.specs":"<span>2975 Мбит/с</span><span>2.5GbE аплинк</span><span>WPA3</span>",
+"result.5312.why":"Бюджетное решение для несложных уличных условий — двор, парковка, склад. IP65 и рабочий диапазон −30…+65 °C достаточны для большинства объектов.",
+"result.5312.specs":"<span>IP65</span><span>−30…+65 °C</span><span>1167 Мбит/с</span>",
+"result.623e.why":"Берите для действительно суровых условий и больших расстояний: IP68, направленные антенны с усилением до 10 dBi и рабочий диапазон от −30 °C.",
+"result.623e.specs":"<span>IP68</span><span>2975 Мбит/с</span><span>антенны 10/5 dBi</span>",
+"catalog.h2":"Все модели",
+"catalog.count":"полные характеристики, фильтр по типу и Wi‑Fi",
+"filters.mount":"Монтаж","filters.all":"Все","filters.wall":"Настенные","filters.ceiling":"Потолочные","filters.outdoor":"Уличные",
+"sec.wall.h2":"Настенные (in‑wall)","sec.wall.count":"монтаж в стакан 86 мм",
+"sec.ceiling.h2":"Потолочные (ceiling)","sec.ceiling.count":"монтаж на потолок, стену, стол",
+"sec.outdoor.h2":"Уличные (outdoor)","sec.outdoor.count":"монтаж на стену, столб",
+"lbl.bands":"Диапазоны","lbl.streams":"Потоки","lbl.ports":"Порты","lbl.port1":"Порт","lbl.power":"Питание",
+"lbl.clientsssid":"Клиенты / SSID","lbl.clients":"Клиенты","lbl.temp":"Темп. работы","lbl.dims":"Габариты",
+"lbl.mgmt":"Управление","lbl.security":"Безопасность","lbl.mount":"Монтаж","lbl.antennas":"Антенны",
+"lbl.coverage":"Радиус покрытия","lbl.storagetemp":"Темп. хранения",
+"qs.speed":"Скорость","qs.protection":"Защита","qs.tempshort":"Темп.",
+"card.usefor":"Для чего:","card.spec.summary":"Полные характеристики",
+"c521.tagline":"Wi‑Fi 5 · настенная, скрытый монтаж",
+"c621e.tagline":"Wi‑Fi 6 · настенная, скрытый монтаж",
+"c522.tagline":"Wi‑Fi 5 · потолочная",
+"c622g.tagline":"Wi‑Fi 6 · потолочная, начальный уровень",
+"c6218.tagline":"Wi‑Fi 6 · потолочная, доп. LAN + питание 220 В",
+"c622e.tagline":"Wi‑Fi 6 · потолочная, топ линейки",
+"c5312.tagline":"Wi‑Fi 5 · уличная, IP65",
+"c623e.tagline":"Wi‑Fi 6 · уличная, IP68",
+"c521.qs1v":"1167<span class=\"unit\"> Мбит/с</span>","c521.qs3v":"50<span class=\"unit\">+ реком.</span>",
+"c621e.qs1v":"2975<span class=\"unit\"> Мбит/с</span>","c621e.qs3v":"70<span class=\"unit\">+ реком.</span>",
+"c522.qs1v":"1167<span class=\"unit\"> Мбит/с</span>","c522.qs3v":"80<span class=\"unit\">+ реком.</span>",
+"c622g.qs1v":"1775<span class=\"unit\"> Мбит/с</span>","c622g.qs3v":"100<span class=\"unit\">+ реком.</span>",
+"c6218.qs1v":"1775<span class=\"unit\"> Мбит/с</span>","c6218.qs3v":"100<span class=\"unit\">+ реком.</span>",
+"c622e.qs1v":"2975<span class=\"unit\"> Мбит/с</span>","c622e.qs3v":"100<span class=\"unit\">+ реком.</span>",
+"c5312.qs1v":"1167<span class=\"unit\"> Мбит/с</span>",
+"c623e.qs1v":"2975<span class=\"unit\"> Мбит/с</span>",
+"c521.use":"общежития, гостиничные номера, палаты — там, где нужна скрытая точка вместо розетки, без штробления и коробов.",
+"c621e.use":"те же сценарии, что и 521‑SI, но когда в комнате много устройств на человека (смартфон + ноутбук + ТВ) — отели бизнес‑класса, современные апартаменты.",
+"c522.use":"базовое покрытие небольших офисов, магазинов, переговорных — самый бюджетный потолочный вариант линейки.",
+"c622g.use":"недорогой апгрейд на Wi‑Fi 6 взамен 522‑SI — классы, торговые залы, лобби с умеренной плотностью устройств.",
+"c6218.use":"тот же класс задач, что 622G‑SI, но пригодится там, где нет PoE‑коммутатора (можно запитать адаптером 12 В) или нужен второй LAN‑порт под соседнее устройство — камеру, IP‑телефон.",
+"c622e.use":"максимальная плотность пользователей и трафика — большие open‑space, конференц‑залы, где суммарная скорость клиентов превышает 1 Гбит/с и нужен аплинк 2.5G; поддержка WPA3.",
+"c5312.use":"недорогое покрытие простых уличных зон — дворы, парковки, складские территории, где не нужна ни максимальная скорость, ни экстремальная защита.",
+"c623e.use":"суровые условия и максимальная дальность — промплощадки, стадионы, кампусы, периметровое покрытие; антенны с усилением 10 dBi (2.4 ГГц) и 5 dBi (5 ГГц) пробивают дальше и сквозь помехи.",
+"bands.a":"2.4 ГГц: 300<span class=\"band-chip b24\">2.4G</span><br>5 ГГц: 867<span class=\"band-chip b5\">5G</span>",
+"bands.b":"2.4 ГГц: 575<span class=\"band-chip b24\">2.4G</span><br>5 ГГц: 2400<span class=\"band-chip b5\">5G</span>",
+"bands.c":"2.4 ГГц: 574<span class=\"band-chip b24\">2.4G</span><br>5 ГГц: 1201<span class=\"band-chip b5\">5G</span>",
+"c521.streams":"2×2 MU‑MIMO / диапазон",
+"c521.power":"802.3af/at PoE, до 8 Вт",
+"c621e.power":"802.3af/at PoE, до 13 Вт",
+"cli.128x8":"до 128 / 8 SSID","cli.256x8":"до 256 / 8 SSID","cli.128x7":"до 128 / 7 SSID","cli.256x100":"до 256 / 100 реком.","cli.max128":"128 макс.",
+"c521.dims":"86×86×35 мм, 0.2 кг","c621e.dims":"86×86×44.4 мм, 0.17 кг",
+"c521.mgmt":"Web / централизованно через AC",
+"port.uplink":"1× GbE PoE‑in (аплинк)",
+"power.522":"802.3af/at PoE или 12 В DC, до 11.35 Вт",
+"dims.522":"Ø220×35 мм, 0.4 кг",
+"mount.cwd":"потолок / стена / стол",
+"c6218.power":"802.3at PoE или 12 В DC 2 А, 5.5–18 Вт","c6218.dims":"Ø220×50 мм",
+"c622e.power":"802.3af/at PoE или 12 В DC, до 13.5 Вт","c622e.dims":"Ø220×39 мм, 0.38 кг",
+"c5312.power":"802.3at PoE, тип. 9 / макс. 18 Вт",
+"c5312.ant":"внешние, 2.4: 3.7 dBi · 5: 5 dBi","c5312.cov":"~150 м (рекоменд.)",
+"mount.wallpole":"стена, столб",
+"c623e.power":"802.3af/at PoE, 48 В DC 0.3 А, до 14.4 Вт",
+"table.h2":"Сравнительная таблица","table.count":"все параметры в одном виде",
+"th.model":"Модель","th.type":"Тип","th.bandsfreq":"2.4 / 5 ГГц","th.clientsrec":"Клиенты (реком.)","th.weight":"Вес",
+"type.wall":"настенная","type.ceiling":"потолочная","type.outdoor":"уличная",
+"spd.1167":"1167 Мбит/с","spd.1775":"1775 Мбит/с","spd.2975":"2975 Мбит/с",
+"poe.521":"af/at, 8 Вт","poe.621e":"af/at, 13 Вт","poe.522":"af/at / 12 В DC, 11.35 Вт","poe.6218":"at / 12 В DC, до 18 Вт","poe.622e":"af/at / 12 В DC, 13.5 Вт","poe.5312":"at, до 18 Вт","poe.623e":"af/at 48 В, 14.4 Вт",
+"wt.521":"0.2 кг","wt.621e":"0.17 кг","wt.522":"0.4 кг","wt.622e":"0.38 кг","wt.5312":"0.34 кг","wt.623e":"1.07 кг",
+"footer.text":"Характеристики сведены из официальных даташитов и страниц продуктов Hikvision (hikvision.com, assets.hikvision.com), актуальны на август 2026. Перед закупкой и проектированием сверяйте цифры с действующим даташитом конкретной партии — производитель может менять параметры без отдельного уведомления. Все модели поддерживают автоматическую RF‑оптимизацию, интеллектуальный роуминг и централизованное управление через контроллер (AC) Hikvision."
+},
+en: {
+"hdr.eyebrow":"Installer's reference",
+"hdr.h1":"Hikvision DS‑3WAP Access Points",
+"hdr.sub":"Eight Hikvision Wi‑Fi access point models grouped by mounting type — in‑wall (concealed), ceiling, and outdoor. Specifications, differences, and usage recommendations to help you pick the right model for a site.",
+"hdr.meta1":"8 models",
+"hdr.meta3":"Source — Hikvision datasheets, Aug. 2026",
+"picker.h2":"Find your access point",
+"picker.count":"2 steps — get a specific model",
+"picker.q1":"Where will it be installed?",
+"picker.q2":"What's the requirement?",
+"picker.loc.wall":"Wall","picker.loc.wall.sub":"concealed mount, 86 mm box",
+"picker.loc.ceiling":"Ceiling / open indoor","picker.loc.ceiling.sub":"office, hall, classroom",
+"picker.loc.outdoor":"Outdoor","picker.loc.outdoor.sub":"wall, pole, façade",
+"picker.nw.basic":"Typical load","picker.nw.basic.sub":"budget matters",
+"picker.nw.heavy":"Many devices per room","picker.nw.heavy.sub":"need headroom for speed",
+"picker.nc.basic":"Budget","picker.nc.basic.sub":"typical load",
+"picker.nc.budget6":"Budget, but need Wi‑Fi 6","picker.nc.budget6.sub":"upgrade without overpaying",
+"picker.nc.nopoe":"No PoE switch","picker.nc.nopoe.sub":"only 220 V on site",
+"picker.nc.heavy":"High user density","picker.nc.heavy.sub":"need >1 Gbps uplink",
+"picker.no.basic":"Mild conditions","picker.no.basic.sub":"budget matters",
+"picker.no.harsh":"Harsh climate","picker.no.harsh.sub":"maximum range",
+"picker.hint":"Pick a mounting type, then a requirement — the recommended model will appear.",
+"result.tag":"Recommendation",
+"result.jump":"Full specs in the catalog ↓",
+"result.521.why":"Best fit for concealed mounting under typical load: Wi‑Fi 5 is enough for a standard room, and it costs less than the 621E‑SI.",
+"result.521.specs":"<span>1167 Mbps</span><span>up to 50 clients</span><span>86×86×35 mm</span><span>up to 8 W</span>",
+"result.621e.why":"Wi‑Fi 6 gives headroom in speed and connection count — pick it when a room has several devices per person running at once (phone, laptop, TV), or you're planning ahead.",
+"result.621e.specs":"<span>2975 Mbps</span><span>up to 256 clients</span><span>WPA3</span><span>up to 13 W</span>",
+"result.522.why":"The most affordable ceiling model in the lineup — enough for a typical office or meeting room without high user density.",
+"result.522.specs":"<span>1167 Mbps</span><span>up to 80 clients</span><span>Ø220 mm</span>",
+"result.622g.why":"Same niche as the 522‑SI, but on Wi‑Fi 6 — the premium is small while the gain in speed and capacity is noticeable. The right pick when Wi‑Fi 6 specifically matters, not maximum specs.",
+"result.622g.specs":"<span>1775 Mbps</span><span>up to 100 clients</span><span>Ø220 mm</span>",
+"result.6218.why":"Pick this when the site has no PoE switch: the unit can run off a 12 V wall adapter instead. It also has a second LAN port for a nearby device — a camera or IP phone.",
+"result.6218.specs":"<span>PoE or 12 V DC</span><span>2 LAN ports</span><span>1775 Mbps</span>",
+"result.622e.why":"The flagship ceiling model. A 2.5‑gigabit uplink and WPA3 matter when many users are connected at once and combined client traffic exceeds 1 Gbps.",
+"result.622e.specs":"<span>2975 Mbps</span><span>2.5GbE uplink</span><span>WPA3</span>",
+"result.5312.why":"A budget solution for straightforward outdoor conditions — a yard, parking lot, or warehouse. IP65 and a −30…+65 °C operating range cover most sites.",
+"result.5312.specs":"<span>IP65</span><span>−30…+65 °C</span><span>1167 Mbps</span>",
+"result.623e.why":"Choose this for genuinely harsh conditions and long distances: IP68, directional antennas with up to 10 dBi gain, and an operating range starting at −30 °C.",
+"result.623e.specs":"<span>IP68</span><span>2975 Mbps</span><span>10/5 dBi antennas</span>",
+"catalog.h2":"All models",
+"catalog.count":"full specs, filter by type and Wi‑Fi",
+"filters.mount":"Mounting","filters.all":"All","filters.wall":"Wall","filters.ceiling":"Ceiling","filters.outdoor":"Outdoor",
+"sec.wall.h2":"Wall (in‑wall)","sec.wall.count":"86 mm box mount",
+"sec.ceiling.h2":"Ceiling","sec.ceiling.count":"ceiling, wall, or desk mount",
+"sec.outdoor.h2":"Outdoor","sec.outdoor.count":"wall or pole mount",
+"lbl.bands":"Bands","lbl.streams":"Streams","lbl.ports":"Ports","lbl.port1":"Port","lbl.power":"Power",
+"lbl.clientsssid":"Clients / SSID","lbl.clients":"Clients","lbl.temp":"Operating temp.","lbl.dims":"Dimensions",
+"lbl.mgmt":"Management","lbl.security":"Security","lbl.mount":"Mounting","lbl.antennas":"Antennas",
+"lbl.coverage":"Coverage radius","lbl.storagetemp":"Storage temp.",
+"qs.speed":"Speed","qs.protection":"Protection","qs.tempshort":"Temp.",
+"card.usefor":"Best for:","card.spec.summary":"Full specifications",
+"c521.tagline":"Wi‑Fi 5 · wall, concealed mount",
+"c621e.tagline":"Wi‑Fi 6 · wall, concealed mount",
+"c522.tagline":"Wi‑Fi 5 · ceiling",
+"c622g.tagline":"Wi‑Fi 6 · ceiling, entry level",
+"c6218.tagline":"Wi‑Fi 6 · ceiling, extra LAN + 220 V power",
+"c622e.tagline":"Wi‑Fi 6 · ceiling, flagship",
+"c5312.tagline":"Wi‑Fi 5 · outdoor, IP65",
+"c623e.tagline":"Wi‑Fi 6 · outdoor, IP68",
+"c521.qs1v":"1167<span class=\"unit\"> Mbps</span>","c521.qs3v":"50<span class=\"unit\">+ rec.</span>",
+"c621e.qs1v":"2975<span class=\"unit\"> Mbps</span>","c621e.qs3v":"70<span class=\"unit\">+ rec.</span>",
+"c522.qs1v":"1167<span class=\"unit\"> Mbps</span>","c522.qs3v":"80<span class=\"unit\">+ rec.</span>",
+"c622g.qs1v":"1775<span class=\"unit\"> Mbps</span>","c622g.qs3v":"100<span class=\"unit\">+ rec.</span>",
+"c6218.qs1v":"1775<span class=\"unit\"> Mbps</span>","c6218.qs3v":"100<span class=\"unit\">+ rec.</span>",
+"c622e.qs1v":"2975<span class=\"unit\"> Mbps</span>","c622e.qs3v":"100<span class=\"unit\">+ rec.</span>",
+"c5312.qs1v":"1167<span class=\"unit\"> Mbps</span>",
+"c623e.qs1v":"2975<span class=\"unit\"> Mbps</span>",
+"c521.use":"dormitories, hotel rooms, hospital wards — anywhere you need a concealed access point instead of an outlet, with no chasing or surface boxes.",
+"c621e.use":"the same scenarios as the 521‑SI, but when a room has several devices per person (phone + laptop + TV) — business‑class hotels, modern apartments.",
+"c522.use":"basic coverage for small offices, shops, meeting rooms — the most affordable ceiling model in the lineup.",
+"c622g.use":"an affordable Wi‑Fi 6 upgrade over the 522‑SI — classrooms, retail floors, lobbies with moderate device density.",
+"c6218.use":"the same class of tasks as the 622G‑SI, but useful where there's no PoE switch (can run off a 12 V adapter) or a second LAN port is needed for a nearby device — a camera, IP phone.",
+"c622e.use":"maximum user and traffic density — large open‑plan offices, conference rooms where combined client throughput exceeds 1 Gbps and a 2.5G uplink is needed; WPA3 support.",
+"c5312.use":"affordable coverage for straightforward outdoor areas — yards, parking lots, warehouse grounds where neither top speed nor extreme protection is required.",
+"c623e.use":"harsh conditions and maximum range — industrial sites, stadiums, campuses, perimeter coverage; antennas gaining 10 dBi (2.4 GHz) and 5 dBi (5 GHz) reach further and cut through interference.",
+"bands.a":"2.4 GHz: 300<span class=\"band-chip b24\">2.4G</span><br>5 GHz: 867<span class=\"band-chip b5\">5G</span>",
+"bands.b":"2.4 GHz: 575<span class=\"band-chip b24\">2.4G</span><br>5 GHz: 2400<span class=\"band-chip b5\">5G</span>",
+"bands.c":"2.4 GHz: 574<span class=\"band-chip b24\">2.4G</span><br>5 GHz: 1201<span class=\"band-chip b5\">5G</span>",
+"c521.streams":"2×2 MU‑MIMO / band",
+"c521.power":"802.3af/at PoE, up to 8 W",
+"c621e.power":"802.3af/at PoE, up to 13 W",
+"cli.128x8":"up to 128 / 8 SSID","cli.256x8":"up to 256 / 8 SSID","cli.128x7":"up to 128 / 7 SSID","cli.256x100":"up to 256 / 100 rec.","cli.max128":"128 max.",
+"c521.dims":"86×86×35 mm, 0.2 kg","c621e.dims":"86×86×44.4 mm, 0.17 kg",
+"c521.mgmt":"Web / centralized via AC controller",
+"port.uplink":"1× GbE PoE‑in (uplink)",
+"power.522":"802.3af/at PoE or 12 V DC, up to 11.35 W",
+"dims.522":"Ø220×35 mm, 0.4 kg",
+"mount.cwd":"ceiling / wall / desk",
+"c6218.power":"802.3at PoE or 12 V DC 2 A, 5.5–18 W","c6218.dims":"Ø220×50 mm",
+"c622e.power":"802.3af/at PoE or 12 V DC, up to 13.5 W","c622e.dims":"Ø220×39 mm, 0.38 kg",
+"c5312.power":"802.3at PoE, typ. 9 / max. 18 W",
+"c5312.ant":"external, 2.4: 3.7 dBi · 5: 5 dBi","c5312.cov":"~150 m (recommended)",
+"mount.wallpole":"wall, pole",
+"c623e.power":"802.3af/at PoE, 48 V DC 0.3 A, up to 14.4 W",
+"table.h2":"Comparison table","table.count":"all parameters in one view",
+"th.model":"Model","th.type":"Type","th.bandsfreq":"2.4 / 5 GHz","th.clientsrec":"Clients (rec.)","th.weight":"Weight",
+"type.wall":"wall","type.ceiling":"ceiling","type.outdoor":"outdoor",
+"spd.1167":"1167 Mbps","spd.1775":"1775 Mbps","spd.2975":"2975 Mbps",
+"poe.521":"af/at, 8 W","poe.621e":"af/at, 13 W","poe.522":"af/at / 12 V DC, 11.35 W","poe.6218":"at / 12 V DC, up to 18 W","poe.622e":"af/at / 12 V DC, 13.5 W","poe.5312":"at, up to 18 W","poe.623e":"af/at 48 V, 14.4 W",
+"wt.521":"0.2 kg","wt.621e":"0.17 kg","wt.522":"0.4 kg","wt.622e":"0.38 kg","wt.5312":"0.34 kg","wt.623e":"1.07 kg",
+"footer.text":"Specifications compiled from official Hikvision datasheets and product pages (hikvision.com, assets.hikvision.com), current as of August 2026. Verify figures against the current datasheet for a specific batch before purchasing or designing — the manufacturer may change parameters without separate notice. All models support automatic RF optimization, intelligent roaming, and centralized management through a Hikvision AC controller."
+},
+he: {
+"hdr.eyebrow":"מדריך למתקין",
+"hdr.h1":"נקודות הגישה של Hikvision DS‑3WAP",
+"hdr.sub":"שמונה דגמי נקודות גישה אלחוטיות של Hikvision, מסודרים לפי סוג ההתקנה — שקועות בקיר, תקרתיות וחיצוניות. מפרטים, הבדלים והמלצות שימוש לבחירת הדגם המתאים לאתר.",
+"hdr.meta1":"8 דגמים",
+"hdr.meta3":"מקור — גיליונות נתונים של Hikvision, אוג׳ 2026",
+"picker.h2":"בחירת נקודת גישה",
+"picker.count":"2 שלבים — קבלו דגם מומלץ",
+"picker.q1":"היכן תותקן הנקודה?",
+"picker.q2":"מה הצורך?",
+"picker.loc.wall":"קיר","picker.loc.wall.sub":"התקנה שקועה, קופסת 86 מ״מ",
+"picker.loc.ceiling":"תקרה / התקנה גלויה בפנים","picker.loc.ceiling.sub":"משרד, אולם, כיתה",
+"picker.loc.outdoor":"חוץ","picker.loc.outdoor.sub":"קיר, עמוד, חזית",
+"picker.nw.basic":"עומס רגיל","picker.nw.basic.sub":"התקציב חשוב",
+"picker.nw.heavy":"הרבה מכשירים בחדר","picker.nw.heavy.sub":"נדרשת רזרבת מהירות",
+"picker.nc.basic":"תקציבי","picker.nc.basic.sub":"עומס רגיל",
+"picker.nc.budget6":"תקציבי, אך נדרש Wi‑Fi 6","picker.nc.budget6.sub":"שדרוג ללא תוספת מחיר גבוהה",
+"picker.nc.nopoe":"אין מתג PoE","picker.nc.nopoe.sub":"יש רק חשמל 220V באתר",
+"picker.nc.heavy":"צפיפות משתמשים גבוהה","picker.nc.heavy.sub":"נדרש uplink מעל 1 Gbps",
+"picker.no.basic":"תנאים פשוטים","picker.no.basic.sub":"התקציב חשוב",
+"picker.no.harsh":"אקלים קשה","picker.no.harsh.sub":"טווח מרבי",
+"picker.hint":"בחרו סוג התקנה ואז צורך — הדגם המומלץ יופיע.",
+"result.tag":"המלצה",
+"result.jump":"מפרט מלא בקטלוג ↓",
+"result.521.why":"הבחירה הטובה ביותר להתקנה שקועה בעומס רגיל: Wi‑Fi 5 מספיק לחדר טיפוסי, והמחיר נמוך יותר מ‑621E‑SI.",
+"result.521.specs":"<span>1167 Mbps</span><span>עד 50 לקוחות</span><span>86×86×35 מ״מ</span><span>עד 8W</span>",
+"result.621e.why":"Wi‑Fi 6 נותן רזרבה במהירות ובמספר החיבורים — מתאים כשבחדר פועלים כמה מכשירים לאדם בו־זמנית (טלפון, מחשב נייד, טלוויזיה), או כשרוצים להיערך מראש לעתיד.",
+"result.621e.specs":"<span>2975 Mbps</span><span>עד 256 לקוחות</span><span>WPA3</span><span>עד 13W</span>",
+"result.522.why":"הדגם התקרתי הזול ביותר בסדרה — מספיק למשרד טיפוסי או חדר ישיבות ללא צפיפות משתמשים גבוהה.",
+"result.522.specs":"<span>1167 Mbps</span><span>עד 80 לקוחות</span><span>Ø220 מ״מ</span>",
+"result.622g.why":"אותה נישה כמו 522‑SI, אך עם Wi‑Fi 6 — התוספת במחיר קטנה, והשיפור במהירות ובקיבולת ניכר. הבחירה הנכונה כשחשוב דווקא Wi‑Fi 6, ולא המפרט המקסימלי.",
+"result.622g.specs":"<span>1775 Mbps</span><span>עד 100 לקוחות</span><span>Ø220 מ״מ</span>",
+"result.6218.why":"מתאים כשאין באתר מתג PoE: אפשר להזין את הנקודה ממתאם 12V רגיל מהקיר. יש גם יציאת LAN שנייה למכשיר סמוך — מצלמה או טלפון IP.",
+"result.6218.specs":"<span>PoE או 12V DC</span><span>2 יציאות LAN</span><span>1775 Mbps</span>",
+"result.622e.why":"הדגם המתקדם ביותר לתקרה. uplink של 2.5 ג׳יגה ותמיכה ב‑WPA3 נחוצים כשמחוברים הרבה משתמשים בו־זמנית והתעבורה הכוללת חוצה 1 Gbps.",
+"result.622e.specs":"<span>2975 Mbps</span><span>uplink 2.5GbE</span><span>WPA3</span>",
+"result.5312.why":"פתרון תקציבי לתנאי חוץ פשוטים — חצר, חניון, מחסן. IP65 וטווח הפעלה של −30…+65°C מספיקים לרוב האתרים.",
+"result.5312.specs":"<span>IP65</span><span>−30…+65°C</span><span>1167 Mbps</span>",
+"result.623e.why":"לתנאים קשים באמת ולמרחקים גדולים: IP68, אנטנות מכוונות עם הגברה של עד 10dBi וטווח הפעלה מ‑−30°C.",
+"result.623e.specs":"<span>IP68</span><span>2975 Mbps</span><span>אנטנות 10/5 dBi</span>",
+"catalog.h2":"כל הדגמים",
+"catalog.count":"מפרט מלא, סינון לפי סוג ו‑Wi‑Fi",
+"filters.mount":"התקנה","filters.all":"הכל","filters.wall":"קיר","filters.ceiling":"תקרה","filters.outdoor":"חוץ",
+"sec.wall.h2":"קיר (in‑wall)","sec.wall.count":"התקנה בקופסת 86 מ״מ",
+"sec.ceiling.h2":"תקרה (ceiling)","sec.ceiling.count":"התקנה על תקרה, קיר או שולחן",
+"sec.outdoor.h2":"חוץ (outdoor)","sec.outdoor.count":"התקנה על קיר או עמוד",
+"lbl.bands":"תדרים","lbl.streams":"זרמים","lbl.ports":"יציאות","lbl.port1":"יציאה","lbl.power":"הזנת חשמל",
+"lbl.clientsssid":"לקוחות / SSID","lbl.clients":"לקוחות","lbl.temp":"טמפ׳ הפעלה","lbl.dims":"מידות",
+"lbl.mgmt":"ניהול","lbl.security":"אבטחה","lbl.mount":"התקנה","lbl.antennas":"אנטנות",
+"lbl.coverage":"רדיוס כיסוי","lbl.storagetemp":"טמפ׳ אחסון",
+"qs.speed":"מהירות","qs.protection":"דירוג הגנה","qs.tempshort":"טמפ׳",
+"card.usefor":"מתאים עבור:","card.spec.summary":"מפרט מלא",
+"c521.tagline":"Wi‑Fi 5 · קיר, התקנה שקועה",
+"c621e.tagline":"Wi‑Fi 6 · קיר, התקנה שקועה",
+"c522.tagline":"Wi‑Fi 5 · תקרה",
+"c622g.tagline":"Wi‑Fi 6 · תקרה, דגם בסיסי",
+"c6218.tagline":"Wi‑Fi 6 · תקרה, יציאת LAN נוספת + הזנת 220V",
+"c622e.tagline":"Wi‑Fi 6 · תקרה, דגם דגל",
+"c5312.tagline":"Wi‑Fi 5 · חוץ, IP65",
+"c623e.tagline":"Wi‑Fi 6 · חוץ, IP68",
+"c521.qs1v":"1167<span class=\"unit\"> Mbps</span>","c521.qs3v":"50<span class=\"unit\">+ מומלץ</span>",
+"c621e.qs1v":"2975<span class=\"unit\"> Mbps</span>","c621e.qs3v":"70<span class=\"unit\">+ מומלץ</span>",
+"c522.qs1v":"1167<span class=\"unit\"> Mbps</span>","c522.qs3v":"80<span class=\"unit\">+ מומלץ</span>",
+"c622g.qs1v":"1775<span class=\"unit\"> Mbps</span>","c622g.qs3v":"100<span class=\"unit\">+ מומלץ</span>",
+"c6218.qs1v":"1775<span class=\"unit\"> Mbps</span>","c6218.qs3v":"100<span class=\"unit\">+ מומלץ</span>",
+"c622e.qs1v":"2975<span class=\"unit\"> Mbps</span>","c622e.qs3v":"100<span class=\"unit\">+ מומלץ</span>",
+"c5312.qs1v":"1167<span class=\"unit\"> Mbps</span>",
+"c623e.qs1v":"2975<span class=\"unit\"> Mbps</span>",
+"c521.use":"מעונות, חדרי מלון, מחלקות בבתי חולים — בכל מקום שנדרשת נקודת גישה שקועה במקום שקע, בלי חציבה או קופסאות התקנה גלויות.",
+"c621e.use":"אותם תרחישים כמו 521‑SI, אך כשבחדר יש כמה מכשירים לאדם (טלפון + מחשב נייד + טלוויזיה) — מלונות ברמה עסקית, דירות מודרניות.",
+"c522.use":"כיסוי בסיסי למשרדים קטנים, חנויות, חדרי ישיבות — הדגם התקרתי הזול ביותר בסדרה.",
+"c622g.use":"שדרוג זול ל‑Wi‑Fi 6 במקום 522‑SI — כיתות, אולמות מכירה, לוביים בצפיפות מכשירים בינונית.",
+"c6218.use":"אותה קטגוריית משימות כמו 622G‑SI, אך שימושי במקומות ללא מתג PoE (ניתן להזין ממתאם 12V) או כשנדרשת יציאת LAN שנייה למכשיר סמוך — מצלמה, טלפון IP.",
+"c622e.use":"צפיפות משתמשים ותעבורה מרבית — משרדי open‑space גדולים, חדרי ישיבות שבהם התעבורה הכוללת חוצה 1 Gbps ונדרש uplink של 2.5G; תמיכה ב‑WPA3.",
+"c5312.use":"כיסוי זול לאזורי חוץ פשוטים — חצרות, חניונים, שטחי מחסנים שבהם לא נדרשת מהירות מרבית או הגנה קיצונית.",
+"c623e.use":"תנאים קשים וטווח מרבי — אתרים תעשייתיים, אצטדיונים, קמפוסים, כיסוי היקפי; אנטנות עם הגברה של 10dBi (2.4GHz) ו‑5dBi (5GHz) מגיעות רחוק יותר וחודרות הפרעות.",
+"bands.a":"2.4GHz: 300<span class=\"band-chip b24\">2.4G</span><br>5GHz: 867<span class=\"band-chip b5\">5G</span>",
+"bands.b":"2.4GHz: 575<span class=\"band-chip b24\">2.4G</span><br>5GHz: 2400<span class=\"band-chip b5\">5G</span>",
+"bands.c":"2.4GHz: 574<span class=\"band-chip b24\">2.4G</span><br>5GHz: 1201<span class=\"band-chip b5\">5G</span>",
+"c521.streams":"2×2 MU‑MIMO / תדר",
+"c521.power":"802.3af/at PoE, עד 8W",
+"c621e.power":"802.3af/at PoE, עד 13W",
+"cli.128x8":"עד 128 / 8 SSID","cli.256x8":"עד 256 / 8 SSID","cli.128x7":"עד 128 / 7 SSID","cli.256x100":"עד 256 / 100 מומלץ","cli.max128":"128 מקס׳",
+"c521.dims":"86×86×35 מ״מ, 0.2 ק״ג","c621e.dims":"86×86×44.4 מ״מ, 0.17 ק״ג",
+"c521.mgmt":"Web / ניהול מרוכז דרך בקר AC",
+"port.uplink":"1× GbE PoE‑in (uplink)",
+"power.522":"802.3af/at PoE או 12V DC, עד 11.35W",
+"dims.522":"Ø220×35 מ״מ, 0.4 ק״ג",
+"mount.cwd":"תקרה / קיר / שולחן",
+"c6218.power":"802.3at PoE או 12V DC 2A, 5.5–18W","c6218.dims":"Ø220×50 מ״מ",
+"c622e.power":"802.3af/at PoE או 12V DC, עד 13.5W","c622e.dims":"Ø220×39 מ״מ, 0.38 ק״ג",
+"c5312.power":"802.3at PoE, טיפוסי 9 / מקס׳ 18W",
+"c5312.ant":"חיצוניות, 2.4: 3.7dBi · 5: 5dBi","c5312.cov":"~150 מ׳ (מומלץ)",
+"mount.wallpole":"קיר, עמוד",
+"c623e.power":"802.3af/at PoE, 48V DC 0.3A, עד 14.4W",
+"table.h2":"טבלת השוואה","table.count":"כל הפרמטרים במבט אחד",
+"th.model":"דגם","th.type":"סוג","th.bandsfreq":"2.4 / 5 GHz","th.clientsrec":"לקוחות (מומלץ)","th.weight":"משקל",
+"type.wall":"קיר","type.ceiling":"תקרה","type.outdoor":"חוץ",
+"spd.1167":"1167 Mbps","spd.1775":"1775 Mbps","spd.2975":"2975 Mbps",
+"poe.521":"af/at, 8W","poe.621e":"af/at, 13W","poe.522":"af/at / 12V DC, 11.35W","poe.6218":"at / 12V DC, עד 18W","poe.622e":"af/at / 12V DC, 13.5W","poe.5312":"at, עד 18W","poe.623e":"af/at 48V, 14.4W",
+"wt.521":"0.2 ק״ג","wt.621e":"0.17 ק״ג","wt.522":"0.4 ק״ג","wt.622e":"0.38 ק״ג","wt.5312":"0.34 ק״ג","wt.623e":"1.07 ק״ג",
+"footer.text":"המפרטים נאספו מתוך גיליונות הנתונים הרשמיים ועמודי המוצרים של Hikvision (hikvision.com, assets.hikvision.com), נכון לאוגוסט 2026. לפני רכישה או תכנון יש לוודא את הנתונים מול גיליון הנתונים העדכני של האצווה הספציפית — היצרן עשוי לשנות פרמטרים ללא הודעה נפרדת. כל הדגמים תומכים באופטימיזציית RF אוטומטית, בנדידה חכמה ובניהול מרוכז דרך בקר AC של Hikvision."
+}
+};
+</script>
+<script>
+(function () {
+  "use strict";
+
+  var RESULT_MAP = {
+    "nw-basic": "521", "nw-heavy": "621e",
+    "nc-basic": "522", "nc-budget6": "622g", "nc-nopoe": "6218", "nc-heavy": "622e",
+    "no-basic": "5312", "no-harsh": "623e"
+  };
+  var LOC_PREFIX = { "wall": "nw-", "ceiling": "nc-", "outdoor": "no-" };
+
+  function updatePicker() {
+    var locEl = document.querySelector('input[name="loc"]:checked');
+    var needEl = document.querySelector('input[name="need"]:checked');
+    var hint = document.querySelector(".picker .hint");
+    document.querySelectorAll(".q2-wall, .q2-ceiling, .q2-outdoor").forEach(function (el) { el.style.display = "none"; });
+    document.querySelectorAll(".result").forEach(function (el) { el.style.display = "none"; });
+    if (!locEl) { if (hint) hint.style.display = ""; return; }
+    var loc = locEl.id.replace("loc-", "");
+    var q2 = document.querySelector(".q2-" + loc);
+    if (q2) q2.style.display = "block";
+    var shownResult = false;
+    if (needEl && needEl.id.indexOf(LOC_PREFIX[loc]) === 0) {
+      var rec = RESULT_MAP[needEl.id];
+      var resEl = document.querySelector('.result[data-rec="' + rec + '"]');
+      if (resEl) { resEl.style.display = "flex"; shownResult = true; }
+    }
+    if (hint) hint.style.display = shownResult ? "none" : "";
+  }
+
+  function updateCatalogFilters() {
+    var cat = document.querySelector('input[name="catfilter"]:checked');
+    var wifi = document.querySelector('input[name="wififilter"]:checked');
+    var catVal = cat ? cat.id.replace("f-", "") : "all";
+    var wifiVal = wifi ? wifi.id.replace("w-", "") : "all";
+    document.querySelectorAll(".cat-section").forEach(function (sec) {
+      var show = catVal === "all" || sec.getAttribute("data-section") === catVal;
+      sec.style.display = show ? "" : "none";
+    });
+    document.querySelectorAll(".card").forEach(function (card) {
+      var show = wifiVal === "all" || card.getAttribute("data-wifi") === wifiVal;
+      card.style.display = show ? "" : "none";
+    });
+  }
+
+  document.querySelectorAll('input[name="loc"], input[name="need"]').forEach(function (el) { el.addEventListener("change", updatePicker); });
+  document.querySelectorAll('input[name="catfilter"], input[name="wififilter"]').forEach(function (el) { el.addEventListener("change", updateCatalogFilters); });
+  updatePicker();
+  updateCatalogFilters();
+
+  function applyTheme(theme) {
+    var next = theme === "dark" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
+    document.body.setAttribute("data-theme", next);
+    var button = document.querySelector(".theme-toggle");
+    if (button) {
+      button.textContent = next === "dark" ? "☀️" : "🌙";
+      button.setAttribute("aria-label", next === "dark" ? "Switch to light theme" : "Switch to dark theme");
+    }
+    try { localStorage.setItem("hikvision-ap-theme", next); } catch (e) {}
+  }
+
+  function applyLanguage(lang) {
+    var dict = (window.I18N && window.I18N[lang]) || {};
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n");
+      if (dict[key] !== undefined) el.textContent = dict[key];
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n-html");
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    var isRtl = lang === "he";
+    document.documentElement.setAttribute("dir", isRtl ? "rtl" : "ltr");
+    document.documentElement.setAttribute("lang", lang);
+    if (dict["hdr.h1"]) document.title = dict["hdr.h1"];
+    document.querySelectorAll(".langbtn").forEach(function (b) {
+      b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+    });
+    try { localStorage.setItem("hikvision-ap-lang", lang); } catch (e) {}
+  }
+
+  document.querySelectorAll(".langbtn").forEach(function (btn) {
+    btn.addEventListener("click", function () { applyLanguage(btn.getAttribute("data-lang")); });
+  });
+
+  var initial = "en";
+  try {
+    var saved = localStorage.getItem("hikvision-ap-lang");
+    if (saved === "ru" || saved === "en" || saved === "he") initial = saved;
+  } catch (e) {}
+  applyLanguage(initial);
+
+  var savedTheme = "light";
+  try {
+    savedTheme = localStorage.getItem("hikvision-ap-theme") || "light";
+  } catch (e) {}
+
+  if (savedTheme !== "dark" && savedTheme !== "light") {
+    savedTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  applyTheme(savedTheme);
+
+  var themeToggle = document.querySelector(".theme-toggle");
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      var current = document.body.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      applyTheme(current === "dark" ? "light" : "dark");
+    });
+  }
+})();
+</script>
