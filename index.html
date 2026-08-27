@@ -127,6 +127,37 @@
   }
   .theme-toggle:hover { border-color: var(--accent); transform: translateY(-1px); }
   .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .install-btn {
+    display: inline-flex; align-items: center; gap: 7px; height: 38px; padding: 0 14px 0 12px;
+    border-radius: 999px; border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink);
+    font-family: "IBM Plex Mono", monospace; font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em;
+    cursor: pointer; box-shadow: 0 8px 18px -12px rgba(23,100,122,0.8); transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+  }
+  .install-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .install-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 20px -10px rgba(23,100,122,0.9); }
+  .install-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .install-btn[hidden] { display: none; }
+
+  .install-tip {
+    position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-end; justify-content: center;
+    background: rgba(10,16,15,0.5); padding: 16px;
+  }
+  .install-tip[hidden] { display: none; }
+  .install-tip .card {
+    width: 100%; max-width: 380px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 20px 20px 18px; box-shadow: 0 24px 48px -20px rgba(0,0,0,0.45); margin-bottom: 8px;
+  }
+  .install-tip h3 { font-size: 16px; margin-bottom: 10px; }
+  .install-tip ol { margin: 0; padding-inline-start: 20px; display: flex; flex-direction: column; gap: 6px; }
+  .install-tip li { font-size: 13.5px; color: var(--ink-muted); line-height: 1.5; }
+  .install-tip li b { color: var(--ink); }
+  .install-tip .close-tip {
+    margin-top: 16px; width: 100%; padding: 10px; border-radius: 10px; border: 1px solid var(--line-strong);
+    background: var(--surface-2); color: var(--ink); font-family: "IBM Plex Sans", sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer;
+  }
+  .install-tip .close-tip:hover { border-color: var(--accent); }
+
   header.top h1 { font-size: clamp(28px, 4.2vw, 40px); letter-spacing: -0.01em; }
   header.top .sub { margin-top: 12px; max-width: 62ch; color: var(--ink-muted); font-size: 16px; }
   .meta-row { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 18px; }
@@ -321,6 +352,10 @@
         <button type="button" class="langbtn" data-lang="en">EN</button>
         <button type="button" class="langbtn" data-lang="he">עב</button>
       </div>
+      <button type="button" class="install-btn" id="installBtn" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+        <span data-i18n="install.btn">Install app</span>
+      </button>
       <button type="button" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
     </div>
     <div class="top-layout">
@@ -345,6 +380,17 @@
       </div>
     </div>
   </header>
+
+  <div class="install-tip" id="installTip" hidden>
+    <div class="card">
+      <h3 data-i18n="install.ios.title">Install this app</h3>
+      <ol>
+        <li data-i18n-html="install.ios.step1">Tap the <b>Share</b> icon in Safari's toolbar.</li>
+        <li data-i18n-html="install.ios.step2">Scroll down and choose <b>Add to Home Screen</b>.</li>
+      </ol>
+      <button type="button" class="close-tip" id="installTipClose" data-i18n="install.ios.close">Got it</button>
+    </div>
+  </div>
 
   <section class="block">
     <div class="section-head"><h2 data-i18n="picker.h2">Подбор точки доступа</h2><span class="count" data-i18n="picker.count">2 шага — получите конкретную модель</span></div>
@@ -837,6 +883,11 @@
 window.I18N = {
 ru: {
 "hdr.eyebrow":"Справочник монтажника",
+"install.btn":"Установить",
+"install.ios.title":"Установите это приложение",
+"install.ios.step1":"Нажмите значок <b>«Поделиться»</b> в панели Safari.",
+"install.ios.step2":"Прокрутите вниз и выберите <b>«На экран «Домой»»</b>.",
+"install.ios.close":"Понятно",
 "hdr.h1":"Точки доступа Hikvision DS‑3WAP",
 "hdr.sub":"Восемь моделей Wi‑Fi точек доступа Hikvision, сгруппированные по типу монтажа — настенные (скрытые), потолочные и уличные. Характеристики, отличия и рекомендации по применению для подбора модели под объект.",
 "hdr.meta1":"8 моделей",
@@ -940,6 +991,11 @@ ru: {
 },
 en: {
 "hdr.eyebrow":"Installer's reference",
+"install.btn":"Install app",
+"install.ios.title":"Install this app",
+"install.ios.step1":"Tap the <b>Share</b> icon in Safari's toolbar.",
+"install.ios.step2":"Scroll down and choose <b>Add to Home Screen</b>.",
+"install.ios.close":"Got it",
 "hdr.h1":"Hikvision DS‑3WAP Access Points",
 "hdr.sub":"Eight Hikvision Wi‑Fi access point models grouped by mounting type — in‑wall (concealed), ceiling, and outdoor. Specifications, differences, and usage recommendations to help you pick the right model for a site.",
 "hdr.meta1":"8 models",
@@ -1043,6 +1099,11 @@ en: {
 },
 he: {
 "hdr.eyebrow":"מדריך למתקין",
+"install.btn":"התקנה",
+"install.ios.title":"התקינו את האפליקציה",
+"install.ios.step1":"הקישו על סמל <b>שיתוף</b> בסרגל הכלים של Safari.",
+"install.ios.step2":"גללו למטה ובחרו <b>הוספה למסך הבית</b>.",
+"install.ios.close":"הבנתי",
 "hdr.h1":"נקודות הגישה של Hikvision DS‑3WAP",
 "hdr.sub":"שמונה דגמי נקודות גישה אלחוטיות של Hikvision, מסודרים לפי סוג ההתקנה — שקועות בקיר, תקרתיות וחיצוניות. מפרטים, הבדלים והמלצות שימוש לבחירת הדגם המתאים לאתר.",
 "hdr.meta1":"8 דגמים",
@@ -1264,6 +1325,55 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js").catch(function () {});
   });
 }
+</script>
+<script>
+(function () {
+  "use strict";
+
+  var installBtn = document.getElementById("installBtn");
+  var installTip = document.getElementById("installTip");
+  var installTipClose = document.getElementById("installTipClose");
+  if (!installBtn) return;
+
+  function isStandalone() {
+    return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) ||
+      window.navigator.standalone === true;
+  }
+
+  if (isStandalone()) return;
+
+  var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+  var deferredPrompt = null;
+
+  if (isIOS) {
+    installBtn.hidden = false;
+    installBtn.addEventListener("click", function () {
+      installTip.hidden = false;
+    });
+    if (installTipClose) {
+      installTipClose.addEventListener("click", function () { installTip.hidden = true; });
+    }
+    installTip.addEventListener("click", function (e) {
+      if (e.target === installTip) installTip.hidden = true;
+    });
+  } else {
+    window.addEventListener("beforeinstallprompt", function (e) {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.hidden = false;
+    });
+    installBtn.addEventListener("click", function () {
+      if (!deferredPrompt) return;
+      installBtn.hidden = true;
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.finally(function () { deferredPrompt = null; });
+    });
+    window.addEventListener("appinstalled", function () {
+      installBtn.hidden = true;
+      deferredPrompt = null;
+    });
+  }
+})();
 </script>
 </body>
 </html>
