@@ -65,10 +65,10 @@
   <section class="page-hero animate-in">
     <div class="eyebrow" data-i18n="hdr.eyebrow">Installer's manual</div>
     <h1 data-i18n="nav.install">Install &amp; set up</h1>
-    <p class="sub">Powering the unit, finding it on the network, activating it, and the ways to configure it — in the order you do them on site. Menu labels vary by firmware; the flow does not.</p>
+    <p class="sub" data-i18n="in.hero.sub">Powering the unit, finding it on the network, activating it, and the ways to configure it — in the order you do them on site. Menu labels vary by firmware; the flow does not.</p>
     <div class="meta-pills">
-      <span>8 Step Guide</span>
-      <span class="mono">SADP · Web UI · Cloud</span>
+      <span data-i18n="in.meta.steps">8 Step Guide</span>
+      <span class="mono" data-i18n="in.meta.tools">SADP · Web UI · Cloud</span>
       <span data-i18n="meta.date">Aug. 2026 Reference</span>
     </div>
   </section>
@@ -87,309 +87,309 @@
   <div class="install-layout">
     <aside class="toc-rail" id="tocRail">
       <nav class="toc" aria-label="On this page">
-        <div class="toc-head">Installation Guide</div>
-        <a href="#before"><span class="toc-num">1</span> <span class="toc-text">Before you start</span></a>
-        <a href="#power"><span class="toc-num">2</span> <span class="toc-text">Power: PoE or DC</span></a>
-        <a href="#find"><span class="toc-num">3</span> <span class="toc-text">Connect &amp; find it</span></a>
-        <a href="#activate"><span class="toc-num">4</span> <span class="toc-text">Activation</span></a>
-        <a href="#configure"><span class="toc-num">5</span> <span class="toc-text">Ways to configure</span></a>
-        <a href="#wifi"><span class="toc-num">6</span> <span class="toc-text">Wi‑Fi settings</span></a>
-        <a href="#handover"><span class="toc-num">7</span> <span class="toc-text">Verify &amp; handover</span></a>
-        <a href="#trouble"><span class="toc-num">8</span> <span class="toc-text">Troubleshooting</span></a>
+        <div class="toc-head" data-i18n="in.toc.head">Installation Guide</div>
+        <a href="#before"><span class="toc-num">1</span> <span class="toc-text" data-i18n="in.toc.1">Before you start</span></a>
+        <a href="#power"><span class="toc-num">2</span> <span class="toc-text" data-i18n="in.toc.2">Power: PoE or DC</span></a>
+        <a href="#find"><span class="toc-num">3</span> <span class="toc-text" data-i18n="in.toc.3">Connect &amp; find it</span></a>
+        <a href="#activate"><span class="toc-num">4</span> <span class="toc-text" data-i18n="in.toc.4">Activation</span></a>
+        <a href="#configure"><span class="toc-num">5</span> <span class="toc-text" data-i18n="in.toc.5">Ways to configure</span></a>
+        <a href="#wifi"><span class="toc-num">6</span> <span class="toc-text" data-i18n="in.toc.6">Wi‑Fi settings</span></a>
+        <a href="#handover"><span class="toc-num">7</span> <span class="toc-text" data-i18n="in.toc.7">Verify &amp; handover</span></a>
+        <a href="#trouble"><span class="toc-num">8</span> <span class="toc-text" data-i18n="in.toc.8">Troubleshooting</span></a>
       </nav>
     </aside>
 
     <div class="prose">
 
     <section class="anchor" id="before">
-      <h2><span class="sec-badge">1</span> Before you start</h2>
-      <p>A DS‑3WAP is an <strong>access point</strong>, not a router. It attaches to an existing wired network and broadcasts Wi‑Fi. Something upstream (a router or DHCP server) must already hand out IP addresses; the AP just needs a path to it.</p>
-      <h3>What to have with you</h3>
+      <h2><span class="sec-badge">1</span> <span data-i18n="in.s1.h2">Before you start</span></h2>
+      <p data-i18n-html="in.s1.p1">A DS‑3WAP is an <strong>access point</strong>, not a router. It attaches to an existing wired network and broadcasts Wi‑Fi. Something upstream (a router or DHCP server) must already hand out IP addresses; the AP just needs a path to it.</p>
+      <h3 data-i18n="in.s1.h3a">What to have with you</h3>
       <ul>
-        <li>A laptop with an Ethernet port (or a USB‑Ethernet adapter) and the ability to set a static IP.</li>
-        <li>The <strong>SADP tool</strong> installed (Hikvision's free device‑discovery utility for Windows/macOS), or access to the site router's admin page.</li>
-        <li>A PoE switch, a PoE injector, or the model's DC adapter — see section 2.</li>
-        <li>A known‑good patch cable to test with, and the model's Quick Start Guide (QSG).</li>
-        <li>A phone with the <strong>Hik‑Partner Pro</strong> app if you will manage the site in the cloud.</li>
+        <li data-i18n="in.s1.li1">A laptop with an Ethernet port (or a USB‑Ethernet adapter) and the ability to set a static IP.</li>
+        <li data-i18n-html="in.s1.li2">The <strong>SADP tool</strong> installed (Hikvision's free device‑discovery utility for Windows/macOS), or access to the site router's admin page.</li>
+        <li data-i18n="in.s1.li3">A PoE switch, a PoE injector, or the model's DC adapter — see section 2.</li>
+        <li data-i18n="in.s1.li4">A known‑good patch cable to test with, and the model's Quick Start Guide (QSG).</li>
+        <li data-i18n-html="in.s1.li5">A phone with the <strong>Hik‑Partner Pro</strong> app if you will manage the site in the cloud.</li>
       </ul>
-      <h3>Where the label is</h3>
-      <p>On the back or side of the unit (and on the box) you will find the <strong>serial number</strong>, the <strong>MAC address</strong>, and often a <strong>default IP address</strong> or a QR code. You use the MAC to tell this AP apart from others in the SADP list, and the serial number to add it to Hik‑Partner Pro / Hik‑Connect.</p>
+      <h3 data-i18n="in.s1.h3b">Where the label is</h3>
+      <p data-i18n-html="in.s1.p2">On the back or side of the unit (and on the box) you will find the <strong>serial number</strong>, the <strong>MAC address</strong>, and often a <strong>default IP address</strong> or a QR code. You use the MAC to tell this AP apart from others in the SADP list, and the serial number to add it to Hik‑Partner Pro / Hik‑Connect.</p>
       <div class="callout qsg">
-        <span class="clabel">Check the QSG</span>
-        Hikvision devices historically default to <code>192.168.1.64</code>, but access points may instead come up as a DHCP client with no fixed address. Read the QSG for your unit — do not assume.
+        <span class="clabel" data-i18n="line.qsg.label">Check the QSG</span>
+        <span data-i18n-html="in.s1.qsg">Hikvision devices historically default to <code>192.168.1.64</code>, but access points may instead come up as a DHCP client with no fixed address. Read the QSG for your unit — do not assume.</span>
       </div>
-      <h3>LED legend (typical — confirm in the QSG)</h3>
+      <h3 data-i18n="in.s1.h3c">LED legend (typical — confirm in the QSG)</h3>
       <div class="led-legend">
-        <div class="led-item"><b><span class="led-indicator"></span>PWR / SYS</b> Solid = powered and booted. Blinking = booting or firmware update. Off = no power (see section 2).</div>
-        <div class="led-item"><b><span class="led-indicator"></span>2.4G</b> On/blinking = 2.4 GHz radio active with traffic.</div>
-        <div class="led-item"><b><span class="led-indicator"></span>5G</b> On/blinking = 5 GHz radio active with traffic.</div>
-        <div class="led-item"><b><span class="led-indicator"></span>LAN / uplink</b> On = link up on the wired port. Off = no cable, dead port, or no power on the far end.</div>
+        <div class="led-item"><b><span class="led-indicator"></span>PWR / SYS</b> <span data-i18n="in.s1.led1">Solid = powered and booted. Blinking = booting or firmware update. Off = no power (see section 2).</span></div>
+        <div class="led-item"><b><span class="led-indicator"></span>2.4G</b> <span data-i18n="in.s1.led2">On/blinking = 2.4 GHz radio active with traffic.</span></div>
+        <div class="led-item"><b><span class="led-indicator"></span>5G</b> <span data-i18n="in.s1.led3">On/blinking = 5 GHz radio active with traffic.</span></div>
+        <div class="led-item"><b><span class="led-indicator"></span>LAN / uplink</b> <span data-i18n="in.s1.led4">On = link up on the wired port. Off = no cable, dead port, or no power on the far end.</span></div>
       </div>
-      <h3>The RESET button</h3>
-      <p>A recessed pinhole. Press and hold it for about <strong>10 seconds</strong> with the unit powered to return it to factory defaults (this also de‑activates it — you set a new password again). A short press usually just reboots.</p>
+      <h3 data-i18n="in.s1.h3d">The RESET button</h3>
+      <p data-i18n-html="in.s1.p3">A recessed pinhole. Press and hold it for about <strong>10 seconds</strong> with the unit powered to return it to factory defaults (this also de‑activates it — you set a new password again). A short press usually just reboots.</p>
     </section>
 
     <section class="anchor" id="power">
-      <h2><span class="sec-badge">2</span> Power: PoE or a power supply</h2>
-      <p>Every DS‑3WAP can take power over the network cable (<strong>PoE</strong> — Power over Ethernet). Some ceiling models also accept a <strong>12 V DC</strong> adapter, and the 623E‑SI takes 48 V DC. Check the model page in <a href="catalog.html">Devices</a> for the exact wattage and options.</p>
+      <h2><span class="sec-badge">2</span> <span data-i18n="in.s2.h2">Power: PoE or a power supply</span></h2>
+      <p data-i18n-html="in.s2.p1">Every DS‑3WAP can take power over the network cable (<strong>PoE</strong> — Power over Ethernet). Some ceiling models also accept a <strong>12 V DC</strong> adapter, and the 623E‑SI takes 48 V DC. Check the model page in <a href="catalog.html">Devices</a> for the exact wattage and options.</p>
 
-      <h3>Option A — PoE switch (simplest)</h3>
-      <p>One cable from a PoE switch port carries both data and power to the AP. Match the PoE standard:</p>
+      <h3 data-i18n="in.s2.h3a">Option A — PoE switch (simplest)</h3>
+      <p data-i18n="in.s2.p2">One cable from a PoE switch port carries both data and power to the AP. Match the PoE standard:</p>
       <ul>
-        <li><strong>802.3af</strong> delivers ~13 W at the device — enough for the lighter models.</li>
-        <li><strong>802.3at (PoE+)</strong> delivers ~25 W — use this if the model's rating is above ~10 W, or if you are unsure.</li>
+        <li data-i18n-html="in.s2.li1"><strong>802.3af</strong> delivers ~13 W at the device — enough for the lighter models.</li>
+        <li data-i18n-html="in.s2.li2"><strong>802.3at (PoE+)</strong> delivers ~25 W — use this if the model's rating is above ~10 W, or if you are unsure.</li>
       </ul>
-      <p>An <strong>underpowered</strong> source is the classic first‑timer fault: the AP boots, then a radio drops, or it reboots in a loop. If that happens, move it to an 802.3at port or injector before anything else.</p>
+      <p data-i18n-html="in.s2.p3">An <strong>underpowered</strong> source is the classic first‑timer fault: the AP boots, then a radio drops, or it reboots in a loop. If that happens, move it to an 802.3at port or injector before anything else.</p>
       <figure class="diagram">
         <svg viewBox="0 0 640 130" role="img" aria-label="A PoE switch connected to an access point by a single cable carrying data and power">
           <rect class="dg-box" x="20" y="40" width="180" height="50" rx="8"/>
-          <text class="dg-label" x="110" y="63" text-anchor="middle">PoE switch</text>
-          <text class="dg-sub" x="110" y="80" text-anchor="middle">802.3af / at port</text>
+          <text class="dg-label" x="110" y="63" text-anchor="middle" data-i18n="in.dg.poeswitch">PoE switch</text>
+          <text class="dg-sub" x="110" y="80" text-anchor="middle" data-i18n="in.dg.poeport">802.3af / at port</text>
           <line class="dg-line poe" x1="200" y1="65" x2="440" y2="65"/>
-          <text class="dg-sub" x="320" y="55" text-anchor="middle">1 cable — data + power (≤100 m)</text>
+          <text class="dg-sub" x="320" y="55" text-anchor="middle" data-i18n="in.dg.cable1">1 cable — data + power (≤100 m)</text>
           <rect class="dg-box accent" x="440" y="40" width="180" height="50" rx="8"/>
-          <text class="dg-label" x="530" y="70" text-anchor="middle">Access point</text>
+          <text class="dg-label" x="530" y="70" text-anchor="middle" data-i18n="in.dg.ap">Access point</text>
         </svg>
-        <figcaption>Switch → AP. Nothing else needed.</figcaption>
+        <figcaption data-i18n="in.s2.fig1cap">Switch → AP. Nothing else needed.</figcaption>
       </figure>
 
-      <h3>Option B — PoE injector (no PoE switch on site)</h3>
-      <p>An injector sits between a plain switch/router port and the AP. It has a mains lead and two RJ45 sockets — <em>DATA IN</em> (to the switch) and <em>P+DATA OUT</em> (to the AP). Keep the injector indoors and dry.</p>
+      <h3 data-i18n="in.s2.h3b">Option B — PoE injector (no PoE switch on site)</h3>
+      <p data-i18n-html="in.s2.p4">An injector sits between a plain switch/router port and the AP. It has a mains lead and two RJ45 sockets — <em>DATA IN</em> (to the switch) and <em>P+DATA OUT</em> (to the AP). Keep the injector indoors and dry.</p>
       <figure class="diagram">
         <svg viewBox="0 0 640 170" role="img" aria-label="A switch feeding a PoE injector, which is powered from mains and feeds the access point">
           <rect class="dg-box" x="20" y="20" width="150" height="46" rx="8"/>
-          <text class="dg-label" x="95" y="47" text-anchor="middle">Switch / router</text>
+          <text class="dg-label" x="95" y="47" text-anchor="middle" data-i18n="in.dg.switch">Switch / router</text>
           <line class="dg-line" x1="170" y1="43" x2="250" y2="43"/>
-          <text class="dg-sub" x="210" y="34" text-anchor="middle">data</text>
+          <text class="dg-sub" x="210" y="34" text-anchor="middle" data-i18n="in.dg.data">data</text>
           <rect class="dg-box" x="250" y="20" width="150" height="46" rx="8"/>
-          <text class="dg-label" x="325" y="41" text-anchor="middle">PoE injector</text>
-          <text class="dg-sub" x="325" y="57" text-anchor="middle">mains‑powered</text>
+          <text class="dg-label" x="325" y="41" text-anchor="middle" data-i18n="in.dg.injector">PoE injector</text>
+          <text class="dg-sub" x="325" y="57" text-anchor="middle" data-i18n="in.dg.mains">mains‑powered</text>
           <line class="dg-line dc" x1="325" y1="66" x2="325" y2="110"/>
-          <text class="dg-sub" x="360" y="92" text-anchor="start">230 V</text>
+          <text class="dg-sub" x="360" y="92" text-anchor="start" data-i18n="in.dg.230v">230 V</text>
           <line class="dg-line poe" x1="400" y1="43" x2="470" y2="43"/>
-          <text class="dg-sub" x="435" y="34" text-anchor="middle">PoE</text>
+          <text class="dg-sub" x="435" y="34" text-anchor="middle" data-i18n="in.dg.poe">PoE</text>
           <rect class="dg-box accent" x="470" y="20" width="150" height="46" rx="8"/>
-          <text class="dg-label" x="545" y="48" text-anchor="middle">Access point</text>
+          <text class="dg-label" x="545" y="48" text-anchor="middle" data-i18n="in.dg.ap">Access point</text>
         </svg>
-        <figcaption>Switch → injector (+ mains) → AP.</figcaption>
+        <figcaption data-i18n="in.s2.fig2cap">Switch → injector (+ mains) → AP.</figcaption>
       </figure>
 
-      <h3>Option C — 12 V DC adapter (522‑SI, 622G‑SI, 6218‑EI, 622E‑SI)</h3>
-      <p>Where there is a mains socket at the mounting point but no PoE, use the model's DC adapter. The network cable then carries <strong>data only</strong> — and on the two‑port models a downstream camera/phone must find its own power.</p>
+      <h3 data-i18n="in.s2.h3c">Option C — 12 V DC adapter (522‑SI, 622G‑SI, 6218‑EI, 622E‑SI)</h3>
+      <p data-i18n-html="in.s2.p5">Where there is a mains socket at the mounting point but no PoE, use the model's DC adapter. The network cable then carries <strong>data only</strong> — and on the two‑port models a downstream camera/phone must find its own power.</p>
       <figure class="diagram">
         <svg viewBox="0 0 640 170" role="img" aria-label="Access point powered from a mains DC adapter with a separate data-only cable from the switch">
           <rect class="dg-box" x="20" y="20" width="150" height="46" rx="8"/>
-          <text class="dg-label" x="95" y="47" text-anchor="middle">Switch / router</text>
+          <text class="dg-label" x="95" y="47" text-anchor="middle" data-i18n="in.dg.switch">Switch / router</text>
           <line class="dg-line" x1="170" y1="43" x2="470" y2="43"/>
-          <text class="dg-sub" x="320" y="34" text-anchor="middle">data only</text>
+          <text class="dg-sub" x="320" y="34" text-anchor="middle" data-i18n="in.dg.dataonly">data only</text>
           <rect class="dg-box accent" x="470" y="20" width="150" height="46" rx="8"/>
-          <text class="dg-label" x="545" y="48" text-anchor="middle">Access point</text>
+          <text class="dg-label" x="545" y="48" text-anchor="middle" data-i18n="in.dg.ap">Access point</text>
           <rect class="dg-box" x="470" y="110" width="150" height="42" rx="8"/>
-          <text class="dg-label" x="545" y="136" text-anchor="middle">12 V DC adapter</text>
+          <text class="dg-label" x="545" y="136" text-anchor="middle" data-i18n="in.dg.dcadapter">12 V DC adapter</text>
           <line class="dg-line dc" x1="545" y1="110" x2="545" y2="66"/>
-          <text class="dg-sub" x="580" y="92" text-anchor="start">DC</text>
+          <text class="dg-sub" x="580" y="92" text-anchor="start" data-i18n="in.dg.dc">DC</text>
         </svg>
-        <figcaption>Mains → DC adapter → AP; switch → AP for data.</figcaption>
+        <figcaption data-i18n="in.s2.fig3cap">Mains → DC adapter → AP; switch → AP for data.</figcaption>
       </figure>
 
-      <h3>Cable rules</h3>
+      <h3 data-i18n="in.s2.h3d">Cable rules</h3>
       <ul>
-        <li>Total copper run switch‑to‑AP: <strong>100 m</strong> maximum, injector length included.</li>
-        <li>Use Cat5e or better, solid‑core for in‑wall runs, fully terminated (all 8 pins).</li>
-        <li>Outdoor: shielded outdoor‑rated cable, the supplied waterproof <strong>gland</strong> fully seated on the RJ45, a <strong>drip loop</strong> below the AP, the <strong>grounding</strong> screw bonded to earth, and an <strong>in‑line surge protector</strong> where the cable enters the building.</li>
+        <li data-i18n-html="in.s2.li3">Total copper run switch‑to‑AP: <strong>100 m</strong> maximum, injector length included.</li>
+        <li data-i18n="in.s2.li4">Use Cat5e or better, solid‑core for in‑wall runs, fully terminated (all 8 pins).</li>
+        <li data-i18n-html="in.s2.li5">Outdoor: shielded outdoor‑rated cable, the supplied waterproof <strong>gland</strong> fully seated on the RJ45, a <strong>drip loop</strong> below the AP, the <strong>grounding</strong> screw bonded to earth, and an <strong>in‑line surge protector</strong> where the cable enters the building.</li>
       </ul>
     </section>
 
     <section class="anchor" id="find">
-      <h2><span class="sec-badge">3</span> Connect it and find it on the network</h2>
+      <h2><span class="sec-badge">3</span> <span data-i18n="in.s3.h2">Connect it and find it on the network</span></h2>
       <ol>
-        <li>Plug the AP's <em>PoE‑in</em> / uplink port into the switch (or injector). Wait for the PWR/SYS LED to go solid — 30–60 s.</li>
-        <li>Put your laptop on the <strong>same subnet</strong> as the AP will use. If the network runs DHCP and the AP is a DHCP client, just connect the laptop to the same switch.</li>
-        <li>Find the AP's current IP address by one of the methods below.</li>
+        <li data-i18n-html="in.s3.o1">Plug the AP's <em>PoE‑in</em> / uplink port into the switch (or injector). Wait for the PWR/SYS LED to go solid — 30–60 s.</li>
+        <li data-i18n-html="in.s3.o2">Put your laptop on the <strong>same subnet</strong> as the AP will use. If the network runs DHCP and the AP is a DHCP client, just connect the laptop to the same switch.</li>
+        <li data-i18n="in.s3.o3">Find the AP's current IP address by one of the methods below.</li>
       </ol>
 
-      <h3>Method 1 — SADP tool (recommended)</h3>
+      <h3 data-i18n="in.s3.h3a">Method 1 — SADP tool (recommended)</h3>
       <ul>
-        <li>Download SADP from the Hikvision site, install, and run it on the laptop.</li>
-        <li>It lists every Hikvision device on the local segment with model, <strong>IP address</strong>, port, <strong>MAC</strong>, and a <strong>Security</strong> status of <em>Active</em> or <em>Inactive</em>.</li>
-        <li>Match the row to your unit by the <strong>MAC address on its label</strong> — not by model name, since several may be identical.</li>
-        <li>SADP only sees the local broadcast segment. If nothing shows: check the cable/LED, disable other network adapters and the firewall, and make sure the laptop is on the same switch/VLAN.</li>
+        <li data-i18n="in.s3.m1a">Download SADP from the Hikvision site, install, and run it on the laptop.</li>
+        <li data-i18n-html="in.s3.m1b">It lists every Hikvision device on the local segment with model, <strong>IP address</strong>, port, <strong>MAC</strong>, and a <strong>Security</strong> status of <em>Active</em> or <em>Inactive</em>.</li>
+        <li data-i18n-html="in.s3.m1c">Match the row to your unit by the <strong>MAC address on its label</strong> — not by model name, since several may be identical.</li>
+        <li data-i18n="in.s3.m1d">SADP only sees the local broadcast segment. If nothing shows: check the cable/LED, disable other network adapters and the firewall, and make sure the laptop is on the same switch/VLAN.</li>
       </ul>
 
-      <h3>Method 2 — the router's DHCP client list</h3>
-      <p>Open the site router/gateway admin page and look at its DHCP leases or connected‑clients list. Find the entry whose MAC matches the AP's label; the address next to it is the AP's IP. Useful when you cannot install SADP.</p>
+      <h3 data-i18n="in.s3.h3b">Method 2 — the router's DHCP client list</h3>
+      <p data-i18n="in.s3.m2">Open the site router/gateway admin page and look at its DHCP leases or connected‑clients list. Find the entry whose MAC matches the AP's label; the address next to it is the AP's IP. Useful when you cannot install SADP.</p>
 
-      <h3>Method 3 — the default IP</h3>
-      <p>If the network has no DHCP, or the QSG gives a fixed default (often <code>192.168.1.64</code>):</p>
+      <h3 data-i18n="in.s3.h3c">Method 3 — the default IP</h3>
+      <p data-i18n-html="in.s3.m3">If the network has no DHCP, or the QSG gives a fixed default (often <code>192.168.1.64</code>):</p>
       <ul>
-        <li>Set the laptop to a static address in the same range, e.g. <code>192.168.1.10 / 255.255.255.0</code>.</li>
-        <li>Connect the AP directly to the laptop (or through a small unmanaged switch).</li>
-        <li>Browse to the AP's default IP.</li>
+        <li data-i18n-html="in.s3.m3a">Set the laptop to a static address in the same range, e.g. <code>192.168.1.10 / 255.255.255.0</code>.</li>
+        <li data-i18n="in.s3.m3b">Connect the AP directly to the laptop (or through a small unmanaged switch).</li>
+        <li data-i18n="in.s3.m3c">Browse to the AP's default IP.</li>
       </ul>
 
-      <h3>Method 4 — Hik‑Partner Pro app</h3>
-      <p>On the same LAN as the AP, the app can scan and list nearby Hikvision devices, or you can add the unit by its serial number / QR code. See section 5.</p>
+      <h3 data-i18n="in.s3.h3d">Method 4 — Hik‑Partner Pro app</h3>
+      <p data-i18n="in.s3.m4">On the same LAN as the AP, the app can scan and list nearby Hikvision devices, or you can add the unit by its serial number / QR code. See section 5.</p>
     </section>
 
     <section class="anchor" id="activate">
-      <h2><span class="sec-badge">4</span> Activation (first login)</h2>
-      <p>New Hikvision devices ship <strong>inactive</strong>: there is no default password, and nothing works until you set one. This is the activation step.</p>
-      <h3>Set the admin password</h3>
+      <h2><span class="sec-badge">4</span> <span data-i18n="in.s4.h2">Activation (first login)</span></h2>
+      <p data-i18n-html="in.s4.p1">New Hikvision devices ship <strong>inactive</strong>: there is no default password, and nothing works until you set one. This is the activation step.</p>
+      <h3 data-i18n="in.s4.h3a">Set the admin password</h3>
       <ul>
-        <li>The account name is <code>admin</code>.</li>
-        <li>The password must be <strong>strong</strong> — typically 8–16 characters using at least two of: lowercase, uppercase, digits, symbols. The tool rejects weak ones.</li>
-        <li>Record it immediately. A lost admin password means a factory reset (section 8) and starting over.</li>
+        <li data-i18n-html="in.s4.a1">The account name is <code>admin</code>.</li>
+        <li data-i18n-html="in.s4.a2">The password must be <strong>strong</strong> — typically 8–16 characters using at least two of: lowercase, uppercase, digits, symbols. The tool rejects weak ones.</li>
+        <li data-i18n="in.s4.a3">Record it immediately. A lost admin password means a factory reset (section 8) and starting over.</li>
       </ul>
-      <h3>Where to do it</h3>
+      <h3 data-i18n="in.s4.h3b">Where to do it</h3>
       <ul>
-        <li><strong>SADP:</strong> select the inactive device, type the new password in the right‑hand pane, confirm. It flips to <em>Active</em>.</li>
-        <li><strong>Web browser:</strong> open the AP's IP; an inactive unit shows an activation page before the login screen.</li>
-        <li><strong>Hik‑Partner Pro:</strong> adding an inactive device to a site prompts you to activate it in the same step.</li>
+        <li data-i18n-html="in.s4.w1"><strong>SADP:</strong> select the inactive device, type the new password in the right‑hand pane, confirm. It flips to <em>Active</em>.</li>
+        <li data-i18n-html="in.s4.w2"><strong>Web browser:</strong> open the AP's IP; an inactive unit shows an activation page before the login screen.</li>
+        <li data-i18n-html="in.s4.w3"><strong>Hik‑Partner Pro:</strong> adding an inactive device to a site prompts you to activate it in the same step.</li>
       </ul>
-      <h3>Right after activation</h3>
+      <h3 data-i18n="in.s4.h3c">Right after activation</h3>
       <ul>
-        <li>Set the <strong>IP mode</strong>: leave it on DHCP with a reservation on the router, or give it a static address outside the DHCP pool. Note the address down.</li>
-        <li>Set <strong>time / NTP</strong> and time zone so logs are usable.</li>
-        <li>Change the <strong>HTTP/HTTPS port</strong> only if the site requires it — then remember it for the next login.</li>
+        <li data-i18n-html="in.s4.r1">Set the <strong>IP mode</strong>: leave it on DHCP with a reservation on the router, or give it a static address outside the DHCP pool. Note the address down.</li>
+        <li data-i18n-html="in.s4.r2">Set <strong>time / NTP</strong> and time zone so logs are usable.</li>
+        <li data-i18n-html="in.s4.r3">Change the <strong>HTTP/HTTPS port</strong> only if the site requires it — then remember it for the next login.</li>
       </ul>
     </section>
 
     <section class="anchor" id="configure">
-      <h2><span class="sec-badge">5</span> Ways to configure it</h2>
-      <p>There are three practical paths. Pick by how many APs the site has and whether you will support it remotely.</p>
+      <h2><span class="sec-badge">5</span> <span data-i18n="in.s5.h2">Ways to configure it</span></h2>
+      <p data-i18n="in.s5.p1">There are three practical paths. Pick by how many APs the site has and whether you will support it remotely.</p>
 
       <div class="method-table">
         <table class="methods">
           <thead>
-            <tr><th>Method</th><th>Use it when…</th><th>Gives you</th></tr>
+            <tr><th data-i18n="in.mt.method">Method</th><th data-i18n="in.mt.when">Use it when…</th><th data-i18n="in.mt.gives">Gives you</th></tr>
           </thead>
           <tbody>
             <tr>
-              <th>Web UI<br>(standalone / FAT)</th>
-              <td>1 to a few APs; you are on site or on the LAN.</td>
-              <td>Full per‑AP control: SSIDs, radios, security, VLANs, firmware.</td>
+              <th data-i18n-html="in.mt.r1h">Web UI<br>(standalone / FAT)</th>
+              <td data-i18n="in.mt.r1w" data-label="Use it when">1 to a few APs; you are on site or on the LAN.</td>
+              <td data-i18n="in.mt.r1g" data-label="Gives you">Full per‑AP control: SSIDs, radios, security, VLANs, firmware.</td>
             </tr>
             <tr>
-              <th>Hik‑Partner Pro</th>
-              <td>You are an installer/partner and want remote config, monitoring and a clean handover to the customer.</td>
-              <td>Cloud access to the site, remote settings and firmware, alarms, then transfer to the customer's Hik‑Connect.</td>
+              <th data-i18n="in.mt.r2h">Hik‑Partner Pro</th>
+              <td data-i18n="in.mt.r2w" data-label="Use it when">You are an installer/partner and want remote config, monitoring and a clean handover to the customer.</td>
+              <td data-i18n="in.mt.r2g" data-label="Gives you">Cloud access to the site, remote settings and firmware, alarms, then transfer to the customer's Hik‑Connect.</td>
             </tr>
             <tr>
-              <th>Wireless controller<br>(AC / FIT)</th>
-              <td>Several APs on one site that need one identical config and seamless roaming.</td>
-              <td>One config pushed to all APs, coordinated channels/power, fast roaming, central status.</td>
+              <th data-i18n-html="in.mt.r3h">Wireless controller<br>(AC / FIT)</th>
+              <td data-i18n="in.mt.r3w" data-label="Use it when">Several APs on one site that need one identical config and seamless roaming.</td>
+              <td data-i18n="in.mt.r3g" data-label="Gives you">One config pushed to all APs, coordinated channels/power, fast roaming, central status.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h3>5.1 Web UI (standalone / FAT mode)</h3>
+      <h3 data-i18n="in.s5.h3a">5.1 Web UI (standalone / FAT mode)</h3>
       <ol>
-        <li>Browse to the AP's IP (HTTPS may warn about a self‑signed certificate — proceed). Log in as <code>admin</code>.</li>
-        <li>Run the first‑run <strong>wizard</strong> if it appears; otherwise work through the menus.</li>
-        <li>Set, at minimum:
+        <li data-i18n-html="in.s5.o1">Browse to the AP's IP (HTTPS may warn about a self‑signed certificate — proceed). Log in as <code>admin</code>.</li>
+        <li data-i18n-html="in.s5.o2">Run the first‑run <strong>wizard</strong> if it appears; otherwise work through the menus.</li>
+        <li data-i18n="in.s5.o3">Set, at minimum:
           <ul>
-            <li><strong>SSID(s)</strong> — network name(s). One name across both bands is usually best (see section 6).</li>
-            <li><strong>Security</strong> — WPA2‑PSK, WPA2/WPA3‑mixed, or WPA3‑PSK, plus the passphrase.</li>
-            <li><strong>Band / radio</strong> — enable 2.4 GHz and 5 GHz, channel and channel width, transmit power.</li>
-            <li><strong>Guest network / client isolation</strong> if the site needs a separate visitor SSID.</li>
-            <li><strong>VLAN</strong> tag per SSID if the wired side uses VLANs.</li>
-            <li><strong>Firmware</strong> — check for an update and apply it before handover.</li>
+            <li data-i18n-html="in.s5.w1"><strong>SSID(s)</strong> — network name(s). One name across both bands is usually best (see section 6).</li>
+            <li data-i18n-html="in.s5.w2"><strong>Security</strong> — WPA2‑PSK, WPA2/WPA3‑mixed, or WPA3‑PSK, plus the passphrase.</li>
+            <li data-i18n-html="in.s5.w3"><strong>Band / radio</strong> — enable 2.4 GHz and 5 GHz, channel and channel width, transmit power.</li>
+            <li data-i18n-html="in.s5.w4"><strong>Guest network / client isolation</strong> if the site needs a separate visitor SSID.</li>
+            <li data-i18n-html="in.s5.w5"><strong>VLAN</strong> tag per SSID if the wired side uses VLANs.</li>
+            <li data-i18n-html="in.s5.w6"><strong>Firmware</strong> — check for an update and apply it before handover.</li>
           </ul>
         </li>
-        <li>Save / apply. The radios restart; clients reconnect in under a minute.</li>
+        <li data-i18n="in.s5.o4">Save / apply. The radios restart; clients reconnect in under a minute.</li>
       </ol>
       <div class="callout qsg">
-        <span class="clabel">Check the QSG</span>
-        Menu names differ between firmware versions and models — "Wireless" vs "Wi‑Fi Settings", "Network → TCP/IP" vs "Local Network", and so on. Use the QSG or the on‑device help for the exact path; the settings themselves are the same everywhere.
+        <span class="clabel" data-i18n="line.qsg.label">Check the QSG</span>
+        <span data-i18n="in.s5.qsg">Menu names differ between firmware versions and models — "Wireless" vs "Wi‑Fi Settings", "Network → TCP/IP" vs "Local Network", and so on. Use the QSG or the on‑device help for the exact path; the settings themselves are the same everywhere.</span>
       </div>
 
-      <h3>5.2 Hik‑Partner Pro (installer cloud)</h3>
-      <p>Hik‑Partner Pro (the platform formerly called Hik‑ProConnect) is Hikvision's portal and app for installers. Rough flow:</p>
+      <h3 data-i18n="in.s5.h3b">5.2 Hik‑Partner Pro (installer cloud)</h3>
+      <p data-i18n="in.s5.p2">Hik‑Partner Pro (the platform formerly called Hik‑ProConnect) is Hikvision's portal and app for installers. Rough flow:</p>
       <ol>
-        <li>Sign in to the Hik‑Partner Pro app with your partner account.</li>
-        <li>Create a <strong>site</strong> for the customer.</li>
-        <li><strong>Add device</strong> — scan the AP's QR code / serial, or let the app discover it on the LAN. Activate it here if it is still inactive.</li>
-        <li>Configure Wi‑Fi and network settings from the app; push firmware; set up health alerts.</li>
-        <li>When the job is done, <strong>hand the site over</strong> to the customer's <strong>Hik‑Connect</strong> account so they own it and you keep agreed remote‑support access.</li>
+        <li data-i18n="in.s5.hp1">Sign in to the Hik‑Partner Pro app with your partner account.</li>
+        <li data-i18n-html="in.s5.hp2">Create a <strong>site</strong> for the customer.</li>
+        <li data-i18n-html="in.s5.hp3"><strong>Add device</strong> — scan the AP's QR code / serial, or let the app discover it on the LAN. Activate it here if it is still inactive.</li>
+        <li data-i18n="in.s5.hp4">Configure Wi‑Fi and network settings from the app; push firmware; set up health alerts.</li>
+        <li data-i18n-html="in.s5.hp5">When the job is done, <strong>hand the site over</strong> to the customer's <strong>Hik‑Connect</strong> account so they own it and you keep agreed remote‑support access.</li>
       </ol>
 
-      <h3>5.3 Wireless controller (AC / FIT mode)</h3>
-      <p>A Hikvision wireless controller (a hardware "AC", or the controller function inside some gateways/NVRs) manages many APs as one system. In broad terms:</p>
+      <h3 data-i18n="in.s5.h3c">5.3 Wireless controller (AC / FIT mode)</h3>
+      <p data-i18n="in.s5.p3">A Hikvision wireless controller (a hardware "AC", or the controller function inside some gateways/NVRs) manages many APs as one system. In broad terms:</p>
       <ol>
-        <li>The controller and the APs sit on the same management network/VLAN.</li>
-        <li>Each AP is <strong>discovered and adopted</strong> by the controller; adoption switches it from standalone (FAT) to controller‑managed (FIT), so you stop configuring APs one by one.</li>
-        <li>You define SSIDs, security, VLANs, RF settings and roaming <strong>once</strong> on the controller; it pushes them to every adopted AP.</li>
-        <li>The controller then coordinates channels and power and provides seamless roaming and central monitoring.</li>
+        <li data-i18n="in.s5.wc1">The controller and the APs sit on the same management network/VLAN.</li>
+        <li data-i18n-html="in.s5.wc2">Each AP is <strong>discovered and adopted</strong> by the controller; adoption switches it from standalone (FAT) to controller‑managed (FIT), so you stop configuring APs one by one.</li>
+        <li data-i18n-html="in.s5.wc3">You define SSIDs, security, VLANs, RF settings and roaming <strong>once</strong> on the controller; it pushes them to every adopted AP.</li>
+        <li data-i18n="in.s5.wc4">The controller then coordinates channels and power and provides seamless roaming and central monitoring.</li>
       </ol>
-      <p>Consult the controller's guide for the adoption steps and any mode switch on the AP — these are specific to the controller model and firmware.</p>
+      <p data-i18n="in.s5.p4">Consult the controller's guide for the adoption steps and any mode switch on the AP — these are specific to the controller model and firmware.</p>
 
-      <h3>5.4 HikCentral Professional</h3>
-      <p>For large, multi‑site deployments the APs can also be managed under HikCentral Professional alongside cameras, access control and alarms. Same idea as a controller, at enterprise scale; out of scope for a single small install.</p>
+      <h3 data-i18n="in.s5.h3d">5.4 HikCentral Professional</h3>
+      <p data-i18n="in.s5.p5">For large, multi‑site deployments the APs can also be managed under HikCentral Professional alongside cameras, access control and alarms. Same idea as a controller, at enterprise scale; out of scope for a single small install.</p>
     </section>
 
     <section class="anchor" id="wifi">
-      <h2><span class="sec-badge">6</span> Recommended first‑time Wi‑Fi settings</h2>
-      <p>Sane defaults for a typical office / hospitality site. Adjust after a site survey if one was done.</p>
+      <h2><span class="sec-badge">6</span> <span data-i18n="in.s6.h2">Recommended first‑time Wi‑Fi settings</span></h2>
+      <p data-i18n="in.s6.p1">Sane defaults for a typical office / hospitality site. Adjust after a site survey if one was done.</p>
       <ul>
-        <li><strong>2.4 GHz:</strong> 20 MHz channel width; channel 1, 6 or 11 only. Never 40 MHz on 2.4 GHz.</li>
-        <li><strong>5 GHz:</strong> 80 MHz width; automatic channel with DFS allowed. Drop to 40 MHz if many APs are close together.</li>
-        <li><strong>One SSID</strong> on both bands, with <strong>band steering</strong> on, so capable clients move to 5 GHz on their own.</li>
-        <li><strong>Security:</strong> WPA2/WPA3‑mixed for a general network; WPA3 only where every client is modern.</li>
-        <li><strong>SSID broadcast on</strong> (hiding it does not add real security and breaks some clients).</li>
-        <li><strong>Transmit power:</strong> not maximum. Match neighbouring APs so cells overlap by roughly 15–20 %, which lets clients roam.</li>
-        <li>Enable a <strong>guest SSID</strong> with client isolation only if the customer asked for one.</li>
-        <li>Leave RF auto‑optimisation / smart roaming <strong>on</strong>.</li>
-        <li>Confirm the <strong>firmware</strong> is current before you leave.</li>
+        <li data-i18n-html="in.s6.li1"><strong>2.4 GHz:</strong> 20 MHz channel width; channel 1, 6 or 11 only. Never 40 MHz on 2.4 GHz.</li>
+        <li data-i18n-html="in.s6.li2"><strong>5 GHz:</strong> 80 MHz width; automatic channel with DFS allowed. Drop to 40 MHz if many APs are close together.</li>
+        <li data-i18n-html="in.s6.li3"><strong>One SSID</strong> on both bands, with <strong>band steering</strong> on, so capable clients move to 5 GHz on their own.</li>
+        <li data-i18n-html="in.s6.li4"><strong>Security:</strong> WPA2/WPA3‑mixed for a general network; WPA3 only where every client is modern.</li>
+        <li data-i18n-html="in.s6.li5"><strong>SSID broadcast on</strong> (hiding it does not add real security and breaks some clients).</li>
+        <li data-i18n-html="in.s6.li6"><strong>Transmit power:</strong> not maximum. Match neighbouring APs so cells overlap by roughly 15–20 %, which lets clients roam.</li>
+        <li data-i18n-html="in.s6.li7">Enable a <strong>guest SSID</strong> with client isolation only if the customer asked for one.</li>
+        <li data-i18n-html="in.s6.li8">Leave RF auto‑optimisation / smart roaming <strong>on</strong>.</li>
+        <li data-i18n-html="in.s6.li9">Confirm the <strong>firmware</strong> is current before you leave.</li>
       </ul>
     </section>
 
     <section class="anchor" id="handover">
-      <h2><span class="sec-badge">7</span> Verify and hand over</h2>
+      <h2><span class="sec-badge">7</span> <span data-i18n="in.s7.h2">Verify and hand over</span></h2>
       <ul>
-        <li><strong>Signal walk:</strong> walk the coverage area with a phone Wi‑Fi analyser; check for dead spots and for the client switching APs where it should.</li>
-        <li><strong>Speed test:</strong> from a laptop near and far from the AP; compare against the site's internet plan and the AP's uplink (1 GbE, or 2.5 GbE on the 622E‑SI).</li>
-        <li><strong>Roaming test:</strong> start a call / video, walk between two APs, confirm it does not drop.</li>
-        <li><strong>Channel scan:</strong> re‑check for co‑channel interference from neighbours; adjust channels if needed.</li>
-        <li><strong>Firmware:</strong> confirm the version and that it matches across all APs on site.</li>
-        <li><strong>Document:</strong> record admin password, IP addresses, SSIDs and Wi‑Fi passphrases, PoE port assignments; give the customer a one‑page cheat sheet.</li>
-        <li><strong>Ownership:</strong> transfer the devices/site to the customer's <strong>Hik‑Connect</strong> account; keep only the remote‑support access they agreed to.</li>
+        <li data-i18n-html="in.s7.li1"><strong>Signal walk:</strong> walk the coverage area with a phone Wi‑Fi analyser; check for dead spots and for the client switching APs where it should.</li>
+        <li data-i18n-html="in.s7.li2"><strong>Speed test:</strong> from a laptop near and far from the AP; compare against the site's internet plan and the AP's uplink (1 GbE, or 2.5 GbE on the 622E‑SI).</li>
+        <li data-i18n-html="in.s7.li3"><strong>Roaming test:</strong> start a call / video, walk between two APs, confirm it does not drop.</li>
+        <li data-i18n-html="in.s7.li4"><strong>Channel scan:</strong> re‑check for co‑channel interference from neighbours; adjust channels if needed.</li>
+        <li data-i18n-html="in.s7.li5"><strong>Firmware:</strong> confirm the version and that it matches across all APs on site.</li>
+        <li data-i18n-html="in.s7.li6"><strong>Document:</strong> record admin password, IP addresses, SSIDs and Wi‑Fi passphrases, PoE port assignments; give the customer a one‑page cheat sheet.</li>
+        <li data-i18n-html="in.s7.li7"><strong>Ownership:</strong> transfer the devices/site to the customer's <strong>Hik‑Connect</strong> account; keep only the remote‑support access they agreed to.</li>
       </ul>
     </section>
 
     <section class="anchor" id="trouble">
-      <h2><span class="sec-badge">8</span> Troubleshooting</h2>
-      <h3>The AP does not appear in SADP</h3>
+      <h2><span class="sec-badge">8</span> <span data-i18n="in.s8.h2">Troubleshooting</span></h2>
+      <h3 data-i18n="in.s8.h3a">The AP does not appear in SADP</h3>
       <ul>
-        <li>PWR LED off → no power: wrong PoE standard, dead port, bad cable, or run over 100 m. Try an 802.3at port or injector.</li>
-        <li>PWR on but not listed → laptop on a different VLAN/subnet, a second active network adapter, or firewall blocking SADP's broadcast. Disable other adapters, allow SADP through the firewall, connect to the same switch.</li>
-        <li>Still nothing → try the router's DHCP list or a direct laptop‑to‑AP connection on the default IP.</li>
+        <li data-i18n="in.s8.a1">PWR LED off → no power: wrong PoE standard, dead port, bad cable, or run over 100 m. Try an 802.3at port or injector.</li>
+        <li data-i18n="in.s8.a2">PWR on but not listed → laptop on a different VLAN/subnet, a second active network adapter, or firewall blocking SADP's broadcast. Disable other adapters, allow SADP through the firewall, connect to the same switch.</li>
+        <li data-i18n="in.s8.a3">Still nothing → try the router's DHCP list or a direct laptop‑to‑AP connection on the default IP.</li>
       </ul>
-      <h3>The web UI will not open</h3>
+      <h3 data-i18n="in.s8.h3b">The web UI will not open</h3>
       <ul>
-        <li>Wrong protocol/port — try <code>https://</code> and the custom port if one was set.</li>
-        <li>Laptop not in the AP's subnet — fix the laptop's IP.</li>
-        <li>Browser stuck on an old cached page or a certificate block — hard refresh, accept the self‑signed certificate, or try another browser.</li>
+        <li data-i18n-html="in.s8.b1">Wrong protocol/port — try <code>https://</code> and the custom port if one was set.</li>
+        <li data-i18n="in.s8.b2">Laptop not in the AP's subnet — fix the laptop's IP.</li>
+        <li data-i18n="in.s8.b3">Browser stuck on an old cached page or a certificate block — hard refresh, accept the self‑signed certificate, or try another browser.</li>
       </ul>
-      <h3>Clients connect but the internet is slow or drops</h3>
+      <h3 data-i18n="in.s8.h3c">Clients connect but the internet is slow or drops</h3>
       <ul>
-        <li>Underpowered PoE — a radio throttles or resets under load. Move to 802.3at.</li>
-        <li>Channel overlap with neighbours — set 2.4 GHz to 1/6/11, re‑run 5 GHz auto‑channel.</li>
-        <li>Uplink saturated — a 622E‑SI on a 1 GbE port caps at 1 Gbps; move it to a 2.5 GbE port.</li>
-        <li>Transmit power maxed on every AP — cells fight; lower power for cleaner roaming.</li>
+        <li data-i18n="in.s8.c1">Underpowered PoE — a radio throttles or resets under load. Move to 802.3at.</li>
+        <li data-i18n="in.s8.c2">Channel overlap with neighbours — set 2.4 GHz to 1/6/11, re‑run 5 GHz auto‑channel.</li>
+        <li data-i18n="in.s8.c3">Uplink saturated — a 622E‑SI on a 1 GbE port caps at 1 Gbps; move it to a 2.5 GbE port.</li>
+        <li data-i18n="in.s8.c4">Transmit power maxed on every AP — cells fight; lower power for cleaner roaming.</li>
       </ul>
-      <h3>Weak coverage</h3>
+      <h3 data-i18n="in.s8.h3d">Weak coverage</h3>
       <ul>
-        <li>AP mounted inside a metal enclosure, above a false ceiling with foil insulation, or behind a fire door — relocate it into the space it serves.</li>
-        <li>Outdoor directional model pointed the wrong way — re‑aim the antennas.</li>
+        <li data-i18n="in.s8.d1">AP mounted inside a metal enclosure, above a false ceiling with foil insulation, or behind a fire door — relocate it into the space it serves.</li>
+        <li data-i18n="in.s8.d2">Outdoor directional model pointed the wrong way — re‑aim the antennas.</li>
       </ul>
-      <h3>The AP will not adopt to the controller</h3>
+      <h3 data-i18n="in.s8.h3e">The AP will not adopt to the controller</h3>
       <ul>
-        <li>AP and controller not on the same management VLAN, or a firewall between them blocks the discovery/management ports.</li>
-        <li>AP still activating, or on firmware the controller does not support yet — activate and update first.</li>
+        <li data-i18n="in.s8.e1">AP and controller not on the same management VLAN, or a firewall between them blocks the discovery/management ports.</li>
+        <li data-i18n="in.s8.e2">AP still activating, or on firmware the controller does not support yet — activate and update first.</li>
       </ul>
-      <h3>Factory reset</h3>
-      <p>Power the unit, press and hold <strong>RESET</strong> for ~10 seconds until the LEDs blink and it reboots. It returns to defaults and to <em>inactive</em> — you activate and configure it again from section 4.</p>
+      <h3 data-i18n="in.s8.h3f">Factory reset</h3>
+      <p data-i18n-html="in.s8.f1">Power the unit, press and hold <strong>RESET</strong> for ~10 seconds until the LEDs blink and it reboots. It returns to defaults and to <em>inactive</em> — you activate and configure it again from section 4.</p>
     </section>
 
     </div>
