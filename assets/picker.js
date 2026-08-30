@@ -94,20 +94,25 @@
     if (state.climate) chips.push(t("wiz.s." + state.climate, state.climate));
 
     var html =
-      '<div class="wr-tag">' + esc(t("wiz.rec", "Recommended")) + '</div>' +
-      '<div class="wr-model mono">' + esc(top.name) + '</div>' +
-      '<p class="wr-why">' + esc(t("result." + top.id + ".why", "")) + '</p>' +
-      '<div class="wr-specs mono">' + t("result." + top.id + ".specs", "") + '</div>';
+      '<div class="wr-primary">' +
+        '<div class="wr-tag">' + esc(t("wiz.rec", "Recommended")) + '</div>' +
+        '<div class="wr-model mono">' + esc(top.name) + '</div>' +
+        '<p class="wr-why">' + esc(t("result." + top.id + ".why", "")) + '</p>' +
+        '<div class="wr-specs mono">' + t("result." + top.id + ".specs", "") + '</div>' +
+        '<a class="wr-jump" href="catalog.html#card-' + top.id + '">' + esc(t("result.jump", "Full specs in the catalog ↓")) + '</a>' +
+      '</div>';
 
     if (alts.length) {
       html += '<div class="wr-alts"><span class="wr-alts-h">' + esc(t("wiz.alts", "Also consider")) + '</span>' +
         alts.map(function (a) {
-          return '<div class="wr-alt"><b class="mono">' + esc(a.name) + '</b> — ' + esc(t("result." + a.id + ".not", "")) + '</div>';
+          return '<a class="wr-alt" href="catalog.html#card-' + a.id + '">' +
+            '<b class="mono">' + esc(a.name) + '</b>' +
+            '<span>' + esc(t("c" + a.id + ".tagline", "")) + '</span></a>';
         }).join("") + '</div>';
     }
 
-    html += '<div class="wr-basis">' + esc(t("wiz.basis", "Based on") + ": " + chips.join(" · ")) + '</div>' +
-      '<a class="wr-jump" href="catalog.html#card-' + top.id + '">' + esc(t("result.jump", "Full specs in the catalog ↓")) + '</a>';
+    html += '<div class="wr-basis"><span class="wr-basis-h">' + esc(t("wiz.basis", "Based on your answers")) + '</span>' +
+      chips.map(function (c) { return '<span class="wr-chip">' + esc(c) + '</span>'; }).join("") + '</div>';
 
     out.innerHTML = html;
     out.hidden = false;

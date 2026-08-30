@@ -254,18 +254,38 @@ section.block[id], .anchor { scroll-margin-top: 84px; }
 }
 .wreset:hover { border-color: var(--accent); color: var(--ink); }
 .wresult[hidden] { display: none; }
-.wresult { display: flex; flex-direction: column; gap: 11px; border-top: 1px dashed var(--line-strong); padding-top: 18px; }
-.wr-tag { font-family: "IBM Plex Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--good); }
-.wr-model { font-family: "IBM Plex Mono", monospace; font-size: 23px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
-.wr-why { font-size: 14.5px; color: var(--ink); line-height: 1.55; max-width: 66ch; }
-.wr-specs { display: flex; flex-wrap: wrap; gap: 7px; }
-.wr-specs span { font-family: "IBM Plex Mono", monospace; font-size: 12px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 4px; padding: 3px 9px; color: var(--ink-muted); }
-.wr-alts { display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--line); padding-top: 12px; }
-.wr-alts-h { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); }
-.wr-alt { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
-.wr-alt b { color: var(--ink); font-weight: 600; }
-.wr-basis { font-size: 12px; color: var(--ink-faint); font-family: "IBM Plex Mono", monospace; line-height: 1.5; }
-.wr-jump { align-self: flex-start; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+.wresult { display: flex; flex-direction: column; gap: 16px; border-top: 1px dashed var(--line-strong); margin-top: 4px; padding-top: 20px; }
+
+/* primary recommendation — one distinct panel */
+.wr-primary {
+  display: flex; flex-direction: column; gap: 9px;
+  background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 32%, transparent);
+  border-radius: 14px; padding: 15px 16px;
+}
+.wr-tag { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+.wr-model { font-family: "IBM Plex Mono", monospace; font-size: 22px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; line-height: 1.15; }
+.wr-why { font-size: 14px; color: var(--ink); line-height: 1.55; }
+.wr-specs { display: flex; flex-wrap: wrap; gap: 6px; }
+.wr-specs span { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; background: var(--surface); border: 1px solid var(--line); border-radius: 5px; padding: 3px 8px; color: var(--ink-muted); }
+.wr-jump { align-self: flex-start; margin-top: 2px; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; }
+.wr-jump:hover { text-decoration: underline; }
+
+/* alternatives — tappable rows, model + short tagline only */
+.wr-alts { display: flex; flex-direction: column; gap: 8px; }
+.wr-alts-h { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); }
+.wr-alt {
+  display: flex; flex-direction: column; gap: 2px; text-decoration: none;
+  border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px;
+  transition: border-color .12s ease, background .12s ease;
+}
+.wr-alt:hover { border-color: var(--accent); background: var(--accent-soft); }
+.wr-alt b { font-family: "IBM Plex Mono", monospace; font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.wr-alt span { font-size: 12.5px; color: var(--ink-muted); line-height: 1.4; }
+
+/* the answers that drove the pick — compact chips */
+.wr-basis { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.wr-basis-h { width: 100%; font-family: "IBM Plex Mono", monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); }
+.wr-chip { font-size: 11.5px; color: var(--ink-muted); background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; }
 
 .filters {
   display: flex; flex-wrap: wrap; gap: 20px; align-items: center; padding: 14px 16px;
@@ -458,6 +478,8 @@ footer a { color: var(--ink-muted); }
   .wq-o { flex-direction: column; gap: 7px; }
   .wopt { width: 100%; min-height: 46px; padding: 12px 14px; font-size: 13.5px; display: flex; align-items: center; }
   .wreset { width: 100%; text-align: center; min-height: 44px; padding: 11px; }
+  .wresult { gap: 14px; }
+  .wr-primary { padding: 13px 14px; }
   .wr-model { font-size: 20px; }
 
   /* ---- catalog ---- */
