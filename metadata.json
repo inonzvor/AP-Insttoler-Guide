@@ -1,0 +1,6 @@
+{
+  "name": "DS‑3WAP Installer Manual",
+  "description": "A manual for installers setting up Hikvision DS‑3WAP Wi‑Fi access points: model selection, per‑device explanations, and step‑by‑step installation and configuration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

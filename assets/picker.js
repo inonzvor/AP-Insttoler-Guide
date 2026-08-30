@@ -71,12 +71,45 @@
     if (climQ) climQ.hidden = (state.mount !== "outdoor");
     if (state.mount !== "outdoor") state.climate = null;
 
+    // Update aria-pressed and active classes
     root.querySelectorAll(".wopt").forEach(function (b) {
-      b.classList.toggle("on", state[b.getAttribute("data-q")] === b.getAttribute("data-v"));
+      var isSelected = (state[b.getAttribute("data-q")] === b.getAttribute("data-v"));
+      b.classList.toggle("on", isSelected);
+      b.setAttribute("aria-pressed", isSelected ? "true" : "false");
     });
 
+    // Calculate progress
+    var requiredKeys = ["mount", "density", "wifi", "power"];
+    if (state.mount === "outdoor") requiredKeys.push("climate");
+    var totalRequired = requiredKeys.length;
+    var answeredCount = 0;
+    requiredKeys.forEach(function (k) {
+      if (state[k] !== null) answeredCount++;
+    });
+
+    var progressFill = root.querySelector(".wizard-progress-fill");
+    var progressText = root.querySelector(".wizard-progress-text");
+    if (progressFill) {
+      var pct = Math.round((answeredCount / totalRequired) * 100);
+      progressFill.style.width = pct + "%";
+    }
+    if (progressText) {
+      var progStr = t("wiz.progress", "Answered {n} of {total}")
+        .replace("{n}", answeredCount)
+        .replace("{total}", totalRequired);
+      progressText.textContent = progStr;
+    }
+
     var out = root.querySelector(".wresult");
-    if (!ready()) { out.hidden = true; out.innerHTML = ""; return; }
+    var placeholder = root.querySelector(".wresult-placeholder");
+
+    if (!ready()) {
+      if (out) { out.hidden = true; out.innerHTML = ""; }
+      if (placeholder) placeholder.hidden = false;
+      return;
+    }
+
+    if (placeholder) placeholder.hidden = true;
 
     var ranked = MODELS
       .filter(function (m) { return m.mount === state.mount; })
@@ -94,28 +127,29 @@
     if (state.climate) chips.push(t("wiz.s." + state.climate, state.climate));
 
     var html =
-      '<div class="wr-primary">' +
-        '<div class="wr-tag">' + esc(t("wiz.rec", "Recommended")) + '</div>' +
-        '<div class="wr-model mono">' + esc(top.name) + '</div>' +
-        '<p class="wr-why">' + esc(t("result." + top.id + ".why", "")) + '</p>' +
-        '<div class="wr-specs mono">' + t("result." + top.id + ".specs", "") + '</div>' +
-        '<a class="wr-jump" href="catalog.html#card-' + top.id + '">' + esc(t("result.jump", "Full specs in the catalog ↓")) + '</a>' +
-      '</div>';
+      '<div class="wr-tag">' +
+      '<svg class="ui-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg> ' +
+      esc(t("wiz.rec", "Recommended")) + '</div>' +
+      '<div class="wr-model mono">' + esc(top.name) + '</div>' +
+      '<p class="wr-why">' + esc(t("result." + top.id + ".why", "")) + '</p>' +
+      '<div class="wr-specs mono">' + t("result." + top.id + ".specs", "") + '</div>';
 
     if (alts.length) {
       html += '<div class="wr-alts"><span class="wr-alts-h">' + esc(t("wiz.alts", "Also consider")) + '</span>' +
         alts.map(function (a) {
-          return '<a class="wr-alt" href="catalog.html#card-' + a.id + '">' +
-            '<b class="mono">' + esc(a.name) + '</b>' +
-            '<span>' + esc(t("c" + a.id + ".tagline", "")) + '</span></a>';
+          return '<div class="wr-alt"><b class="mono">' + esc(a.name) + '</b> — ' + esc(t("result." + a.id + ".not", "")) + '</div>';
         }).join("") + '</div>';
     }
 
-    html += '<div class="wr-basis"><span class="wr-basis-h">' + esc(t("wiz.basis", "Based on your answers")) + '</span>' +
-      chips.map(function (c) { return '<span class="wr-chip">' + esc(c) + '</span>'; }).join("") + '</div>';
+    html += '<div class="wr-basis">' + esc(t("wiz.basis", "Based on") + ": " + chips.join(" · ")) + '</div>' +
+      '<a class="wr-jump" href="catalog.html#card-' + top.id + '">' +
+      esc(t("result.jump", "Full specs in the catalog ↓")) +
+      ' <svg class="ui-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>';
 
-    out.innerHTML = html;
-    out.hidden = false;
+    if (out) {
+      out.innerHTML = html;
+      out.hidden = false;
+    }
   }
 
   root.addEventListener("click", function (e) {

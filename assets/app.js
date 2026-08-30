@@ -1,6 +1,6 @@
 /* Shared chrome: theme toggle, language switch (English-first with fallback),
-   service-worker registration, PWA install button, active nav tab. Loaded on
-   every page. */
+   service-worker registration, PWA install button, active nav tab, scroll effects.
+   Loaded on every page. */
 (function () {
   "use strict";
 
@@ -11,8 +11,8 @@
     document.body.setAttribute("data-theme", next);
     var button = document.querySelector(".theme-toggle");
     if (button) {
-      button.textContent = next === "dark" ? "☀️" : "🌙";
-      button.setAttribute("aria-label", next === "dark" ? "Switch to light theme" : "Switch to dark theme");
+      var isDark = (next === "dark");
+      button.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
     }
     try { localStorage.setItem("hikvision-ap-theme", next); } catch (e) {}
   }
@@ -83,11 +83,60 @@
       a.setAttribute("aria-current", "page");
     }
   });
-  // keep the active tab visible when the nav scrolls horizontally (mobile)
-  var activeTab = document.querySelector('nav.sitenav a[aria-current="page"]');
-  if (activeTab) {
-    try { activeTab.scrollIntoView({ inline: "center", block: "nearest" }); }
-    catch (e) {}
+
+  /* ---------- header scroll shadow ---------- */
+  var appBar = document.getElementById("appBar") || document.querySelector("header.app-bar");
+  if (appBar) {
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 10) {
+        appBar.classList.add("scrolled");
+      } else {
+        appBar.classList.remove("scrolled");
+      }
+    }, { passive: true });
+  }
+
+  /* ---------- scroll animations & active TOC ---------- */
+  if ("IntersectionObserver" in window) {
+    // Reveal animations
+    var revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -40px 0px", threshold: 0.05 });
+
+    document.querySelectorAll(".animate-in").forEach(function (el) {
+      revealObserver.observe(el);
+    });
+
+    // Install TOC observer
+    var sections = document.querySelectorAll(".install-layout section.anchor[id]");
+    var tocLinks = document.querySelectorAll(".toc a");
+    if (sections.length && tocLinks.length) {
+      var tocObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var id = entry.target.getAttribute("id");
+            tocLinks.forEach(function (link) {
+              var href = link.getAttribute("href");
+              if (href === "#" + id) {
+                link.classList.add("active");
+                if (window.innerWidth <= 840) {
+                  link.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+                }
+              } else {
+                link.classList.remove("active");
+              }
+            });
+          }
+        });
+      }, { rootMargin: "-80px 0px -65% 0px", threshold: 0.1 });
+
+      sections.forEach(function (s) { tocObserver.observe(s); });
+    }
   }
 
   /* ---------- service worker ---------- */

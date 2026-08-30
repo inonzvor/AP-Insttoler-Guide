@@ -22,34 +22,56 @@
 <link rel="stylesheet" href="assets/app.css">
 </head>
 <body data-pagetitle="Install &amp; set up">
-<div class="wrap">
+<a href="#main-content" class="skip-link" data-i18n="skip.link">Skip to main content</a>
 
-  <header class="top">
-    <div class="top-row">
-      <div class="eyebrow" data-i18n="hdr.eyebrow">Installer's manual</div>
+<header class="app-bar" id="appBar">
+  <div class="app-bar-inner">
+    <a href="index.html" class="brand" aria-label="DS-3WAP Installer Manual">
+      <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="14" width="20" height="8" rx="2"></rect>
+        <path d="M6 14V9a6 6 0 0 1 12 0v5"></path>
+        <circle cx="12" cy="18" r="1" fill="currentColor"></circle>
+      </svg>
+      <span class="brand-title">DS‑3WAP <span class="brand-sub">Manual</span></span>
+    </a>
+
+    <nav class="sitenav" aria-label="Main Navigation">
+      <a href="index.html" data-i18n="nav.home">Overview</a>
+      <a href="catalog.html" data-i18n="nav.catalog">Devices</a>
+      <a href="install.html" data-i18n="nav.install">Install &amp; set up</a>
+      <a href="glossary.html" data-i18n="nav.glossary">Glossary</a>
+    </nav>
+
+    <div class="app-bar-actions">
       <div class="langsw" role="group" aria-label="Language">
         <button type="button" class="langbtn" data-lang="ru">RU</button>
         <button type="button" class="langbtn" data-lang="en">EN</button>
         <button type="button" class="langbtn" data-lang="he">עב</button>
       </div>
-      <button type="button" class="install-btn" id="installBtn" hidden>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
-        <span data-i18n="install.btn">Install app</span>
+      <button type="button" class="install-btn" id="installBtn" hidden aria-label="Install app">
+        <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+        <span data-i18n="install.btn">Install</span>
       </button>
-      <button type="button" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+      <button type="button" class="theme-toggle" aria-label="Toggle dark mode" id="themeToggle">
+        <svg class="theme-icon-moon ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg class="theme-icon-sun ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      </button>
     </div>
-    <div>
-      <h1 data-i18n="nav.install">Install &amp; set up</h1>
-      <p class="sub">Powering the unit, finding it on the network, activating it, and the ways to configure it — in the order you do them on site. Menu labels vary by firmware; the flow does not.</p>
-    </div>
-  </header>
+  </div>
+</header>
 
-  <nav class="sitenav">
-    <a href="index.html" data-i18n="nav.home">Overview</a>
-    <a href="catalog.html" data-i18n="nav.catalog">Devices</a>
-    <a href="install.html" data-i18n="nav.install">Install &amp; set up</a>
-    <a href="glossary.html" data-i18n="nav.glossary">Glossary</a>
-  </nav>
+<div class="wrap" id="main-content">
+
+  <section class="page-hero animate-in">
+    <div class="eyebrow" data-i18n="hdr.eyebrow">Installer's manual</div>
+    <h1 data-i18n="nav.install">Install &amp; set up</h1>
+    <p class="sub">Powering the unit, finding it on the network, activating it, and the ways to configure it — in the order you do them on site. Menu labels vary by firmware; the flow does not.</p>
+    <div class="meta-pills">
+      <span>8 Step Guide</span>
+      <span class="mono">SADP · Web UI · Cloud</span>
+      <span data-i18n="meta.date">Aug. 2026 Reference</span>
+    </div>
+  </section>
 
   <div class="install-tip" id="installTip" hidden>
     <div class="card">
@@ -62,21 +84,25 @@
     </div>
   </div>
 
-  <nav class="toc" aria-label="On this page">
-    <a href="#before">1. Before you start</a>
-    <a href="#power">2. Power: PoE or a supply</a>
-    <a href="#find">3. Connect &amp; find it</a>
-    <a href="#activate">4. Activation</a>
-    <a href="#configure">5. Ways to configure it</a>
-    <a href="#wifi">6. First‑time Wi‑Fi settings</a>
-    <a href="#handover">7. Verify &amp; hand over</a>
-    <a href="#trouble">8. Troubleshooting</a>
-  </nav>
+  <div class="install-layout">
+    <aside class="toc-rail" id="tocRail">
+      <nav class="toc" aria-label="On this page">
+        <div class="toc-head">Installation Guide</div>
+        <a href="#before"><span class="toc-num">1</span> <span class="toc-text">Before you start</span></a>
+        <a href="#power"><span class="toc-num">2</span> <span class="toc-text">Power: PoE or DC</span></a>
+        <a href="#find"><span class="toc-num">3</span> <span class="toc-text">Connect &amp; find it</span></a>
+        <a href="#activate"><span class="toc-num">4</span> <span class="toc-text">Activation</span></a>
+        <a href="#configure"><span class="toc-num">5</span> <span class="toc-text">Ways to configure</span></a>
+        <a href="#wifi"><span class="toc-num">6</span> <span class="toc-text">Wi‑Fi settings</span></a>
+        <a href="#handover"><span class="toc-num">7</span> <span class="toc-text">Verify &amp; handover</span></a>
+        <a href="#trouble"><span class="toc-num">8</span> <span class="toc-text">Troubleshooting</span></a>
+      </nav>
+    </aside>
 
-  <div class="prose">
+    <div class="prose">
 
     <section class="anchor" id="before">
-      <h2>1. Before you start</h2>
+      <h2><span class="sec-badge">1</span> Before you start</h2>
       <p>A DS‑3WAP is an <strong>access point</strong>, not a router. It attaches to an existing wired network and broadcasts Wi‑Fi. Something upstream (a router or DHCP server) must already hand out IP addresses; the AP just needs a path to it.</p>
       <h3>What to have with you</h3>
       <ul>
@@ -94,17 +120,17 @@
       </div>
       <h3>LED legend (typical — confirm in the QSG)</h3>
       <div class="led-legend">
-        <div><b>PWR / SYS</b> Solid = powered and booted. Blinking = booting or firmware update. Off = no power (see section 2).</div>
-        <div><b>2.4G</b> On/blinking = 2.4 GHz radio active with traffic.</div>
-        <div><b>5G</b> On/blinking = 5 GHz radio active with traffic.</div>
-        <div><b>LAN / uplink</b> On = link up on the wired port. Off = no cable, dead port, or no power on the far end.</div>
+        <div class="led-item"><b><span class="led-indicator"></span>PWR / SYS</b> Solid = powered and booted. Blinking = booting or firmware update. Off = no power (see section 2).</div>
+        <div class="led-item"><b><span class="led-indicator"></span>2.4G</b> On/blinking = 2.4 GHz radio active with traffic.</div>
+        <div class="led-item"><b><span class="led-indicator"></span>5G</b> On/blinking = 5 GHz radio active with traffic.</div>
+        <div class="led-item"><b><span class="led-indicator"></span>LAN / uplink</b> On = link up on the wired port. Off = no cable, dead port, or no power on the far end.</div>
       </div>
       <h3>The RESET button</h3>
       <p>A recessed pinhole. Press and hold it for about <strong>10 seconds</strong> with the unit powered to return it to factory defaults (this also de‑activates it — you set a new password again). A short press usually just reboots.</p>
     </section>
 
     <section class="anchor" id="power">
-      <h2>2. Power: PoE or a power supply</h2>
+      <h2><span class="sec-badge">2</span> Power: PoE or a power supply</h2>
       <p>Every DS‑3WAP can take power over the network cable (<strong>PoE</strong> — Power over Ethernet). Some ceiling models also accept a <strong>12 V DC</strong> adapter, and the 623E‑SI takes 48 V DC. Check the model page in <a href="catalog.html">Devices</a> for the exact wattage and options.</p>
 
       <h3>Option A — PoE switch (simplest)</h3>
@@ -175,7 +201,7 @@
     </section>
 
     <section class="anchor" id="find">
-      <h2>3. Connect it and find it on the network</h2>
+      <h2><span class="sec-badge">3</span> Connect it and find it on the network</h2>
       <ol>
         <li>Plug the AP's <em>PoE‑in</em> / uplink port into the switch (or injector). Wait for the PWR/SYS LED to go solid — 30–60 s.</li>
         <li>Put your laptop on the <strong>same subnet</strong> as the AP will use. If the network runs DHCP and the AP is a DHCP client, just connect the laptop to the same switch.</li>
@@ -206,7 +232,7 @@
     </section>
 
     <section class="anchor" id="activate">
-      <h2>4. Activation (first login)</h2>
+      <h2><span class="sec-badge">4</span> Activation (first login)</h2>
       <p>New Hikvision devices ship <strong>inactive</strong>: there is no default password, and nothing works until you set one. This is the activation step.</p>
       <h3>Set the admin password</h3>
       <ul>
@@ -229,7 +255,7 @@
     </section>
 
     <section class="anchor" id="configure">
-      <h2>5. Ways to configure it</h2>
+      <h2><span class="sec-badge">5</span> Ways to configure it</h2>
       <p>There are three practical paths. Pick by how many APs the site has and whether you will support it remotely.</p>
 
       <div class="method-table">
@@ -240,18 +266,18 @@
           <tbody>
             <tr>
               <th>Web UI<br>(standalone / FAT)</th>
-              <td data-label="Use it when">1 to a few APs; you are on site or on the LAN.</td>
-              <td data-label="Gives you">Full per‑AP control: SSIDs, radios, security, VLANs, firmware.</td>
+              <td>1 to a few APs; you are on site or on the LAN.</td>
+              <td>Full per‑AP control: SSIDs, radios, security, VLANs, firmware.</td>
             </tr>
             <tr>
               <th>Hik‑Partner Pro</th>
-              <td data-label="Use it when">You are an installer/partner and want remote config, monitoring and a clean handover to the customer.</td>
-              <td data-label="Gives you">Cloud access to the site, remote settings and firmware, alarms, then transfer to the customer's Hik‑Connect.</td>
+              <td>You are an installer/partner and want remote config, monitoring and a clean handover to the customer.</td>
+              <td>Cloud access to the site, remote settings and firmware, alarms, then transfer to the customer's Hik‑Connect.</td>
             </tr>
             <tr>
               <th>Wireless controller<br>(AC / FIT)</th>
-              <td data-label="Use it when">Several APs on one site that need one identical config and seamless roaming.</td>
-              <td data-label="Gives you">One config pushed to all APs, coordinated channels/power, fast roaming, central status.</td>
+              <td>Several APs on one site that need one identical config and seamless roaming.</td>
+              <td>One config pushed to all APs, coordinated channels/power, fast roaming, central status.</td>
             </tr>
           </tbody>
         </table>
@@ -303,7 +329,7 @@
     </section>
 
     <section class="anchor" id="wifi">
-      <h2>6. Recommended first‑time Wi‑Fi settings</h2>
+      <h2><span class="sec-badge">6</span> Recommended first‑time Wi‑Fi settings</h2>
       <p>Sane defaults for a typical office / hospitality site. Adjust after a site survey if one was done.</p>
       <ul>
         <li><strong>2.4 GHz:</strong> 20 MHz channel width; channel 1, 6 or 11 only. Never 40 MHz on 2.4 GHz.</li>
@@ -319,7 +345,7 @@
     </section>
 
     <section class="anchor" id="handover">
-      <h2>7. Verify and hand over</h2>
+      <h2><span class="sec-badge">7</span> Verify and hand over</h2>
       <ul>
         <li><strong>Signal walk:</strong> walk the coverage area with a phone Wi‑Fi analyser; check for dead spots and for the client switching APs where it should.</li>
         <li><strong>Speed test:</strong> from a laptop near and far from the AP; compare against the site's internet plan and the AP's uplink (1 GbE, or 2.5 GbE on the 622E‑SI).</li>
@@ -332,7 +358,7 @@
     </section>
 
     <section class="anchor" id="trouble">
-      <h2>8. Troubleshooting</h2>
+      <h2><span class="sec-badge">8</span> Troubleshooting</h2>
       <h3>The AP does not appear in SADP</h3>
       <ul>
         <li>PWR LED off → no power: wrong PoE standard, dead port, bad cable, or run over 100 m. Try an 802.3at port or injector.</li>
@@ -366,6 +392,7 @@
       <p>Power the unit, press and hold <strong>RESET</strong> for ~10 seconds until the LEDs blink and it reboots. It returns to defaults and to <em>inactive</em> — you activate and configure it again from section 4.</p>
     </section>
 
+    </div>
   </div>
 
   <footer>

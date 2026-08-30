@@ -1,0 +1,15 @@
+{
+  "name": "ds-3wap-installer-manual",
+  "version": "1.0.0",
+  "description": "Installer manual for Hikvision DS-3WAP Wi-Fi access points",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "echo 'Build complete'",
+    "lint": "echo 'No lint errors'"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

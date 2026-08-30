@@ -22,34 +22,56 @@
 <link rel="stylesheet" href="assets/app.css">
 </head>
 <body data-pagetitle="Devices">
-<div class="wrap">
+<a href="#main-content" class="skip-link" data-i18n="skip.link">Skip to main content</a>
 
-  <header class="top">
-    <div class="top-row">
-      <div class="eyebrow" data-i18n="hdr.eyebrow">Installer's manual</div>
+<header class="app-bar" id="appBar">
+  <div class="app-bar-inner">
+    <a href="index.html" class="brand" aria-label="DS-3WAP Installer Manual">
+      <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="14" width="20" height="8" rx="2"></rect>
+        <path d="M6 14V9a6 6 0 0 1 12 0v5"></path>
+        <circle cx="12" cy="18" r="1" fill="currentColor"></circle>
+      </svg>
+      <span class="brand-title">DS‑3WAP <span class="brand-sub">Manual</span></span>
+    </a>
+
+    <nav class="sitenav" aria-label="Main Navigation">
+      <a href="index.html" data-i18n="nav.home">Overview</a>
+      <a href="catalog.html" data-i18n="nav.catalog">Devices</a>
+      <a href="install.html" data-i18n="nav.install">Install &amp; set up</a>
+      <a href="glossary.html" data-i18n="nav.glossary">Glossary</a>
+    </nav>
+
+    <div class="app-bar-actions">
       <div class="langsw" role="group" aria-label="Language">
         <button type="button" class="langbtn" data-lang="ru">RU</button>
         <button type="button" class="langbtn" data-lang="en">EN</button>
         <button type="button" class="langbtn" data-lang="he">עב</button>
       </div>
-      <button type="button" class="install-btn" id="installBtn" hidden>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
-        <span data-i18n="install.btn">Install app</span>
+      <button type="button" class="install-btn" id="installBtn" hidden aria-label="Install app">
+        <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+        <span data-i18n="install.btn">Install</span>
       </button>
-      <button type="button" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+      <button type="button" class="theme-toggle" aria-label="Toggle dark mode" id="themeToggle">
+        <svg class="theme-icon-moon ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg class="theme-icon-sun ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      </button>
     </div>
-    <div>
-      <h1 data-i18n="nav.catalog">Devices</h1>
-      <p class="sub">The 8 DS‑3WAP models explained for a first‑time installer — ports, power, box contents and watch‑outs, then full specs and a comparison table.</p>
-    </div>
-  </header>
+  </div>
+</header>
 
-  <nav class="sitenav">
-    <a href="index.html" data-i18n="nav.home">Overview</a>
-    <a href="catalog.html" data-i18n="nav.catalog">Devices</a>
-    <a href="install.html" data-i18n="nav.install">Install &amp; set up</a>
-    <a href="glossary.html" data-i18n="nav.glossary">Glossary</a>
-  </nav>
+<div class="wrap" id="main-content">
+
+  <section class="page-hero animate-in">
+    <div class="eyebrow" data-i18n="hdr.eyebrow">Installer's manual</div>
+    <h1 data-i18n="nav.catalog">Devices</h1>
+    <p class="sub">The 8 DS‑3WAP models explained for a first‑time installer — ports, power, box contents and watch‑outs, then full specs and a comparison table.</p>
+    <div class="meta-pills">
+      <span data-i18n="meta.models">8 AP Models</span>
+      <span class="mono">In‑wall · Ceiling · Outdoor</span>
+      <span data-i18n="meta.date">Aug. 2026 Reference</span>
+    </div>
+  </section>
 
   <div class="install-tip" id="installTip" hidden>
     <div class="card">
@@ -463,17 +485,23 @@
     <div class="table-scroll">
       <table class="compare">
         <thead>
+          <tr class="th-group-row">
+            <th colspan="3" class="th-group" style="text-align:left">General</th>
+            <th colspan="3" class="th-group">Radio &amp; Throughput</th>
+            <th colspan="3" class="th-group">Interfaces &amp; Power</th>
+            <th colspan="4" class="th-group">Environment &amp; Physical</th>
+          </tr>
           <tr>
             <th data-i18n="th.model">Model</th>
             <th data-i18n="th.type">Type</th>
             <th class="mono">Wi‑Fi</th>
             <th data-i18n="qs.speed">Speed</th>
             <th data-i18n="th.bandsfreq">2.4 / 5 GHz</th>
+            <th data-i18n="th.clientsrec">Clients (rec.)</th>
             <th data-i18n="lbl.ports">Ports</th>
             <th class="mono">PoE</th>
             <th data-i18n="th.poeclass">PoE class</th>
             <th data-i18n="th.mgmt">Mgmt mode</th>
-            <th data-i18n="th.clientsrec">Clients (rec.)</th>
             <th class="mono">IP</th>
             <th data-i18n="lbl.temp">Operating temp.</th>
             <th data-i18n="th.weight">Weight</th>
@@ -482,43 +510,43 @@
         <tbody>
           <tr>
             <th><span class="catdot wall"></span>DS‑3WAP521‑SI</th>
-            <td data-i18n="type.wall">wall</td><td class="mono">Wi‑Fi 5</td><td class="mono" data-i18n="spd.1167">1167 Mbps</td><td class="mono">300 / 867</td>
-            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.521">af/at, 8 W</td><td class="mono">802.3af/at</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">50</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.521">0.2 kg</td>
+            <td data-i18n="type.wall">wall</td><td class="mono">Wi‑Fi 5</td><td class="mono" data-i18n="spd.1167">1167 Mbps</td><td class="mono">300 / 867</td><td class="mono">50</td>
+            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.521">af/at, 8 W</td><td class="mono">802.3af/at</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.521">0.2 kg</td>
           </tr>
           <tr>
             <th><span class="catdot wall"></span>DS‑3WAP621E‑SI</th>
-            <td data-i18n="type.wall">wall</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.2975">2975 Mbps</td><td class="mono">575 / 2400</td>
-            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.621e">af/at, 13 W</td><td class="mono">802.3af/at</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">70</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.621e">0.17 kg</td>
+            <td data-i18n="type.wall">wall</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.2975">2975 Mbps</td><td class="mono">575 / 2400</td><td class="mono">70</td>
+            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.621e">af/at, 13 W</td><td class="mono">802.3af/at</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.621e">0.17 kg</td>
           </tr>
           <tr>
             <th><span class="catdot ceiling"></span>DS‑3WAP522‑SI</th>
-            <td data-i18n="type.ceiling">ceiling</td><td class="mono">Wi‑Fi 5</td><td class="mono" data-i18n="spd.1167">1167 Mbps</td><td class="mono">300 / 867</td>
-            <td class="mono">1× GbE</td><td class="mono" data-i18n="poe.522">af/at / 12 V DC, 11.35 W</td><td class="mono">af/at + DC</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">80</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.522">0.4 kg</td>
+            <td data-i18n="type.ceiling">ceiling</td><td class="mono">Wi‑Fi 5</td><td class="mono" data-i18n="spd.1167">1167 Mbps</td><td class="mono">300 / 867</td><td class="mono">80</td>
+            <td class="mono">1× GbE</td><td class="mono" data-i18n="poe.522">af/at / 12 V DC, 11.35 W</td><td class="mono">af/at + DC</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.522">0.4 kg</td>
           </tr>
           <tr>
             <th><span class="catdot ceiling"></span>DS‑3WAP622G‑SI</th>
-            <td data-i18n="type.ceiling">ceiling</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.1775">1775 Mbps</td><td class="mono">574 / 1201</td>
-            <td class="mono">1× GbE</td><td class="mono" data-i18n="poe.522">af/at / 12 V DC, 11.35 W</td><td class="mono">af/at + DC</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">100</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.522">0.4 kg</td>
+            <td data-i18n="type.ceiling">ceiling</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.1775">1775 Mbps</td><td class="mono">574 / 1201</td><td class="mono">100</td>
+            <td class="mono">1× GbE</td><td class="mono" data-i18n="poe.522">af/at / 12 V DC, 11.35 W</td><td class="mono">af/at + DC</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.522">0.4 kg</td>
           </tr>
           <tr>
             <th><span class="catdot ceiling"></span>DS‑3WAP6218‑EI</th>
-            <td data-i18n="type.ceiling">ceiling</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.1775">1775 Mbps</td><td class="mono">574 / 1201</td>
-            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.6218">at / 12 V DC, up to 18 W</td><td class="mono">802.3at + DC</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">100</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono">—</td>
+            <td data-i18n="type.ceiling">ceiling</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.1775">1775 Mbps</td><td class="mono">574 / 1201</td><td class="mono">100</td>
+            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.6218">at / 12 V DC, up to 18 W</td><td class="mono">802.3at + DC</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono">—</td>
           </tr>
           <tr>
             <th><span class="catdot ceiling"></span>DS‑3WAP622E‑SI</th>
-            <td data-i18n="type.ceiling">ceiling</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.2975">2975 Mbps</td><td class="mono">575 / 2400</td>
-            <td class="mono">1× 2.5GbE</td><td class="mono" data-i18n="poe.622e">af/at / 12 V DC, 13.5 W</td><td class="mono">af/at + DC</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">100</td><td class="mono">—</td><td class="mono">0…45 °C</td><td class="mono" data-i18n="wt.622e">0.38 kg</td>
+            <td data-i18n="type.ceiling">ceiling</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.2975">2975 Mbps</td><td class="mono">575 / 2400</td><td class="mono">100</td>
+            <td class="mono">1× 2.5GbE</td><td class="mono" data-i18n="poe.622e">af/at / 12 V DC, 13.5 W</td><td class="mono">af/at + DC</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">—</td><td class="mono">0…45 °C</td><td class="mono" data-i18n="wt.622e">0.38 kg</td>
           </tr>
           <tr>
             <th><span class="catdot outdoor"></span>DS‑3WAP5312‑EI</th>
-            <td data-i18n="type.outdoor">outdoor</td><td class="mono">Wi‑Fi 5</td><td class="mono" data-i18n="spd.1167">1167 Mbps</td><td class="mono">300 / 867</td>
-            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.5312">at, up to 18 W</td><td class="mono">802.3at</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono" data-i18n="cli.max128">128 max.</td><td class="mono">IP65</td><td class="mono">−30…65 °C</td><td class="mono" data-i18n="wt.5312">0.34 kg</td>
+            <td data-i18n="type.outdoor">outdoor</td><td class="mono">Wi‑Fi 5</td><td class="mono" data-i18n="spd.1167">1167 Mbps</td><td class="mono">300 / 867</td><td class="mono" data-i18n="cli.max128">128 max.</td>
+            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.5312">at, up to 18 W</td><td class="mono">802.3at</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">IP65</td><td class="mono">−30…65 °C</td><td class="mono" data-i18n="wt.5312">0.34 kg</td>
           </tr>
           <tr>
             <th><span class="catdot outdoor"></span>DS‑3WAP623E‑SI</th>
-            <td data-i18n="type.outdoor">outdoor</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.2975">2975 Mbps</td><td class="mono">575 / 2400</td>
-            <td class="mono">1× GbE</td><td class="mono" data-i18n="poe.623e">af/at 48 V, 14.4 W</td><td class="mono">802.3af/at</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">100</td><td class="mono">IP68</td><td class="mono">−30…55 °C</td><td class="mono" data-i18n="wt.623e">1.07 kg</td>
+            <td data-i18n="type.outdoor">outdoor</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.2975">2975 Mbps</td><td class="mono">575 / 2400</td><td class="mono">100</td>
+            <td class="mono">1× GbE</td><td class="mono" data-i18n="poe.623e">af/at 48 V, 14.4 W</td><td class="mono">802.3af/at</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">IP68</td><td class="mono">−30…55 °C</td><td class="mono" data-i18n="wt.623e">1.07 kg</td>
           </tr>
         </tbody>
       </table>

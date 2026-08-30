@@ -5,15 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DS‑3WAP Installer Manual</title>
 <meta name="description" content="A manual for installers setting up Hikvision DS‑3WAP Wi‑Fi access points for the first time: model selection, per‑device explanations, and step‑by‑step installation and configuration.">
+<meta property="og:title" content="DS‑3WAP Installer Manual">
+<meta property="og:description" content="A manual for installers setting up Hikvision DS‑3WAP Wi‑Fi access points for the first time: model selection, per‑device explanations, and step‑by‑step installation and configuration.">
 
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#f2f5f4" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#101615" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1514" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="AP Manual">
+<meta name="apple-mobile-web-app-title" content="DS-3WAP Manual">
 <meta name="mobile-web-app-capable" content="yes">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,47 +23,73 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/app.css">
 </head>
-<body>
-<div class="wrap">
+<body data-pagetitle="Overview">
+<a href="#main-content" class="skip-link" data-i18n="skip.link">Skip to main content</a>
 
-  <header class="top">
-    <div class="top-row">
-      <div class="eyebrow" data-i18n="hdr.eyebrow">Installer's manual</div>
+<header class="app-bar" id="appBar">
+  <div class="app-bar-inner">
+    <a href="index.html" class="brand" aria-label="DS-3WAP Installer Manual">
+      <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="14" width="20" height="8" rx="2"></rect>
+        <path d="M6 14V9a6 6 0 0 1 12 0v5"></path>
+        <circle cx="12" cy="18" r="1" fill="currentColor"></circle>
+      </svg>
+      <span class="brand-title">DS‑3WAP <span class="brand-sub">Manual</span></span>
+    </a>
+
+    <nav class="sitenav" aria-label="Main Navigation">
+      <a href="index.html" data-i18n="nav.home">Overview</a>
+      <a href="catalog.html" data-i18n="nav.catalog">Devices</a>
+      <a href="install.html" data-i18n="nav.install">Install &amp; set up</a>
+      <a href="glossary.html" data-i18n="nav.glossary">Glossary</a>
+    </nav>
+
+    <div class="app-bar-actions">
       <div class="langsw" role="group" aria-label="Language">
         <button type="button" class="langbtn" data-lang="ru">RU</button>
         <button type="button" class="langbtn" data-lang="en">EN</button>
         <button type="button" class="langbtn" data-lang="he">עב</button>
       </div>
-      <button type="button" class="install-btn" id="installBtn" hidden>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
-        <span data-i18n="install.btn">Install app</span>
+      <button type="button" class="install-btn" id="installBtn" hidden aria-label="Install app">
+        <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+        <span data-i18n="install.btn">Install</span>
       </button>
-      <button type="button" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+      <button type="button" class="theme-toggle" aria-label="Toggle dark mode" id="themeToggle">
+        <svg class="theme-icon-moon ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg class="theme-icon-sun ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      </button>
     </div>
-    <div class="top-layout">
-      <div>
-        <h1 data-i18n="hdr.h1">DS‑3WAP Installer Manual</h1>
-        <p class="sub" data-i18n="hdr.sub">For an installer setting up an access point of this class for the first time, or working with Hikvision gear for the first time: pick the model, understand each device, then install and configure it step by step.</p>
-        <div class="meta-row">
-          <span data-i18n="hdr.meta1">8 models</span>
-          <span class="mono">Wi‑Fi 5 / Wi‑Fi 6</span>
-          <span data-i18n="hdr.meta3">Source — Hikvision datasheets, Aug. 2026</span>
-        </div>
-      </div>
-      <div class="top-visual" aria-label="Hik‑Partner Pro screenshot">
-        <div class="visual-frame">
-          <img src="assets/images/hik-partner-pro.png" alt="Hik‑Partner Pro — remote health monitoring and offline alerts across an installer's sites" />
-        </div>
-      </div>
-    </div>
-  </header>
+  </div>
+</header>
 
-  <nav class="sitenav">
-    <a href="index.html" data-i18n="nav.home">Overview</a>
-    <a href="catalog.html" data-i18n="nav.catalog">Devices</a>
-    <a href="install.html" data-i18n="nav.install">Install &amp; set up</a>
-    <a href="glossary.html" data-i18n="nav.glossary">Glossary</a>
-  </nav>
+<div class="wrap" id="main-content">
+
+  <section class="page-hero animate-in">
+    <div class="eyebrow" data-i18n="hdr.eyebrow">Installer's manual</div>
+    <h1 data-i18n="hdr.h1">DS‑3WAP Installer Manual</h1>
+    <p class="sub" data-i18n="hdr.sub">For an installer setting up an access point of this class for the first time, or working with Hikvision gear for the first time: pick the model, understand each device, then install and configure it step by step.</p>
+
+    <div class="hero-jumps">
+      <a href="#picker" class="jump-chip">
+        <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span data-i18n="hero.jump.picker">Model Picker</span>
+      </a>
+      <a href="install.html" class="jump-chip">
+        <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        <span data-i18n="hero.jump.install">Installation Guide</span>
+      </a>
+      <a href="glossary.html" class="jump-chip">
+        <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        <span data-i18n="hero.jump.glossary">Glossary</span>
+      </a>
+    </div>
+
+    <div class="meta-pills">
+      <span data-i18n="meta.models">8 AP Models</span>
+      <span class="mono" data-i18n="meta.standard">Wi‑Fi 5 &amp; Wi‑Fi 6</span>
+      <span data-i18n="meta.date">Aug. 2026 Reference</span>
+    </div>
+  </section>
 
   <div class="install-tip" id="installTip" hidden>
     <div class="card">
@@ -74,138 +102,251 @@
     </div>
   </div>
 
-  <section class="block" id="roadmap">
+  <section class="block animate-in" id="roadmap">
     <div class="section-head">
       <h2 data-i18n="home.roadmap.h2">Start here</h2>
       <span class="count" data-i18n="home.roadmap.count">the whole job, in order</span>
     </div>
     <p class="sub" style="margin:0 0 16px;max-width:70ch;color:var(--ink-muted)" data-i18n="home.roadmap.intro">Never installed one of these before? This is the full sequence. Do the steps in order; each card links to the detail you need for that step.</p>
-    <div class="roadmap">
-      <a href="#picker">
-        <span class="rn mono">01</span>
-        <span class="rt" data-i18n="road.1.t">Pick a model</span>
-        <span class="rd" data-i18n="road.1.d">Match the site — mount type and load — to one of the 8 access points.</span>
+    
+    <div class="stepper">
+      <a href="#picker" class="stepper-item">
+        <div class="stepper-top">
+          <span class="stepper-badge"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Step 1</span>
+          <span class="stepper-arrow">→</span>
+        </div>
+        <span class="stepper-title" data-i18n="road.1.t">Pick a model</span>
+        <span class="stepper-desc" data-i18n="road.1.d">Match the site — mount type and load — to one of the 8 access points.</span>
       </a>
-      <a href="catalog.html">
-        <span class="rn mono">02</span>
-        <span class="rt" data-i18n="road.2.t">Understand the device</span>
-        <span class="rd" data-i18n="road.2.d">Read the model page: ports, power options, what's in the box, watch‑outs.</span>
+
+      <a href="catalog.html" class="stepper-item">
+        <div class="stepper-top">
+          <span class="stepper-badge"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg> Step 2</span>
+          <span class="stepper-arrow">→</span>
+        </div>
+        <span class="stepper-title" data-i18n="road.2.t">Understand the device</span>
+        <span class="stepper-desc" data-i18n="road.2.d">Read the model page: ports, power options, what's in the box, watch‑outs.</span>
       </a>
-      <a href="install.html#power">
-        <span class="rn mono">03</span>
-        <span class="rt" data-i18n="road.3.t">Power it — PoE or adapter</span>
-        <span class="rd" data-i18n="road.3.d">PoE switch, PoE injector, or a 12 V DC adapter on models that support it.</span>
+
+      <a href="install.html#power" class="stepper-item">
+        <div class="stepper-top">
+          <span class="stepper-badge"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Step 3</span>
+          <span class="stepper-arrow">→</span>
+        </div>
+        <span class="stepper-title" data-i18n="road.3.t">Power it — PoE or adapter</span>
+        <span class="stepper-desc" data-i18n="road.3.d">PoE switch, PoE injector, or a 12 V DC adapter on models that support it.</span>
       </a>
-      <a href="install.html#find">
-        <span class="rn mono">04</span>
-        <span class="rt" data-i18n="road.4.t">Find it on the network</span>
-        <span class="rd" data-i18n="road.4.d">Use the SADP tool or the router's DHCP list to get the AP's IP address.</span>
+
+      <a href="install.html#find" class="stepper-item">
+        <div class="stepper-top">
+          <span class="stepper-badge"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg> Step 4</span>
+          <span class="stepper-arrow">→</span>
+        </div>
+        <span class="stepper-title" data-i18n="road.4.t">Find it on the network</span>
+        <span class="stepper-desc" data-i18n="road.4.d">Use the SADP tool or the router's DHCP list to get the AP's IP address.</span>
       </a>
-      <a href="install.html#activate">
-        <span class="rn mono">05</span>
-        <span class="rt" data-i18n="road.5.t">Activate it</span>
-        <span class="rd" data-i18n="road.5.d">The unit ships inactive — set a strong admin password, then its IP mode.</span>
+
+      <a href="install.html#activate" class="stepper-item">
+        <div class="stepper-top">
+          <span class="stepper-badge"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Step 5</span>
+          <span class="stepper-arrow">→</span>
+        </div>
+        <span class="stepper-title" data-i18n="road.5.t">Activate it</span>
+        <span class="stepper-desc" data-i18n="road.5.d">The unit ships inactive — set a strong admin password, then its IP mode.</span>
       </a>
-      <a href="install.html#configure">
-        <span class="rn mono">06</span>
-        <span class="rt" data-i18n="road.6.t">Configure it</span>
-        <span class="rd" data-i18n="road.6.d">Web UI, Hik‑Partner Pro, or a wireless controller — pick the right one.</span>
+
+      <a href="install.html#configure" class="stepper-item">
+        <div class="stepper-top">
+          <span class="stepper-badge"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Step 6</span>
+          <span class="stepper-arrow">→</span>
+        </div>
+        <span class="stepper-title" data-i18n="road.6.t">Configure it</span>
+        <span class="stepper-desc" data-i18n="road.6.d">Web UI, Hik‑Partner Pro, or a wireless controller — pick the right one.</span>
       </a>
-      <a href="install.html#handover">
-        <span class="rn mono">07</span>
-        <span class="rt" data-i18n="road.7.t">Verify &amp; hand over</span>
-        <span class="rd" data-i18n="road.7.d">Signal walk, speed and roaming test, record credentials, hand to the customer.</span>
+
+      <a href="install.html#handover" class="stepper-item">
+        <div class="stepper-top">
+          <span class="stepper-badge"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Step 7</span>
+          <span class="stepper-arrow">→</span>
+        </div>
+        <span class="stepper-title" data-i18n="road.7.t">Verify &amp; hand over</span>
+        <span class="stepper-desc" data-i18n="road.7.d">Signal walk, speed and roaming test, record credentials, hand to the customer.</span>
       </a>
     </div>
   </section>
 
-  <section class="block" id="picker">
-    <div class="section-head"><h2 data-i18n="wiz.h2">Which model for this spot?</h2><span class="count" data-i18n="wiz.count">answer what you know — the list re‑ranks as you go</span></div>
+  <section class="block animate-in" id="picker">
+    <div class="section-head">
+      <h2 data-i18n="wiz.h2">Which model for this spot?</h2>
+      <span class="count" data-i18n="wiz.count">answer what you know — the list re‑ranks as you go</span>
+    </div>
+
     <div id="wizard" class="wizard">
+      <div class="wizard-progress-bar">
+        <span class="wizard-progress-text" data-i18n="wiz.progress">Answered 0 of 4</span>
+        <div class="wizard-progress-track">
+          <div class="wizard-progress-fill"></div>
+        </div>
+      </div>
 
       <div class="wq">
         <div class="wq-t"><span class="qn">1</span><span data-i18n="wiz.q.mount">Where does it mount?</span></div>
         <div class="wq-o">
-          <button type="button" class="wopt" data-q="mount" data-v="wall" data-i18n="wiz.mount.wall">In‑wall (flush, 86 mm box)</button>
-          <button type="button" class="wopt" data-q="mount" data-v="ceiling" data-i18n="wiz.mount.ceiling">Ceiling or indoor wall</button>
-          <button type="button" class="wopt" data-q="mount" data-v="outdoor" data-i18n="wiz.mount.outdoor">Outdoor</button>
+          <button type="button" class="wopt" data-q="mount" data-v="wall" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><line x1="9" y1="9" x2="15" y2="9"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+            <span data-i18n="wiz.mount.wall">In‑wall (flush, 86 mm box)</span>
+          </button>
+          <button type="button" class="wopt" data-q="mount" data-v="ceiling" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+            <span data-i18n="wiz.mount.ceiling">Ceiling or indoor wall</span>
+          </button>
+          <button type="button" class="wopt" data-q="mount" data-v="outdoor" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            <span data-i18n="wiz.mount.outdoor">Outdoor</span>
+          </button>
         </div>
       </div>
 
       <div class="wq">
         <div class="wq-t"><span class="qn">2</span><span data-i18n="wiz.q.density">Devices connected at peak, in this AP's area</span></div>
         <div class="wq-o">
-          <button type="button" class="wopt" data-q="density" data-v="light" data-i18n="wiz.d.light">Up to ~20</button>
-          <button type="button" class="wopt" data-q="density" data-v="normal" data-i18n="wiz.d.normal">~20–60</button>
-          <button type="button" class="wopt" data-q="density" data-v="dense" data-i18n="wiz.d.dense">60+</button>
+          <button type="button" class="wopt" data-q="density" data-v="light" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+            <span data-i18n="wiz.d.light">Up to ~20</span>
+          </button>
+          <button type="button" class="wopt" data-q="density" data-v="normal" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span data-i18n="wiz.d.normal">~20–60</span>
+          </button>
+          <button type="button" class="wopt" data-q="density" data-v="dense" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <span data-i18n="wiz.d.dense">60+</span>
+          </button>
         </div>
       </div>
 
       <div class="wq">
         <div class="wq-t"><span class="qn">3</span><span data-i18n="wiz.q.wifi">Wi‑Fi generation</span></div>
         <div class="wq-o">
-          <button type="button" class="wopt" data-q="wifi" data-v="w5" data-i18n="wiz.w.w5">Wi‑Fi 5 is fine (cheaper)</button>
-          <button type="button" class="wopt" data-q="wifi" data-v="w6" data-i18n="wiz.w.w6">Prefer Wi‑Fi 6</button>
-          <button type="button" class="wopt" data-q="wifi" data-v="w6plus" data-i18n="wiz.w.w6plus">Need Wi‑Fi 6 + WPA3</button>
+          <button type="button" class="wopt" data-q="wifi" data-v="w5" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+            <span data-i18n="wiz.w.w5">Wi‑Fi 5 is fine (cheaper)</span>
+          </button>
+          <button type="button" class="wopt" data-q="wifi" data-v="w6" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+            <span data-i18n="wiz.w.w6">Prefer Wi‑Fi 6</span>
+          </button>
+          <button type="button" class="wopt" data-q="wifi" data-v="w6plus" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span data-i18n="wiz.w.w6plus">Need Wi‑Fi 6 + WPA3</span>
+          </button>
         </div>
       </div>
 
       <div class="wq">
         <div class="wq-t"><span class="qn">4</span><span data-i18n="wiz.q.power">Power at the mounting point</span></div>
         <div class="wq-o">
-          <button type="button" class="wopt" data-q="power" data-v="poe" data-i18n="wiz.p.poe">PoE (switch or injector)</button>
-          <button type="button" class="wopt" data-q="power" data-v="mains" data-i18n="wiz.p.mains">Only a mains socket</button>
-          <button type="button" class="wopt" data-q="power" data-v="unsure" data-i18n="wiz.p.unsure">Not decided yet</button>
+          <button type="button" class="wopt" data-q="power" data-v="poe" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            <span data-i18n="wiz.p.poe">PoE (switch or injector)</span>
+          </button>
+          <button type="button" class="wopt" data-q="power" data-v="mains" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v10M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"></path></svg>
+            <span data-i18n="wiz.p.mains">Only a mains socket</span>
+          </button>
+          <button type="button" class="wopt" data-q="power" data-v="unsure" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <span data-i18n="wiz.p.unsure">Not decided yet</span>
+          </button>
         </div>
       </div>
 
       <div class="wq">
         <div class="wq-t"><span class="qn">5</span><span data-i18n="wiz.q.pass">A wired device at the AP (camera, IP phone)?</span></div>
         <div class="wq-o">
-          <button type="button" class="wopt" data-q="passthrough" data-v="yes" data-i18n="wiz.pass.yes">Yes — need a spare LAN port</button>
-          <button type="button" class="wopt" data-q="passthrough" data-v="no" data-i18n="wiz.pass.no">No</button>
+          <button type="button" class="wopt" data-q="passthrough" data-v="yes" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            <span data-i18n="wiz.pass.yes">Yes — need a spare LAN port</span>
+          </button>
+          <button type="button" class="wopt" data-q="passthrough" data-v="no" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <span data-i18n="wiz.pass.no">No</span>
+          </button>
         </div>
       </div>
 
       <div class="wq" data-when="outdoor" hidden>
         <div class="wq-t"><span class="qn">6</span><span data-i18n="wiz.q.climate">Outdoor conditions</span></div>
         <div class="wq-o">
-          <button type="button" class="wopt" data-q="climate" data-v="mild" data-i18n="wiz.c.mild">Mild, shorter range</button>
-          <button type="button" class="wopt" data-q="climate" data-v="harsh" data-i18n="wiz.c.harsh">Harsh, long range</button>
+          <button type="button" class="wopt" data-q="climate" data-v="mild" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            <span data-i18n="wiz.c.mild">Mild, shorter range</span>
+          </button>
+          <button type="button" class="wopt" data-q="climate" data-v="harsh" aria-pressed="false">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25"></path><line x1="8" y1="16" x2="8.01" y2="16"></line><line x1="8" y1="20" x2="8.01" y2="20"></line><line x1="12" y1="18" x2="12.01" y2="18"></line><line x1="12" y1="22" x2="12.01" y2="22"></line><line x1="16" y1="16" x2="16.01" y2="16"></line><line x1="16" y1="20" x2="16.01" y2="20"></line></svg>
+            <span data-i18n="wiz.c.harsh">Harsh, long range</span>
+          </button>
         </div>
+      </div>
+
+      <div class="wresult-placeholder">
+        <p data-i18n="wiz.placeholder">Answer the key questions above to get a tailored recommendation.</p>
       </div>
 
       <div class="wresult" hidden></div>
 
       <button type="button" class="wreset" data-i18n="wiz.reset">Reset answers</button>
-
     </div>
   </section>
 
-  <section class="block">
-    <div class="showcase-grid" aria-label="Access point deployment photos">
-      <figure class="showcase-item">
-        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Office with Wi‑Fi coverage" />
-        <figcaption>Office · ceiling APs</figcaption>
-      </figure>
-      <figure class="showcase-item">
-        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" alt="Hotel corridors" />
-        <figcaption>Hotel · concealed mount</figcaption>
-      </figure>
-      <figure class="showcase-item">
-        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" alt="Outdoor Wi‑Fi on a façade and pole" />
-        <figcaption>Outdoor · outdoor APs</figcaption>
-      </figure>
+  <section class="block animate-in" id="scenarios">
+    <div class="section-head">
+      <h2 data-i18n="scenarios.h2">Deployment scenarios</h2>
+      <span class="count" data-i18n="scenarios.count">quick orientation by site type</span>
     </div>
-    <p class="sub" style="margin:8px 0 0;max-width:70ch;color:var(--ink-muted)">
-      <span data-i18n="home.next">Next:</span>
-      <a href="catalog.html" data-i18n="nav.catalog">Devices</a> ·
-      <a href="install.html" data-i18n="nav.install">Install &amp; set up</a> ·
-      <a href="glossary.html" data-i18n="nav.glossary">Glossary</a>
-    </p>
+
+    <div class="scenarios-grid">
+      <a href="catalog.html#card-521" class="scenario-card" data-cat="wall">
+        <div class="scenario-icon-wrap">
+          <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M9 9h6v6H9z"></path></svg>
+        </div>
+        <div class="scenario-title" data-i18n="scenario.wall.title">Hospitality &amp; Dormitories</div>
+        <p class="scenario-desc" data-i18n="scenario.wall.desc">Concealed flush in-wall mounting in 86 mm boxes. Front LAN pass-through for in-room IPTV or desk phones.</p>
+        <div class="scenario-models">DS‑3WAP521‑SI · DS‑3WAP621E‑SI</div>
+        <span class="scenario-link" data-i18n="scenario.view">View models →</span>
+      </a>
+
+      <a href="catalog.html#card-622g" class="scenario-card" data-cat="ceiling">
+        <div class="scenario-icon-wrap">
+          <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="3"></circle><line x1="12" y1="3" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="21"></line></svg>
+        </div>
+        <div class="scenario-title" data-i18n="scenario.ceiling.title">Offices &amp; Commercial Halls</div>
+        <p class="scenario-desc" data-i18n="scenario.ceiling.desc">Ceiling omnidirectional coverage, high concurrent client density, up to 2.5 GbE uplink.</p>
+        <div class="scenario-models">522‑SI · 622G‑SI · 6218‑EI · 622E‑SI</div>
+        <span class="scenario-link" data-i18n="scenario.view">View models →</span>
+      </a>
+
+      <a href="catalog.html#card-623e" class="scenario-card" data-cat="outdoor">
+        <div class="scenario-icon-wrap">
+          <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <div class="scenario-title" data-i18n="scenario.outdoor.title">Perimeters &amp; Open Yards</div>
+        <p class="scenario-desc" data-i18n="scenario.outdoor.desc">IP65/IP68 weather-sealed enclosures with pole/wall clamps and high-gain directional antennas.</p>
+        <div class="scenario-models">DS‑3WAP5312‑EI · DS‑3WAP623E‑SI</div>
+        <span class="scenario-link" data-i18n="scenario.view">View models →</span>
+      </a>
+    </div>
   </section>
 
-  <footer>
+  <footer class="animate-in">
+    <div class="footer-brand">
+      <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="14" width="20" height="8" rx="2"></rect>
+        <path d="M6 14V9a6 6 0 0 1 12 0v5"></path>
+        <circle cx="12" cy="18" r="1" fill="currentColor"></circle>
+      </svg>
+      <span>DS‑3WAP Installer Manual</span>
+    </div>
     <p data-i18n="footer.text">Specifications compiled from official Hikvision datasheets and product pages (hikvision.com, assets.hikvision.com), current as of August 2026. Verify figures against the current datasheet for a specific batch before purchasing or designing — the manufacturer may change parameters without separate notice. Exact menu labels in the web interface and apps depend on the firmware version — check the Quick Start Guide for your unit.</p>
   </footer>
 

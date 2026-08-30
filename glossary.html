@@ -22,34 +22,56 @@
 <link rel="stylesheet" href="assets/app.css">
 </head>
 <body data-pagetitle="Glossary">
-<div class="wrap">
+<a href="#main-content" class="skip-link" data-i18n="skip.link">Skip to main content</a>
 
-  <header class="top">
-    <div class="top-row">
-      <div class="eyebrow" data-i18n="hdr.eyebrow">Installer's manual</div>
+<header class="app-bar" id="appBar">
+  <div class="app-bar-inner">
+    <a href="index.html" class="brand" aria-label="DS-3WAP Installer Manual">
+      <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="14" width="20" height="8" rx="2"></rect>
+        <path d="M6 14V9a6 6 0 0 1 12 0v5"></path>
+        <circle cx="12" cy="18" r="1" fill="currentColor"></circle>
+      </svg>
+      <span class="brand-title">DS‑3WAP <span class="brand-sub">Manual</span></span>
+    </a>
+
+    <nav class="sitenav" aria-label="Main Navigation">
+      <a href="index.html" data-i18n="nav.home">Overview</a>
+      <a href="catalog.html" data-i18n="nav.catalog">Devices</a>
+      <a href="install.html" data-i18n="nav.install">Install &amp; set up</a>
+      <a href="glossary.html" data-i18n="nav.glossary">Glossary</a>
+    </nav>
+
+    <div class="app-bar-actions">
       <div class="langsw" role="group" aria-label="Language">
         <button type="button" class="langbtn" data-lang="ru">RU</button>
         <button type="button" class="langbtn" data-lang="en">EN</button>
         <button type="button" class="langbtn" data-lang="he">עב</button>
       </div>
-      <button type="button" class="install-btn" id="installBtn" hidden>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
-        <span data-i18n="install.btn">Install app</span>
+      <button type="button" class="install-btn" id="installBtn" hidden aria-label="Install app">
+        <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+        <span data-i18n="install.btn">Install</span>
       </button>
-      <button type="button" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+      <button type="button" class="theme-toggle" aria-label="Toggle dark mode" id="themeToggle">
+        <svg class="theme-icon-moon ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg class="theme-icon-sun ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      </button>
     </div>
-    <div>
-      <h1 data-i18n="nav.glossary">Glossary</h1>
-      <p class="sub">The terms in this manual, in plain language, for someone new to Wi‑Fi access points or to Hikvision gear.</p>
-    </div>
-  </header>
+  </div>
+</header>
 
-  <nav class="sitenav">
-    <a href="index.html" data-i18n="nav.home">Overview</a>
-    <a href="catalog.html" data-i18n="nav.catalog">Devices</a>
-    <a href="install.html" data-i18n="nav.install">Install &amp; set up</a>
-    <a href="glossary.html" data-i18n="nav.glossary">Glossary</a>
-  </nav>
+<div class="wrap" id="main-content">
+
+  <section class="page-hero animate-in">
+    <div class="eyebrow" data-i18n="hdr.eyebrow">Installer's manual</div>
+    <h1 data-i18n="nav.glossary">Glossary</h1>
+    <p class="sub">The terms in this manual, in plain language, for someone new to Wi‑Fi access points or to Hikvision gear.</p>
+    <div class="meta-pills">
+      <span>20 Key Terms</span>
+      <span class="mono">A–Z Reference</span>
+      <span data-i18n="meta.date">Aug. 2026 Reference</span>
+    </div>
+  </section>
 
   <div class="install-tip" id="installTip" hidden>
     <div class="card">
@@ -63,7 +85,11 @@
   </div>
 
   <section class="block">
-    <dl class="glossary">
+    <div style="margin-bottom: 20px;">
+      <input type="search" id="glossarySearch" placeholder="Filter terms (e.g. PoE, SADP, roaming, VLAN)..." style="width: 100%; max-width: 480px; padding: 10px 14px; border: 1px solid var(--card-border); border-radius: var(--radius-md); background: var(--bg-card); color: var(--ink); font-family: var(--font-sans); font-size: 14px; outline: none; transition: border-color 0.15s ease;" aria-label="Filter glossary terms">
+    </div>
+
+    <dl class="glossary" id="glossaryList">
       <dt>Access point (AP)</dt>
       <dd>A device that adds Wi‑Fi to a wired network. It does not route or share an internet connection — a router upstream does that. All DS‑3WAP models are access points.</dd>
 
@@ -140,5 +166,24 @@
 
 <script src="assets/i18n.js"></script>
 <script src="assets/app.js"></script>
+<script>
+(function() {
+  var s = document.getElementById("glossarySearch");
+  if (!s) return;
+  s.addEventListener("input", function() {
+    var q = s.value.toLowerCase().trim();
+    var list = document.getElementById("glossaryList");
+    if (!list) return;
+    var dts = list.querySelectorAll("dt");
+    dts.forEach(function(dt) {
+      var dd = dt.nextElementSibling;
+      var text = (dt.textContent + " " + (dd ? dd.textContent : "")).toLowerCase();
+      var show = !q || text.indexOf(q) !== -1;
+      dt.style.display = show ? "" : "none";
+      if (dd) dd.style.display = show ? "" : "none";
+    });
+  });
+})();
+</script>
 </body>
 </html>
