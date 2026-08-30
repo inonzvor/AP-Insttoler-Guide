@@ -83,6 +83,12 @@
       a.setAttribute("aria-current", "page");
     }
   });
+  // keep the active tab visible when the nav scrolls horizontally (mobile)
+  var activeTab = document.querySelector('nav.sitenav a[aria-current="page"]');
+  if (activeTab) {
+    try { activeTab.scrollIntoView({ inline: "center", block: "nearest" }); }
+    catch (e) {}
+  }
 
   /* ---------- service worker ---------- */
   if ("serviceWorker" in navigator) {
