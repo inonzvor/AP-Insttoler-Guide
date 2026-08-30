@@ -65,10 +65,10 @@
   <section class="page-hero animate-in">
     <div class="eyebrow" data-i18n="hdr.eyebrow">Installer's manual</div>
     <h1 data-i18n="nav.glossary">Glossary</h1>
-    <p class="sub">The terms in this manual, in plain language, for someone new to Wi‑Fi access points or to Hikvision gear.</p>
+    <p class="sub" data-i18n="gl.hero.sub">The terms in this manual, in plain language, for someone new to Wi‑Fi access points or to Hikvision gear.</p>
     <div class="meta-pills">
-      <span>20 Key Terms</span>
-      <span class="mono">A–Z Reference</span>
+      <span data-i18n="gl.meta.terms">20 Key Terms</span>
+      <span class="mono" data-i18n="gl.meta.az">A–Z Reference</span>
       <span data-i18n="meta.date">Aug. 2026 Reference</span>
     </div>
   </section>
@@ -86,75 +86,75 @@
 
   <section class="block">
     <div style="margin-bottom: 20px;">
-      <input type="search" id="glossarySearch" placeholder="Filter terms (e.g. PoE, SADP, roaming, VLAN)..." style="width: 100%; max-width: 480px; padding: 10px 14px; border: 1px solid var(--card-border); border-radius: var(--radius-md); background: var(--bg-card); color: var(--ink); font-family: var(--font-sans); font-size: 14px; outline: none; transition: border-color 0.15s ease;" aria-label="Filter glossary terms">
+      <input type="search" id="glossarySearch" data-i18n-placeholder="gl.search.ph" data-i18n-aria-label="gl.search.aria" placeholder="Filter terms (e.g. PoE, SADP, roaming, VLAN)..." style="width: 100%; max-width: 480px; padding: 10px 14px; border: 1px solid var(--card-border); border-radius: var(--radius-md); background: var(--bg-card); color: var(--ink); font-family: var(--font-sans); font-size: 14px; outline: none; transition: border-color 0.15s ease;" aria-label="Filter glossary terms">
     </div>
 
     <dl class="glossary" id="glossaryList">
-      <dt>Access point (AP)</dt>
-      <dd>A device that adds Wi‑Fi to a wired network. It does not route or share an internet connection — a router upstream does that. All DS‑3WAP models are access points.</dd>
+      <dt data-i18n="gl.ap.t">Access point (AP)</dt>
+      <dd data-i18n-html="gl.ap.d">A device that adds Wi‑Fi to a wired network. It does not route or share an internet connection — a router upstream does that. All DS‑3WAP models are access points.</dd>
 
-      <dt>Activation</dt>
-      <dd>The one‑time first step on a new Hikvision device: it ships with no password and does nothing until you set a strong <code>admin</code> password. Done in SADP, the web page, or Hik‑Partner Pro.</dd>
+      <dt data-i18n="gl.activation.t">Activation</dt>
+      <dd data-i18n-html="gl.activation.d">The one‑time first step on a new Hikvision device: it ships with no password and does nothing until you set a strong <code>admin</code> password. Done in SADP, the web page, or Hik‑Partner Pro.</dd>
 
-      <dt>AC (wireless controller)</dt>
-      <dd>"Access Controller" — hardware (or a software function) that manages many APs as one system: one config pushed to all, coordinated channels, seamless roaming. See <em>FAT / FIT</em>.</dd>
+      <dt data-i18n="gl.ac.t">AC (wireless controller)</dt>
+      <dd data-i18n-html="gl.ac.d">"Access Controller" — hardware (or a software function) that manages many APs as one system: one config pushed to all, coordinated channels, seamless roaming. See <em>FAT / FIT</em>.</dd>
 
-      <dt>Band steering</dt>
-      <dd>An AP feature that nudges dual‑band clients onto the less crowded 5 GHz band instead of 2.4 GHz, when they can support it.</dd>
+      <dt data-i18n="gl.bandsteering.t">Band steering</dt>
+      <dd data-i18n-html="gl.bandsteering.d">An AP feature that nudges dual‑band clients onto the less crowded 5 GHz band instead of 2.4 GHz, when they can support it.</dd>
 
-      <dt>Channel / channel width</dt>
-      <dd>The slice of radio spectrum a band uses. Wider channels (40/80 MHz) are faster but overlap neighbours more. Rule of thumb: 20 MHz on 2.4 GHz, 80 MHz on 5 GHz.</dd>
+      <dt data-i18n="gl.channel.t">Channel / channel width</dt>
+      <dd data-i18n-html="gl.channel.d">The slice of radio spectrum a band uses. Wider channels (40/80 MHz) are faster but overlap neighbours more. Rule of thumb: 20 MHz on 2.4 GHz, 80 MHz on 5 GHz.</dd>
 
-      <dt>DFS (Dynamic Frequency Selection)</dt>
-      <dd>Rules that let Wi‑Fi use extra 5 GHz channels shared with radar. The AP must vacate a channel if it detects radar, so a client may briefly drop on those channels.</dd>
+      <dt data-i18n="gl.dfs.t">DFS (Dynamic Frequency Selection)</dt>
+      <dd data-i18n-html="gl.dfs.d">Rules that let Wi‑Fi use extra 5 GHz channels shared with radar. The AP must vacate a channel if it detects radar, so a client may briefly drop on those channels.</dd>
 
-      <dt>DHCP</dt>
-      <dd>The service (usually on the router) that hands out IP addresses automatically. A DS‑3WAP is normally a DHCP <em>client</em> — it receives an address, it does not give them out.</dd>
+      <dt data-i18n="gl.dhcp.t">DHCP</dt>
+      <dd data-i18n-html="gl.dhcp.d">The service (usually on the router) that hands out IP addresses automatically. A DS‑3WAP is normally a DHCP <em>client</em> — it receives an address, it does not give them out.</dd>
 
-      <dt>FAT / FIT mode</dt>
-      <dd>FAT (a.k.a. standalone) = the AP holds its own config and you set it up on the AP itself. FIT = the AP is managed by a controller (AC), which holds the config. Adopting an AP to a controller switches it FAT → FIT.</dd>
+      <dt data-i18n="gl.fatfit.t">FAT / FIT mode</dt>
+      <dd data-i18n-html="gl.fatfit.d">FAT (a.k.a. standalone) = the AP holds its own config and you set it up on the AP itself. FIT = the AP is managed by a controller (AC), which holds the config. Adopting an AP to a controller switches it FAT → FIT.</dd>
 
-      <dt>Hik‑Connect</dt>
-      <dd>The end‑customer app/account for viewing and managing Hikvision devices. At handover you transfer the site to the customer's Hik‑Connect.</dd>
+      <dt data-i18n="gl.hikconnect.t">Hik‑Connect</dt>
+      <dd data-i18n-html="gl.hikconnect.d">The end‑customer app/account for viewing and managing Hikvision devices. At handover you transfer the site to the customer's Hik‑Connect.</dd>
 
-      <dt>Hik‑Partner Pro</dt>
-      <dd>Hikvision's cloud platform and app for installers/partners (formerly Hik‑ProConnect): add customer sites, activate and configure devices remotely, get health alerts, then hand the site to the customer.</dd>
+      <dt data-i18n="gl.hikpartner.t">Hik‑Partner Pro</dt>
+      <dd data-i18n-html="gl.hikpartner.d">Hikvision's cloud platform and app for installers/partners (formerly Hik‑ProConnect): add customer sites, activate and configure devices remotely, get health alerts, then hand the site to the customer.</dd>
 
-      <dt>HikCentral Professional</dt>
-      <dd>Hikvision's on‑premise enterprise management software for large, multi‑site systems — cameras, access control, alarms, and APs together.</dd>
+      <dt data-i18n="gl.hikcentral.t">HikCentral Professional</dt>
+      <dd data-i18n-html="gl.hikcentral.d">Hikvision's on‑premise enterprise management software for large, multi‑site systems — cameras, access control, alarms, and APs together.</dd>
 
-      <dt>IP rating (IP65 / IP68)</dt>
-      <dd>Sealing against dust and water. IP65 = dust‑tight, resists water jets (general outdoor). IP68 = also survives prolonged immersion (harsh/exposed sites).</dd>
+      <dt data-i18n="gl.iprating.t">IP rating (IP65 / IP68)</dt>
+      <dd data-i18n-html="gl.iprating.d">Sealing against dust and water. IP65 = dust‑tight, resists water jets (general outdoor). IP68 = also survives prolonged immersion (harsh/exposed sites).</dd>
 
-      <dt>MAC address</dt>
-      <dd>A device's permanent hardware identifier, printed on its label. Use it to pick the right unit out of a list of identical models in SADP or the router.</dd>
+      <dt data-i18n="gl.mac.t">MAC address</dt>
+      <dd data-i18n-html="gl.mac.d">A device's permanent hardware identifier, printed on its label. Use it to pick the right unit out of a list of identical models in SADP or the router.</dd>
 
-      <dt>MU‑MIMO / OFDMA</dt>
-      <dd>Techniques that let an AP serve several clients in the same airtime instead of one at a time. OFDMA (Wi‑Fi 6) is the bigger win in crowded rooms.</dd>
+      <dt data-i18n="gl.mumimo.t">MU‑MIMO / OFDMA</dt>
+      <dd data-i18n-html="gl.mumimo.d">Techniques that let an AP serve several clients in the same airtime instead of one at a time. OFDMA (Wi‑Fi 6) is the bigger win in crowded rooms.</dd>
 
-      <dt>PoE (Power over Ethernet)</dt>
-      <dd>Power and data on one network cable, so an AP needs no separate mains supply at the mounting point. Standards: <em>802.3af</em> (~13 W), <em>802.3at / PoE+</em> (~25 W).</dd>
+      <dt data-i18n="gl.poe.t">PoE (Power over Ethernet)</dt>
+      <dd data-i18n-html="gl.poe.d">Power and data on one network cable, so an AP needs no separate mains supply at the mounting point. Standards: <em>802.3af</em> (~13 W), <em>802.3at / PoE+</em> (~25 W).</dd>
 
-      <dt>PoE injector</dt>
-      <dd>A small mains‑powered box that adds PoE to one cable run, for when the site switch is not PoE. Sits between the switch and the AP; keep it indoors.</dd>
+      <dt data-i18n="gl.poeinjector.t">PoE injector</dt>
+      <dd data-i18n-html="gl.poeinjector.d">A small mains‑powered box that adds PoE to one cable run, for when the site switch is not PoE. Sits between the switch and the AP; keep it indoors.</dd>
 
-      <dt>Roaming</dt>
-      <dd>A client moving from one AP to the next without dropping its connection. Needs overlapping coverage and, ideally, a controller coordinating the APs.</dd>
+      <dt data-i18n="gl.roaming.t">Roaming</dt>
+      <dd data-i18n-html="gl.roaming.d">A client moving from one AP to the next without dropping its connection. Needs overlapping coverage and, ideally, a controller coordinating the APs.</dd>
 
-      <dt>SADP (Search Active Devices Protocol)</dt>
-      <dd>Hikvision's free Windows/macOS tool that finds Hikvision devices on the local network, shows their IP/MAC/status, and can activate them and change their IP.</dd>
+      <dt data-i18n="gl.sadp.t">SADP (Search Active Devices Protocol)</dt>
+      <dd data-i18n-html="gl.sadp.d">Hikvision's free Windows/macOS tool that finds Hikvision devices on the local network, shows their IP/MAC/status, and can activate them and change their IP.</dd>
 
-      <dt>SSID</dt>
-      <dd>The Wi‑Fi network name clients see and join. One AP can broadcast several (e.g. staff + guest), each with its own security and VLAN.</dd>
+      <dt data-i18n="gl.ssid.t">SSID</dt>
+      <dd data-i18n-html="gl.ssid.d">The Wi‑Fi network name clients see and join. One AP can broadcast several (e.g. staff + guest), each with its own security and VLAN.</dd>
 
-      <dt>Uplink</dt>
-      <dd>The wired port (and cable) that connects the AP back to the switch. Its speed — 1 GbE, or 2.5 GbE on the 622E‑SI — caps the AP's total throughput to the wired side.</dd>
+      <dt data-i18n="gl.uplink.t">Uplink</dt>
+      <dd data-i18n-html="gl.uplink.d">The wired port (and cable) that connects the AP back to the switch. Its speed — 1 GbE, or 2.5 GbE on the 622E‑SI — caps the AP's total throughput to the wired side.</dd>
 
-      <dt>VLAN</dt>
-      <dd>A way to run separate logical networks over one physical switch. An SSID can be tagged to a VLAN so, e.g., guest Wi‑Fi is isolated from the office network.</dd>
+      <dt data-i18n="gl.vlan.t">VLAN</dt>
+      <dd data-i18n-html="gl.vlan.d">A way to run separate logical networks over one physical switch. An SSID can be tagged to a VLAN so, e.g., guest Wi‑Fi is isolated from the office network.</dd>
 
-      <dt>WPA2 / WPA3</dt>
-      <dd>Wi‑Fi security standards. WPA2 is universally supported; WPA3 is stronger but needs modern clients. "WPA2/WPA3‑mixed" accepts both — the safe default.</dd>
+      <dt data-i18n="gl.wpa.t">WPA2 / WPA3</dt>
+      <dd data-i18n-html="gl.wpa.d">Wi‑Fi security standards. WPA2 is universally supported; WPA3 is stronger but needs modern clients. "WPA2/WPA3‑mixed" accepts both — the safe default.</dd>
     </dl>
   </section>
 

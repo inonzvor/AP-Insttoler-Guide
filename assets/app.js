@@ -38,6 +38,14 @@
       var v = resolve(dict, en, el.getAttribute("data-i18n-html"));
       if (v !== undefined) el.innerHTML = v;
     });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+      var v = resolve(dict, en, el.getAttribute("data-i18n-placeholder"));
+      if (v !== undefined) el.setAttribute("placeholder", v);
+    });
+    document.querySelectorAll("[data-i18n-aria-label]").forEach(function (el) {
+      var v = resolve(dict, en, el.getAttribute("data-i18n-aria-label"));
+      if (v !== undefined) el.setAttribute("aria-label", v);
+    });
     var isRtl = lang === "he";
     document.documentElement.setAttribute("dir", isRtl ? "rtl" : "ltr");
     document.documentElement.setAttribute("lang", lang);
