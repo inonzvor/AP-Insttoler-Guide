@@ -1,7 +1,7 @@
 {
-  "name": "Hikvision Access Points — Installer Guide",
-  "short_name": "AP Guide",
-  "description": "Selection wizard and reference catalog for 8 Hikvision DS-3WAP access point models.",
+  "name": "DS-3WAP Installer Manual",
+  "short_name": "AP Manual",
+  "description": "First-time installer manual for Hikvision DS-3WAP access points: model selection, per-device explanations, and step-by-step installation and configuration.",
   "id": "./",
   "start_url": "./index.html",
   "scope": "./",

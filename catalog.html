@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DS‑3WAP Installer Manual</title>
+<meta name="description" content="The 8 Hikvision DS‑3WAP access point models explained for a first‑time installer: ports, power options, what's in the box, watch‑outs, full specs, and a comparison table.">
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#f2f5f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#101615" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AP Manual">
+<meta name="mobile-web-app-capable" content="yes">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body data-pagetitle="Devices">
+<div class="wrap">
+
+  <header class="top">
+    <div class="top-row">
+      <div class="eyebrow" data-i18n="hdr.eyebrow">Installer's manual</div>
+      <div class="langsw" role="group" aria-label="Language">
+        <button type="button" class="langbtn" data-lang="ru">RU</button>
+        <button type="button" class="langbtn" data-lang="en">EN</button>
+        <button type="button" class="langbtn" data-lang="he">עב</button>
+      </div>
+      <button type="button" class="install-btn" id="installBtn" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+        <span data-i18n="install.btn">Install app</span>
+      </button>
+      <button type="button" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+    <div>
+      <h1 data-i18n="nav.catalog">Devices</h1>
+      <p class="sub">The 8 DS‑3WAP models explained for a first‑time installer — ports, power, box contents and watch‑outs, then full specs and a comparison table.</p>
+    </div>
+  </header>
+
+  <nav class="sitenav">
+    <a href="index.html" data-i18n="nav.home">Overview</a>
+    <a href="catalog.html" data-i18n="nav.catalog">Devices</a>
+    <a href="install.html" data-i18n="nav.install">Install &amp; set up</a>
+    <a href="glossary.html" data-i18n="nav.glossary">Glossary</a>
+  </nav>
+
+  <div class="install-tip" id="installTip" hidden>
+    <div class="card">
+      <h3 data-i18n="install.ios.title">Install this app</h3>
+      <ol>
+        <li data-i18n-html="install.ios.step1">Tap the <b>Share</b> icon in Safari's toolbar.</li>
+        <li data-i18n-html="install.ios.step2">Scroll down and choose <b>Add to Home Screen</b>.</li>
+      </ol>
+      <button type="button" class="close-tip" id="installTipClose" data-i18n="install.ios.close">Got it</button>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="section-head"><h2>About the DS‑3WAP line</h2><span class="count">orientation for a first‑timer</span></div>
+    <div class="prose">
+      <p><strong>DS‑3WAP</strong> is Hikvision's family of small‑business Wi‑Fi <em>access points</em> (AP) — devices that add Wi‑Fi to a wired network. They are not routers: they have no WAN port and do no NAT or DHCP of their own. Upstream you need a switch (ideally PoE) and a router that already hands out addresses.</p>
+      <p><strong>Reading the model number</strong> (rough guide — always confirm on the datasheet): a leading <code>5xxx</code> is Wi‑Fi 5, <code>6xxx</code> is Wi‑Fi 6. Trailing letters mark the variant — <code>‑SI</code> / <code>‑EI</code> are hardware/regional variants, <code>E</code> tends to mean the higher‑tier radio, <code>G</code> a lower‑tier Wi‑Fi 6.</p>
+      <p><strong>Three form factors:</strong> <em>in‑wall</em> (fits an 86 mm back‑box, replaces a wall data outlet), <em>ceiling</em> (a flat disc for offices and halls), and <em>outdoor</em> (IP65/IP68 sealed, external or high‑gain antennas, for walls and poles).</p>
+      <p><strong>Wi‑Fi 5 vs Wi‑Fi 6, in practice:</strong> Wi‑Fi 6 handles more devices at once, holds up better in congested RF, and supports WPA3. Wi‑Fi 5 is cheaper and perfectly fine for a lightly used room.</p>
+      <p><strong>Two ways any of these run:</strong></p>
+      <ul>
+        <li><strong>Standalone (FAT):</strong> you configure each AP on the AP itself through its web interface. Fine for one to a few units.</li>
+        <li><strong>Controller‑managed (FIT / AC):</strong> a Hikvision wireless controller pushes one config to many APs and enables seamless roaming between them. Use this once you have several APs on a site.</li>
+      </ul>
+      <p><strong>The tools you'll meet</strong> (details on the <a href="install.html">Install &amp; set up</a> page): <strong>SADP</strong> finds and activates units on the LAN; the <strong>web UI</strong> configures one AP; <strong>Hik‑Partner Pro</strong> is the installer cloud for remote config and customer handover; <strong>HikCentral Professional</strong> is the enterprise platform; <strong>Hik‑Connect</strong> is the end‑customer app.</p>
+      <div class="callout qsg">
+        <span class="clabel">Check the QSG</span>
+        Model tiers, suffixes, port counts and box contents change between batches and regions. Treat this page as orientation and confirm every figure against the datasheet and Quick Start Guide (QSG) for the exact unit you hold.
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-head">
+      <h2 data-i18n="catalog.h2">All models</h2>
+      <span class="count" data-i18n="catalog.count">full specs, filter by type and Wi‑Fi</span>
+    </div>
+
+    <div class="filters">
+      <div class="filter-group">
+        <span class="flabel" data-i18n="filters.mount">Mounting</span>
+        <input type="radio" name="catfilter" id="f-all" checked><label class="pill" for="f-all" data-i18n="filters.all">All</label>
+        <input type="radio" name="catfilter" id="f-wall"><label class="pill" for="f-wall" data-i18n="filters.wall">Wall</label>
+        <input type="radio" name="catfilter" id="f-ceiling"><label class="pill" for="f-ceiling" data-i18n="filters.ceiling">Ceiling</label>
+        <input type="radio" name="catfilter" id="f-outdoor"><label class="pill" for="f-outdoor" data-i18n="filters.outdoor">Outdoor</label>
+      </div>
+      <div class="filter-group">
+        <span class="flabel mono">Wi‑Fi</span>
+        <input type="radio" name="wififilter" id="w-all" checked><label class="pill" for="w-all" data-i18n="filters.all">All</label>
+        <input type="radio" name="wififilter" id="w-6"><label class="pill mono" for="w-6">Wi‑Fi 6</label>
+        <input type="radio" name="wififilter" id="w-5"><label class="pill mono" for="w-5">Wi‑Fi 5</label>
+      </div>
+    </div>
+
+    <div class="catalog">
+
+      <div class="cat-section" data-section="wall">
+        <div class="section-head"><h2 style="font-size:16px;color:var(--wall)"><span data-i18n="sec.wall.h2">Wall (in‑wall)</span></h2><span class="count" data-i18n="sec.wall.count">86 mm box mount</span></div>
+        <div class="cards">
+
+          <article class="card" id="card-521" data-cat="wall" data-wifi="5">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP521‑SI</h3>
+                <p class="tagline" data-i18n="c521.tagline">Wi‑Fi 5 · wall, concealed mount</p>
+              </div>
+              <div class="badges"><span class="badge wifi5 mono">WI‑FI 5</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="assets/images/DS-3WAP521-SI.jpg" alt="DS‑3WAP521‑SI wall access point" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Speed</div><div class="v mono" data-i18n-html="c521.qs1v">1167<span class="unit"> Mbps</span></div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.ports">Ports</div><div class="v mono">2× GbE</div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.clients">Clients</div><div class="v mono" data-i18n-html="c521.qs3v">50<span class="unit">+ rec.</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Best for:</b> <span data-i18n="c521.use">dormitories, hotel rooms, hospital wards — anywhere you need a concealed access point instead of an outlet, with no chasing or surface boxes.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Full specifications</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Bands</span><span class="v" data-i18n-html="bands.a">2.4 GHz: 300<span class="band-chip b24">2.4G</span><br>5 GHz: 867<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.streams">Streams</span><span class="v" data-i18n-html="c521.streams">2×2 MU‑MIMO / band</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.ports">Ports</span><span class="v">1× GbE PoE‑in + 1× GbE LAN</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Power</span><span class="v" data-i18n-html="c521.power">802.3af/at PoE, up to 8 W</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clientsssid">Clients / SSID</span><span class="v" data-i18n-html="cli.128x8">up to 128 / 8 SSID</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.temp">Operating temp.</span><span class="v">0…+40 °C</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Dimensions</span><span class="v" data-i18n-html="c521.dims">86×86×35 mm, 0.2 kg</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.mgmt">Management</span><span class="v" data-i18n-html="c521.mgmt">Web / centralized via AC controller</span></div>
+              </div>
+            </details>
+            <details class="about">
+              <summary data-i18n="about.summary">About this model</summary>
+              <div class="about-body">
+                <div><h4>In the box</h4><p>AP unit, mounting bracket for an 86 mm back‑box, screws. Confirm against the QSG packing list.</p></div>
+                <div><h4>Ports &amp; buttons</h4><p>Rear: 1× GbE <em>PoE‑in</em> (the uplink, to your switch). Front: 1× GbE <em>LAN</em> for one wired device in the room. RESET pinhole.</p></div>
+                <div><h4>Power</h4><p>802.3af/at PoE only, up to 8 W. No DC input — you need a PoE switch or a PoE injector on the run.</p></div>
+                <div><h4>Mounting</h4><p>Replaces a wall data outlet: fits a standard 86 mm back‑box, faceplate sits flush.</p></div>
+                <div class="watchout"><b>Watch‑out:</b> the front LAN port is a pass‑through for a single device (desk phone, IPTV box), not a second uplink, and it shares the AP's PoE budget.</div>
+              </div>
+            </details>
+          </article>
+
+          <article class="card" id="card-621e" data-cat="wall" data-wifi="6">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP621E‑SI</h3>
+                <p class="tagline" data-i18n="c621e.tagline">Wi‑Fi 6 · wall, concealed mount</p>
+              </div>
+              <div class="badges"><span class="badge wifi6 mono">WI‑FI 6</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="assets/images/DS-3WAP621E-SI.jpg" alt="DS‑3WAP621E‑SI access point" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Speed</div><div class="v mono" data-i18n-html="c621e.qs1v">2975<span class="unit"> Mbps</span></div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.ports">Ports</div><div class="v mono">2× GbE</div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.clients">Clients</div><div class="v mono" data-i18n-html="c621e.qs3v">70<span class="unit">+ rec.</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Best for:</b> <span data-i18n="c621e.use">the same scenarios as the 521‑SI, but when a room has several devices per person (phone + laptop + TV) — business‑class hotels, modern apartments.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Full specifications</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Bands</span><span class="v" data-i18n-html="bands.b">2.4 GHz: 575<span class="band-chip b24">2.4G</span><br>5 GHz: 2400<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.ports">Ports</span><span class="v">1× GbE PoE‑in + 1× GbE LAN</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Power</span><span class="v" data-i18n-html="c621e.power">802.3af/at PoE, up to 13 W</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clientsssid">Clients / SSID</span><span class="v" data-i18n-html="cli.256x8">up to 256 / 8 SSID</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.temp">Operating temp.</span><span class="v">0…+40 °C</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Dimensions</span><span class="v" data-i18n-html="c621e.dims">86×86×44.4 mm, 0.17 kg</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.security">Security</span><span class="v">WPA2/WPA3‑PSK, blocklist/allowlist</span></div>
+              </div>
+            </details>
+            <details class="about">
+              <summary data-i18n="about.summary">About this model</summary>
+              <div class="about-body">
+                <div><h4>In the box</h4><p>AP unit, 86 mm back‑box bracket, screws. Confirm against the QSG.</p></div>
+                <div><h4>Ports &amp; buttons</h4><p>1× GbE <em>PoE‑in</em> uplink, 1× GbE <em>LAN</em> pass‑through, RESET pinhole.</p></div>
+                <div><h4>Power</h4><p>802.3af/at PoE, up to 13 W. Feed it from an 802.3at (PoE+) source to be safe. No DC input.</p></div>
+                <div><h4>Mounting</h4><p>Same 86 mm back‑box as the 521‑SI; the body is a little deeper (44 mm).</p></div>
+                <div class="watchout"><b>Watch‑out:</b> WPA3 needs current client devices. If older IoT gear won't join, set the SSID to WPA2/WPA3‑mixed.</div>
+              </div>
+            </details>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="cat-section" data-section="ceiling">
+        <div class="section-head"><h2 style="font-size:16px;color:var(--ceiling)"><span data-i18n="sec.ceiling.h2">Ceiling</span></h2><span class="count" data-i18n="sec.ceiling.count">ceiling, wall, or desk mount</span></div>
+        <div class="cards">
+
+          <article class="card" id="card-522" data-cat="ceiling" data-wifi="5">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP522‑SI</h3>
+                <p class="tagline" data-i18n="c522.tagline">Wi‑Fi 5 · ceiling</p>
+              </div>
+              <div class="badges"><span class="badge wifi5 mono">WI‑FI 5</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="assets/images/DS-3WAP522-SI.webp" alt="DS‑3WAP522‑SI ceiling access point" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Speed</div><div class="v mono" data-i18n-html="c522.qs1v">1167<span class="unit"> Mbps</span></div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.port1">Port</div><div class="v mono">1× GbE</div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.clients">Clients</div><div class="v mono" data-i18n-html="c522.qs3v">80<span class="unit">+ rec.</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Best for:</b> <span data-i18n="c522.use">basic coverage for small offices, shops, meeting rooms — the most affordable ceiling model in the lineup.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Full specifications</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Bands</span><span class="v" data-i18n-html="bands.a">2.4 GHz: 300<span class="band-chip b24">2.4G</span><br>5 GHz: 867<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.port1">Port</span><span class="v" data-i18n-html="port.uplink">1× GbE PoE‑in (uplink)</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Power</span><span class="v" data-i18n-html="power.522">802.3af/at PoE or 12 V DC, up to 11.35 W</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clientsssid">Clients / SSID</span><span class="v" data-i18n-html="cli.256x8">up to 256 / 8 SSID</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.temp">Operating temp.</span><span class="v">0…+40 °C</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Dimensions</span><span class="v" data-i18n-html="dims.522">Ø220×35 mm, 0.4 kg</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.mount">Mounting</span><span class="v" data-i18n-html="mount.cwd">ceiling / wall / desk</span></div>
+              </div>
+            </details>
+            <details class="about">
+              <summary data-i18n="about.summary">About this model</summary>
+              <div class="about-body">
+                <div><h4>In the box</h4><p>AP unit, ceiling mounting bracket (T‑bar and screw mount), screws and anchors.</p></div>
+                <div><h4>Ports &amp; buttons</h4><p>One GbE <em>PoE‑in</em> uplink on the back, a 12 V DC jack, and a RESET pinhole.</p></div>
+                <div><h4>Power</h4><p>802.3af/at PoE <em>or</em> a 12 V DC adapter, up to ~11.35 W. With no PoE switch, use the DC adapter or a PoE injector.</p></div>
+                <div><h4>Mounting</h4><p>Ceiling, wall, or desk; twist‑lock bracket.</p></div>
+                <div class="watchout"><b>Watch‑out:</b> only one network port — you cannot chain a downstream device off this AP.</div>
+              </div>
+            </details>
+          </article>
+
+          <article class="card" id="card-622g" data-cat="ceiling" data-wifi="6">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP622G‑SI</h3>
+                <p class="tagline" data-i18n="c622g.tagline">Wi‑Fi 6 · ceiling, entry level</p>
+              </div>
+              <div class="badges"><span class="badge wifi6 mono">WI‑FI 6</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="assets/images/DS-3WAP622G-SI.jpg" alt="DS‑3WAP622G‑SI ceiling access point" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Speed</div><div class="v mono" data-i18n-html="c622g.qs1v">1775<span class="unit"> Mbps</span></div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.port1">Port</div><div class="v mono">1× GbE</div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.clients">Clients</div><div class="v mono" data-i18n-html="c622g.qs3v">100<span class="unit">+ rec.</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Best for:</b> <span data-i18n="c622g.use">an affordable Wi‑Fi 6 upgrade over the 522‑SI — classrooms, retail floors, lobbies with moderate device density.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Full specifications</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Bands</span><span class="v" data-i18n-html="bands.c">2.4 GHz: 574<span class="band-chip b24">2.4G</span><br>5 GHz: 1201<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.port1">Port</span><span class="v" data-i18n-html="port.uplink">1× GbE PoE‑in (uplink)</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Power</span><span class="v" data-i18n-html="power.522">802.3af/at PoE or 12 V DC, up to 11.35 W</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clientsssid">Clients / SSID</span><span class="v" data-i18n-html="cli.256x8">up to 256 / 8 SSID</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.temp">Operating temp.</span><span class="v">0…+40 °C</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Dimensions</span><span class="v" data-i18n-html="dims.522">Ø220×35 mm, 0.4 kg</span></div>
+              </div>
+            </details>
+            <details class="about">
+              <summary data-i18n="about.summary">About this model</summary>
+              <div class="about-body">
+                <div><h4>In the box</h4><p>AP unit, ceiling bracket, screws and anchors.</p></div>
+                <div><h4>Ports &amp; buttons</h4><p>One GbE <em>PoE‑in</em> uplink, a 12 V DC jack, RESET pinhole.</p></div>
+                <div><h4>Power</h4><p>802.3af/at PoE or 12 V DC, up to ~11.35 W.</p></div>
+                <div><h4>Mounting</h4><p>Same bracket family as the 522‑SI.</p></div>
+                <div class="watchout"><b>Watch‑out:</b> single port, and the uplink is 1 GbE — the Wi‑Fi 6 radio is faster over the air but wired throughput still caps near 1 Gbps.</div>
+              </div>
+            </details>
+          </article>
+
+          <article class="card" id="card-6218" data-cat="ceiling" data-wifi="6">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP6218‑EI</h3>
+                <p class="tagline" data-i18n="c6218.tagline">Wi‑Fi 6 · ceiling, extra LAN + 220 V power</p>
+              </div>
+              <div class="badges"><span class="badge wifi6 mono">WI‑FI 6</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="assets/images/DS-3WAP6218-EI.png" alt="DS‑3WAP6218‑EI ceiling access point" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Speed</div><div class="v mono" data-i18n-html="c6218.qs1v">1775<span class="unit"> Mbps</span></div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.ports">Ports</div><div class="v mono">2× GbE</div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.clients">Clients</div><div class="v mono" data-i18n-html="c6218.qs3v">100<span class="unit">+ rec.</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Best for:</b> <span data-i18n="c6218.use">the same class of tasks as the 622G‑SI, but useful where there's no PoE switch (can run off a 12 V adapter) or a second LAN port is needed for a nearby device — a camera, IP phone.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Full specifications</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Bands</span><span class="v" data-i18n-html="bands.c">2.4 GHz: 574<span class="band-chip b24">2.4G</span><br>5 GHz: 1201<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.ports">Ports</span><span class="v">1× GbE PoE‑in + 1× GbE LAN</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Power</span><span class="v" data-i18n-html="c6218.power">802.3at PoE or 12 V DC 2 A, 5.5–18 W</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clients">Clients</span><span class="v" data-i18n-html="cli.256x100">up to 256 / 100 rec.</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.temp">Operating temp.</span><span class="v">0…+40 °C</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Dimensions</span><span class="v" data-i18n-html="c6218.dims">Ø220×50 mm</span></div>
+              </div>
+            </details>
+            <details class="about">
+              <summary data-i18n="about.summary">About this model</summary>
+              <div class="about-body">
+                <div><h4>In the box</h4><p>AP unit, ceiling bracket, screws. The 12 V DC adapter may be a separate order — check the QSG / packing list.</p></div>
+                <div><h4>Ports &amp; buttons</h4><p>1× GbE <em>PoE‑in</em> uplink + 1× GbE <em>LAN</em> for a downstream device; 12 V DC 2 A input; RESET pinhole.</p></div>
+                <div><h4>Power</h4><p>802.3at PoE <em>or</em> 12 V DC 2 A (5.5–18 W). This is the model to choose when a site has only mains power.</p></div>
+                <div><h4>Mounting</h4><p>Ceiling or wall.</p></div>
+                <div class="watchout"><b>Watch‑out:</b> when powered by DC, the LAN ports carry data only — a downstream camera or phone then needs its own power source.</div>
+              </div>
+            </details>
+          </article>
+
+          <article class="card" id="card-622e" data-cat="ceiling" data-wifi="6">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP622E‑SI</h3>
+                <p class="tagline" data-i18n="c622e.tagline">Wi‑Fi 6 · ceiling, flagship</p>
+              </div>
+              <div class="badges"><span class="badge wifi6 mono">WI‑FI 6</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="assets/images/DS-3WAP622E-SI.jpg" alt="DS‑3WAP622E‑SI ceiling access point" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Speed</div><div class="v mono" data-i18n-html="c622e.qs1v">2975<span class="unit"> Mbps</span></div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.port1">Port</div><div class="v mono">1× 2.5GbE</div></div>
+              <div class="qs"><div class="k" data-i18n="lbl.clients">Clients</div><div class="v mono" data-i18n-html="c622e.qs3v">100<span class="unit">+ rec.</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Best for:</b> <span data-i18n="c622e.use">maximum user and traffic density — large open‑plan offices, conference rooms where combined client throughput exceeds 1 Gbps and a 2.5G uplink is needed; WPA3 support.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Full specifications</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Bands</span><span class="v" data-i18n-html="bands.b">2.4 GHz: 575<span class="band-chip b24">2.4G</span><br>5 GHz: 2400<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.port1">Port</span><span class="v">1× 2.5 Gigabit RJ45 PoE‑in</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Power</span><span class="v" data-i18n-html="c622e.power">802.3af/at PoE or 12 V DC, up to 13.5 W</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clientsssid">Clients / SSID</span><span class="v" data-i18n-html="cli.256x8">up to 256 / 8 SSID</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.temp">Operating temp.</span><span class="v">0…+45 °C</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Dimensions</span><span class="v" data-i18n-html="c622e.dims">Ø220×39 mm, 0.38 kg</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.security">Security</span><span class="v">WPA2/WPA3‑PSK</span></div>
+              </div>
+            </details>
+            <details class="about">
+              <summary data-i18n="about.summary">About this model</summary>
+              <div class="about-body">
+                <div><h4>In the box</h4><p>AP unit, ceiling bracket, screws and anchors.</p></div>
+                <div><h4>Ports &amp; buttons</h4><p>1× <em>2.5 GbE</em> RJ45 PoE‑in uplink; 12 V DC input; RESET pinhole.</p></div>
+                <div><h4>Power</h4><p>802.3af/at PoE or 12 V DC, up to ~13.5 W.</p></div>
+                <div><h4>Mounting</h4><p>Ceiling, wall, or desk.</p></div>
+                <div class="watchout"><b>Watch‑out:</b> to actually exceed 1 Gbps you must plug the uplink into a 2.5 GbE (or faster) switch port. On a plain 1 GbE port it still works, just capped at 1 Gbps.</div>
+              </div>
+            </details>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="cat-section" data-section="outdoor">
+        <div class="section-head"><h2 style="font-size:16px;color:var(--outdoor)"><span data-i18n="sec.outdoor.h2">Outdoor</span></h2><span class="count" data-i18n="sec.outdoor.count">wall or pole mount</span></div>
+        <div class="cards">
+
+          <article class="card" id="card-5312" data-cat="outdoor" data-wifi="5">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP5312‑EI</h3>
+                <p class="tagline" data-i18n="c5312.tagline">Wi‑Fi 5 · outdoor, IP65</p>
+              </div>
+              <div class="badges"><span class="badge wifi5 mono">WI‑FI 5</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="assets/images/DS-3WAP5312-EI.png" alt="DS‑3WAP5312‑EI outdoor access point" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Speed</div><div class="v mono" data-i18n-html="c5312.qs1v">1167<span class="unit"> Mbps</span></div></div>
+              <div class="qs"><div class="k" data-i18n="qs.protection">Protection</div><div class="v mono">IP65</div></div>
+              <div class="qs"><div class="k" data-i18n="qs.tempshort">Temp.</div><div class="v mono">−30…+65<span class="unit">°C</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Best for:</b> <span data-i18n="c5312.use">affordable coverage for straightforward outdoor areas — yards, parking lots, warehouse grounds where neither top speed nor extreme protection is required.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Full specifications</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Bands</span><span class="v" data-i18n-html="bands.a">2.4 GHz: 300<span class="band-chip b24">2.4G</span><br>5 GHz: 867<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.ports">Ports</span><span class="v">1× GbE PoE‑in + 1× GbE LAN</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Power</span><span class="v" data-i18n-html="c5312.power">802.3at PoE, typ. 9 / max. 18 W</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clientsssid">Clients / SSID</span><span class="v" data-i18n-html="cli.128x7">up to 128 / 7 SSID</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.antennas">Antennas</span><span class="v" data-i18n-html="c5312.ant">external, 2.4: 3.7 dBi · 5: 5 dBi</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.coverage">Coverage radius</span><span class="v" data-i18n-html="c5312.cov">~150 m (recommended)</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Dimensions</span><span class="v">65×225×32 mm, 0.34 kg</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.mount">Mounting</span><span class="v" data-i18n-html="mount.wallpole">wall, pole</span></div>
+              </div>
+            </details>
+            <details class="about">
+              <summary data-i18n="about.summary">About this model</summary>
+              <div class="about-body">
+                <div><h4>In the box</h4><p>AP unit, pole/wall bracket and clamp, waterproof RJ45 gland, screws. External antennas may be detachable.</p></div>
+                <div><h4>Ports &amp; buttons</h4><p>1× GbE <em>PoE‑in</em> + 1× GbE <em>LAN</em> under a sealed flap; RESET pinhole; grounding screw.</p></div>
+                <div><h4>Power</h4><p>802.3at PoE (typ. 9 W, max 18 W). Use an outdoor‑rated PoE switch or injector, and keep the injector indoors.</p></div>
+                <div><h4>Mounting</h4><p>Wall or pole (Ø ~35–65 mm) with the supplied clamp; aim the antennas along the area you want to cover.</p></div>
+                <div class="watchout"><b>Watch‑out:</b> an outdoor run needs a shielded outdoor CAT cable, the gland fully seated, the grounding screw bonded to earth, a drip loop before the AP, and an in‑line surge protector where the cable enters the building.</div>
+              </div>
+            </details>
+          </article>
+
+          <article class="card" id="card-623e" data-cat="outdoor" data-wifi="6">
+            <div class="card-top">
+              <div>
+                <h3>DS‑3WAP623E‑SI</h3>
+                <p class="tagline" data-i18n="c623e.tagline">Wi‑Fi 6 · outdoor, IP68</p>
+              </div>
+              <div class="badges"><span class="badge wifi6 mono">WI‑FI 6</span></div>
+            </div>
+            <div class="device-visual">
+              <img src="assets/images/DS-3WAP623E-SI.jpg" alt="DS‑3WAP623E‑SI outdoor rugged access point" />
+            </div>
+            <div class="quickspecs">
+              <div class="qs"><div class="k" data-i18n="qs.speed">Speed</div><div class="v mono" data-i18n-html="c623e.qs1v">2975<span class="unit"> Mbps</span></div></div>
+              <div class="qs"><div class="k" data-i18n="qs.protection">Protection</div><div class="v mono">IP68</div></div>
+              <div class="qs"><div class="k" data-i18n="qs.tempshort">Temp.</div><div class="v mono">−30…+55<span class="unit">°C</span></div></div>
+            </div>
+            <p class="use-for"><b data-i18n="card.usefor">Best for:</b> <span data-i18n="c623e.use">harsh conditions and maximum range — industrial sites, stadiums, campuses, perimeter coverage; antennas gaining 10 dBi (2.4 GHz) and 5 dBi (5 GHz) reach further and cut through interference.</span></p>
+            <details class="spec">
+              <summary data-i18n="card.spec.summary">Full specifications</summary>
+              <div class="spec-table">
+                <div class="spec-row"><span class="k" data-i18n="lbl.bands">Bands</span><span class="v" data-i18n-html="bands.b">2.4 GHz: 575<span class="band-chip b24">2.4G</span><br>5 GHz: 2400<span class="band-chip b5">5G</span></span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.port1">Port</span><span class="v">1× GbE PoE‑in</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.power">Power</span><span class="v" data-i18n-html="c623e.power">802.3af/at PoE, 48 V DC 0.3 A, up to 14.4 W</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.clientsssid">Clients / SSID</span><span class="v" data-i18n-html="cli.256x8">up to 256 / 8 SSID</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.storagetemp">Storage temp.</span><span class="v">−40…+85 °C</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.dims">Dimensions</span><span class="v">102×110×250 mm, 1.07 kg</span></div>
+                <div class="spec-row"><span class="k" data-i18n="lbl.mount">Mounting</span><span class="v" data-i18n-html="mount.wallpole">wall, pole</span></div>
+              </div>
+            </details>
+            <details class="about">
+              <summary data-i18n="about.summary">About this model</summary>
+              <div class="about-body">
+                <div><h4>In the box</h4><p>AP unit, heavy‑duty pole/wall bracket and steel clamp, RJ45 gland, grounding lug, screws.</p></div>
+                <div><h4>Ports &amp; buttons</h4><p>1× GbE <em>PoE‑in</em> under a sealed cover; RESET pinhole; grounding point.</p></div>
+                <div><h4>Power</h4><p>802.3af/at PoE or 48 V DC 0.3 A, up to ~14.4 W.</p></div>
+                <div><h4>Mounting</h4><p>Wall or pole. The antennas are directional (10 dBi / 5 dBi) — aim them at the coverage area, don't leave the orientation arbitrary.</p></div>
+                <div class="watchout"><b>Watch‑out:</b> 1.07 kg plus wind load — use the steel clamp on a rated pole. Same grounding, surge and drip‑loop rules as any outdoor unit, and more important on long IP68 links.</div>
+              </div>
+            </details>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-head"><h2 data-i18n="table.h2">Comparison table</h2><span class="count" data-i18n="table.count">all parameters in one view</span></div>
+    <div class="table-scroll">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th data-i18n="th.model">Model</th>
+            <th data-i18n="th.type">Type</th>
+            <th class="mono">Wi‑Fi</th>
+            <th data-i18n="qs.speed">Speed</th>
+            <th data-i18n="th.bandsfreq">2.4 / 5 GHz</th>
+            <th data-i18n="lbl.ports">Ports</th>
+            <th class="mono">PoE</th>
+            <th data-i18n="th.poeclass">PoE class</th>
+            <th data-i18n="th.mgmt">Mgmt mode</th>
+            <th data-i18n="th.clientsrec">Clients (rec.)</th>
+            <th class="mono">IP</th>
+            <th data-i18n="lbl.temp">Operating temp.</th>
+            <th data-i18n="th.weight">Weight</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><span class="catdot wall"></span>DS‑3WAP521‑SI</th>
+            <td data-i18n="type.wall">wall</td><td class="mono">Wi‑Fi 5</td><td class="mono" data-i18n="spd.1167">1167 Mbps</td><td class="mono">300 / 867</td>
+            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.521">af/at, 8 W</td><td class="mono">802.3af/at</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">50</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.521">0.2 kg</td>
+          </tr>
+          <tr>
+            <th><span class="catdot wall"></span>DS‑3WAP621E‑SI</th>
+            <td data-i18n="type.wall">wall</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.2975">2975 Mbps</td><td class="mono">575 / 2400</td>
+            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.621e">af/at, 13 W</td><td class="mono">802.3af/at</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">70</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.621e">0.17 kg</td>
+          </tr>
+          <tr>
+            <th><span class="catdot ceiling"></span>DS‑3WAP522‑SI</th>
+            <td data-i18n="type.ceiling">ceiling</td><td class="mono">Wi‑Fi 5</td><td class="mono" data-i18n="spd.1167">1167 Mbps</td><td class="mono">300 / 867</td>
+            <td class="mono">1× GbE</td><td class="mono" data-i18n="poe.522">af/at / 12 V DC, 11.35 W</td><td class="mono">af/at + DC</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">80</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.522">0.4 kg</td>
+          </tr>
+          <tr>
+            <th><span class="catdot ceiling"></span>DS‑3WAP622G‑SI</th>
+            <td data-i18n="type.ceiling">ceiling</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.1775">1775 Mbps</td><td class="mono">574 / 1201</td>
+            <td class="mono">1× GbE</td><td class="mono" data-i18n="poe.522">af/at / 12 V DC, 11.35 W</td><td class="mono">af/at + DC</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">100</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono" data-i18n="wt.522">0.4 kg</td>
+          </tr>
+          <tr>
+            <th><span class="catdot ceiling"></span>DS‑3WAP6218‑EI</th>
+            <td data-i18n="type.ceiling">ceiling</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.1775">1775 Mbps</td><td class="mono">574 / 1201</td>
+            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.6218">at / 12 V DC, up to 18 W</td><td class="mono">802.3at + DC</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">100</td><td class="mono">—</td><td class="mono">0…40 °C</td><td class="mono">—</td>
+          </tr>
+          <tr>
+            <th><span class="catdot ceiling"></span>DS‑3WAP622E‑SI</th>
+            <td data-i18n="type.ceiling">ceiling</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.2975">2975 Mbps</td><td class="mono">575 / 2400</td>
+            <td class="mono">1× 2.5GbE</td><td class="mono" data-i18n="poe.622e">af/at / 12 V DC, 13.5 W</td><td class="mono">af/at + DC</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">100</td><td class="mono">—</td><td class="mono">0…45 °C</td><td class="mono" data-i18n="wt.622e">0.38 kg</td>
+          </tr>
+          <tr>
+            <th><span class="catdot outdoor"></span>DS‑3WAP5312‑EI</th>
+            <td data-i18n="type.outdoor">outdoor</td><td class="mono">Wi‑Fi 5</td><td class="mono" data-i18n="spd.1167">1167 Mbps</td><td class="mono">300 / 867</td>
+            <td class="mono">2× GbE (1 PoE)</td><td class="mono" data-i18n="poe.5312">at, up to 18 W</td><td class="mono">802.3at</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono" data-i18n="cli.max128">128 max.</td><td class="mono">IP65</td><td class="mono">−30…65 °C</td><td class="mono" data-i18n="wt.5312">0.34 kg</td>
+          </tr>
+          <tr>
+            <th><span class="catdot outdoor"></span>DS‑3WAP623E‑SI</th>
+            <td data-i18n="type.outdoor">outdoor</td><td class="mono">Wi‑Fi 6</td><td class="mono" data-i18n="spd.2975">2975 Mbps</td><td class="mono">575 / 2400</td>
+            <td class="mono">1× GbE</td><td class="mono" data-i18n="poe.623e">af/at 48 V, 14.4 W</td><td class="mono">802.3af/at</td><td class="mono" data-i18n="mode.standalone.short">standalone / AC</td><td class="mono">100</td><td class="mono">IP68</td><td class="mono">−30…55 °C</td><td class="mono" data-i18n="wt.623e">1.07 kg</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sub" style="margin:14px 0 0;max-width:70ch;color:var(--ink-muted)">
+      <span data-i18n="home.next">Next:</span> <a href="install.html" data-i18n="nav.install">Install &amp; set up</a>
+    </p>
+  </section>
+
+  <footer>
+    <p data-i18n="footer.text">Specifications compiled from official Hikvision datasheets and product pages (hikvision.com, assets.hikvision.com), current as of August 2026. Verify figures against the current datasheet for a specific batch before purchasing or designing — the manufacturer may change parameters without separate notice. Exact menu labels in the web interface and apps depend on the firmware version — check the Quick Start Guide for your unit.</p>
+  </footer>
+
+</div>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/app.js"></script>
+<script>
+/* catalog filters — page-local */
+(function () {
+  "use strict";
+  function updateCatalogFilters() {
+    var cat = document.querySelector('input[name="catfilter"]:checked');
+    var wifi = document.querySelector('input[name="wififilter"]:checked');
+    var catVal = cat ? cat.id.replace("f-", "") : "all";
+    var wifiVal = wifi ? wifi.id.replace("w-", "") : "all";
+    document.querySelectorAll(".cat-section").forEach(function (sec) {
+      var show = catVal === "all" || sec.getAttribute("data-section") === catVal;
+      sec.style.display = show ? "" : "none";
+    });
+    document.querySelectorAll(".card").forEach(function (card) {
+      var show = wifiVal === "all" || card.getAttribute("data-wifi") === wifiVal;
+      card.style.display = show ? "" : "none";
+    });
+  }
+  document.querySelectorAll('input[name="catfilter"], input[name="wififilter"]').forEach(function (el) {
+    el.addEventListener("change", updateCatalogFilters);
+  });
+  updateCatalogFilters();
+})();
+</script>
+</body>
+</html>
