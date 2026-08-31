@@ -88,6 +88,7 @@
     <aside class="toc-rail" id="tocRail">
       <nav class="toc" aria-label="On this page">
         <div class="toc-head" data-i18n="in.toc.head">Installation Guide</div>
+        <a href="#tailored"><span class="toc-num">★</span> <span class="toc-text" data-i18n="su.toc">Tailored install</span></a>
         <a href="#before"><span class="toc-num">1</span> <span class="toc-text" data-i18n="in.toc.1">Before you start</span></a>
         <a href="#power"><span class="toc-num">2</span> <span class="toc-text" data-i18n="in.toc.2">Power: PoE or DC</span></a>
         <a href="#find"><span class="toc-num">3</span> <span class="toc-text" data-i18n="in.toc.3">Connect &amp; find it</span></a>
@@ -100,6 +101,75 @@
     </aside>
 
     <div class="prose">
+
+    <section class="anchor" id="tailored">
+      <h2><span class="sec-badge">★</span> <span data-i18n="su.h2">Tailored install for your device</span></h2>
+      <p data-i18n="su.intro">Pick the exact model, how you'll power it, and how you'll reach it the first time — you get a step‑by‑step manual for that unit. The full reference below is unchanged.</p>
+
+      <div id="setup-wizard" class="wizard su-wizard">
+        <div class="wizard-progress-bar">
+          <span class="wizard-progress-text" data-i18n="su.progress">Answered 0 of 3</span>
+          <div class="wizard-progress-track">
+            <div class="wizard-progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="wq">
+          <div class="wq-t"><span class="qn">1</span><span data-i18n="su.q.model">Which device are you installing?</span></div>
+          <div class="wq-o">
+            <button type="button" class="wopt" data-q="model" data-v="521" aria-pressed="false">DS‑3WAP521‑SI</button>
+            <button type="button" class="wopt" data-q="model" data-v="621e" aria-pressed="false">DS‑3WAP621E‑SI</button>
+            <button type="button" class="wopt" data-q="model" data-v="522" aria-pressed="false">DS‑3WAP522‑SI</button>
+            <button type="button" class="wopt" data-q="model" data-v="622g" aria-pressed="false">DS‑3WAP622G‑SI</button>
+            <button type="button" class="wopt" data-q="model" data-v="6218" aria-pressed="false">DS‑3WAP6218‑EI</button>
+            <button type="button" class="wopt" data-q="model" data-v="622e" aria-pressed="false">DS‑3WAP622E‑SI</button>
+            <button type="button" class="wopt" data-q="model" data-v="5312" aria-pressed="false">DS‑3WAP5312‑EI</button>
+            <button type="button" class="wopt" data-q="model" data-v="623e" aria-pressed="false">DS‑3WAP623E‑SI</button>
+          </div>
+        </div>
+
+        <div class="wq">
+          <div class="wq-t"><span class="qn">2</span><span data-i18n="su.q.power">How will you power it?</span></div>
+          <div class="wq-o">
+            <button type="button" class="wopt" data-q="power" data-v="switch" aria-pressed="false">
+              <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              <span data-i18n="su.p.switch">PoE switch</span>
+            </button>
+            <button type="button" class="wopt" data-q="power" data-v="injector" aria-pressed="false">
+              <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="8" width="20" height="8" rx="2"></rect><line x1="6" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="18" y2="12"></line></svg>
+              <span data-i18n="su.p.injector">PoE injector</span>
+            </button>
+            <button type="button" class="wopt" data-q="power" data-v="dc" aria-pressed="false">
+              <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="16" height="10" rx="2"></rect><line x1="22" y1="11" x2="22" y2="13"></line><line x1="6" y1="12" x2="10" y2="12"></line></svg>
+              <span data-i18n="su.p.dc">Power adapter (DC input)</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="wq">
+          <div class="wq-t"><span class="qn">3</span><span data-i18n="su.q.reach">How will you reach it the first time?</span></div>
+          <div class="wq-o">
+            <button type="button" class="wopt" data-q="reach" data-v="sadp" aria-pressed="false">
+              <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <span data-i18n="su.r.sadp">SADP tool</span>
+            </button>
+            <button type="button" class="wopt" data-q="reach" data-v="dhcp" aria-pressed="false">
+              <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+              <span data-i18n="su.r.dhcp">Router's DHCP list</span>
+            </button>
+            <button type="button" class="wopt" data-q="reach" data-v="direct" aria-pressed="false">
+              <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+              <span data-i18n="su.r.direct">Direct, default IP</span>
+            </button>
+          </div>
+        </div>
+
+        <button type="button" class="wreset" data-i18n="wiz.reset">Reset answers</button>
+
+        <div class="wresult-placeholder" data-i18n="su.placeholder">Answer the three questions above and the tailored manual appears here.</div>
+        <div class="wresult su-result" hidden></div>
+      </div>
+    </section>
 
     <section class="anchor" id="before">
       <h2><span class="sec-badge">1</span> <span data-i18n="in.s1.h2">Before you start</span></h2>
@@ -403,5 +473,6 @@
 
 <script src="assets/i18n.js"></script>
 <script src="assets/app.js"></script>
+<script src="assets/setup.js"></script>
 </body>
 </html>

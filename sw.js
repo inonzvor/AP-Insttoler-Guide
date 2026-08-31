@@ -1,4 +1,4 @@
-const CACHE_NAME = "ap-guide-v3";
+const CACHE_NAME = "ap-guide-v4";
 const ASSETS = [
   "./",
   "./index.html",
@@ -10,6 +10,7 @@ const ASSETS = [
   "./assets/i18n.js",
   "./assets/app.js",
   "./assets/picker.js",
+  "./assets/setup.js",
   "./assets/images/hik-partner-pro.png",
   "./assets/images/DS-3WAP521-SI.jpg",
   "./assets/images/DS-3WAP621E-SI.jpg",

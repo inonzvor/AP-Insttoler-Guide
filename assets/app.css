@@ -974,6 +974,112 @@ section.block[id], .anchor {
 }
 
 /* --------------------------------------------------------------------------
+   Tailored install guide (install.html #tailored) — reuses .wizard / .wq /
+   .wopt / .wresult; only the generated result body needs its own rules.
+   -------------------------------------------------------------------------- */
+.su-wizard .wopt[data-q="model"] {
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
+}
+.su-result { gap: var(--sp-4); }
+.su-model {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.su-sub {
+  margin-top: -8px;
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+}
+.su-steps {
+  margin: 0;
+  padding-inline-start: 1.5em;
+}
+.su-steps > li { margin-bottom: var(--sp-4); }
+.su-steps > li:last-child { margin-bottom: 0; }
+.su-steps > li::marker {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+.su-step h4 {
+  margin: 0 0 4px;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+}
+.su-step > p {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--ink);
+}
+.su-step .su-note {
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  color: var(--ink-muted);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-inline-start: 3px solid var(--warn);
+  border-radius: var(--r-sm);
+}
+.su-more {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid var(--line);
+  padding-top: var(--sp-3);
+}
+.su-more-h {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--ink-faint);
+}
+.su-more a {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 3px 8px;
+  background: var(--accent-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+}
+.su-more a:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+
+/* catalog.html — "install this model" link inside the About block */
+.about-install {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--sp-2);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+.about-install:hover { text-decoration: underline; }
+
+/* --------------------------------------------------------------------------
    Scenarios Section (Replacing Stock Photos)
    -------------------------------------------------------------------------- */
 .scenarios-grid {
