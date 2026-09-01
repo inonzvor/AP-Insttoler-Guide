@@ -1,4 +1,4 @@
-const CACHE_NAME = "ap-guide-v4";
+const CACHE_NAME = "ap-guide-v5";
 const ASSETS = [
   "./",
   "./index.html",
@@ -20,6 +20,14 @@ const ASSETS = [
   "./assets/images/DS-3WAP622E-SI.jpg",
   "./assets/images/DS-3WAP5312-EI.png",
   "./assets/images/DS-3WAP623E-SI.jpg",
+  "./assets/images/hikpartner/hp-01-sites.png",
+  "./assets/images/hikpartner/hp-02-find-devices.png",
+  "./assets/images/hikpartner/hp-03-new-device.png",
+  "./assets/images/hikpartner/hp-04-activate.png",
+  "./assets/images/hikpartner/hp-05-init.png",
+  "./assets/images/hikpartner/hp-06-wifi.png",
+  "./assets/images/hikpartner/hp-07-add-site.png",
+  "./assets/images/hikpartner/hp-08-done.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/icon-maskable-512.png",

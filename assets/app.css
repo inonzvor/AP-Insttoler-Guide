@@ -896,6 +896,27 @@ section.block[id], .anchor {
   align-items: center;
   gap: 6px;
 }
+.wr-top {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+}
+.wr-photo {
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+  flex-shrink: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 8px;
+}
+.wr-top-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .wr-model {
   font-family: var(--font-mono);
   font-size: var(--text-xl);
@@ -1063,6 +1084,60 @@ section.block[id], .anchor {
   background: var(--accent);
   color: var(--accent-ink);
   border-color: var(--accent);
+}
+
+/* Hik-Partner Pro screenshot strip — install.html §5.2 and the tailored
+   guide's "Hik-Partner Pro app" reach step. */
+.hp-gallery-h {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink-muted);
+  margin: var(--sp-3) 0 var(--sp-2);
+}
+.hp-gallery {
+  display: flex;
+  gap: var(--sp-3);
+  overflow-x: auto;
+  padding: 4px 2px 12px;
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
+}
+.hp-shot {
+  flex: 0 0 auto;
+  width: 116px;
+  margin: 0;
+  text-align: center;
+}
+.hp-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-1);
+  background: var(--surface);
+}
+.hp-n {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.hp-cap {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--ink-faint);
 }
 
 /* catalog.html — "install this model" link inside the About block */

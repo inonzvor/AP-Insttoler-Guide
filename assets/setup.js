@@ -42,6 +42,26 @@
   function wattLabel(m) { return m.watt + " " + t("su.u.w", "W"); }
   function dcLabel(m)   { return t(m.dc === 48 ? "su.dc.48" : "su.dc.12", m.dc + " V DC"); }
 
+  var HP_SHOTS = [
+    ["hp-01-sites.png",        "hp.c1"],
+    ["hp-02-find-devices.png", "hp.c2"],
+    ["hp-03-new-device.png",   "hp.c3"],
+    ["hp-04-activate.png",     "hp.c4"],
+    ["hp-05-init.png",         "hp.c5"],
+    ["hp-06-wifi.png",         "hp.c6"],
+    ["hp-07-add-site.png",     "hp.c7"],
+    ["hp-08-done.png",         "hp.c8"]
+  ];
+  function hpGallery() {
+    var shots = HP_SHOTS.map(function (s, i) {
+      return '<figure class="hp-shot"><span class="hp-n">' + (i + 1) + '</span>' +
+        '<img src="assets/images/hikpartner/' + s[0] + '" alt="" loading="lazy">' +
+        '<figcaption class="hp-cap">' + esc(t(s[1], "")) + "</figcaption></figure>";
+    }).join("");
+    return '<p class="hp-gallery-h">' + esc(t("hp.h", "The app, screen by screen:")) + "</p>" +
+      '<div class="hp-gallery">' + shots + "</div>";
+  }
+
   function build(m) {
     var pwr, notes1 = [];
     if (state.power === "switch") {
@@ -66,11 +86,11 @@
       t("su.chip." + state.power, state.power)
     ];
 
-    function step(h, body, notes) {
+    function step(h, body, notes, extra) {
       var n = (notes || []).filter(Boolean).map(function (x) {
         return '<p class="su-note">' + x + "</p>";
       }).join("");
-      return '<li class="su-step"><h4>' + esc(h) + "</h4><p>" + body + "</p>" + n + "</li>";
+      return '<li class="su-step"><h4>' + esc(h) + "</h4><p>" + body + "</p>" + n + (extra || "") + "</li>";
     }
 
     var more = [
@@ -94,7 +114,7 @@
       '<div class="su-sub">' + esc(chips.join(" · ")) + "</div>" +
       '<ol class="su-steps">' +
         step(t("su.s1.h", ""), pwr, notes1) +
-        step(t("su.s2.h", ""), t("su.reach." + state.reach, ""), []) +
+        step(t("su.s2.h", ""), t("su.reach." + state.reach, ""), [], state.reach === "hikpartner" ? hpGallery() : "") +
         step(t("su.s3.h", ""), t("su.s3.p", ""), []) +
         step(t("su.s4.h", ""), t("su.s4.p", ""), [wifiNote]) +
         step(t("su.s5.h", ""), t("su.s5.p", ""), []) +
