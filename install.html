@@ -320,6 +320,11 @@
         <li data-i18n-html="in.s4.w2"><strong>Web browser:</strong> open the AP's IP; an inactive unit shows an activation page before the login screen.</li>
         <li data-i18n-html="in.s4.w3"><strong>Hik‑Partner Pro:</strong> adding an inactive device to a site prompts you to activate it in the same step.</li>
       </ul>
+      <p class="hp-gallery-h" data-i18n="act.h">Screens:</p>
+      <div class="hp-gallery">
+        <figure class="hp-shot"><span class="hp-n">1</span><img src="assets/images/activation/act-sadp.png" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="act.c1">SADP — activation with Wi‑Fi and region setup</figcaption></figure>
+        <figure class="hp-shot"><span class="hp-n">2</span><img src="assets/images/activation/act-web.png" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="act.c2">Web UI — activation page</figcaption></figure>
+      </div>
       <h3 data-i18n="in.s4.h3c">Right after activation</h3>
       <ul>
         <li data-i18n-html="in.s4.r1">Set the <strong>IP mode</strong>: leave it on DHCP with a reservation on the router, or give it a static address outside the DHCP pool. Note the address down.</li>
@@ -411,6 +416,29 @@
 
       <h3 data-i18n="in.s5.h3d">5.4 HikCentral Professional</h3>
       <p data-i18n="in.s5.p5">For large, multi‑site deployments the APs can also be managed under HikCentral Professional alongside cameras, access control and alarms. Same idea as a controller, at enterprise scale; out of scope for a single small install.</p>
+
+      <h3 data-i18n="in.s5.h3e">5.5 Firmware updates</h3>
+      <p data-i18n="in.s5.fw.p1">Before handover, check the firmware version and update it if needed:</p>
+      <ol>
+        <li data-i18n-html="in.s5.fw.s1">Check the current version — in the app, open the device (or tap ⋯ on its card in the site's topology → <b>More Settings</b>), then <b>System Settings → Device Information → Basic Information</b> — the version is in the <b>Software Version</b> field.</li>
+        <li data-i18n-html="in.s5.fw.s2">Find the latest firmware — search the exact model on Hikvision's site, open its product page → the <b>Resources</b> tab → the <b>Firmware</b> section, and download the file for this exact model.</li>
+        <li data-i18n-html="in.s5.fw.s3">Apply it — in the AP's web UI: <b>System → Version Update → Offline Update → Upload Version</b>. Leave <b>Save Config</b> checked to keep your settings, then click <b>Update Now</b>. The AP reboots — wait for it and re‑check the version.</li>
+      </ol>
+      <div class="callout qsg">
+        <span class="clabel" data-i18n="about.watch">Watch‑out:</span>
+        <span data-i18n="in.s5.fw.warn">Don't power off the AP during the update. If it's controller‑managed (FIT), update firmware from the controller instead of per‑device.</span>
+      </div>
+      <p class="hp-gallery-h" data-i18n="fw.h">Screens, step by step:</p>
+      <div class="hp-gallery">
+        <figure class="hp-shot"><span class="hp-n">1</span><img src="assets/images/firmware/fw-01-site-menu.jpg" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c1">Site → ⋯ on the device</figcaption></figure>
+        <figure class="hp-shot"><span class="hp-n">2</span><img src="assets/images/firmware/fw-02-operation.jpg" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c2">Operation → More Settings</figcaption></figure>
+        <figure class="hp-shot"><span class="hp-n">3</span><img src="assets/images/firmware/fw-03-settings-list.jpg" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c3">Device settings → System Settings</figcaption></figure>
+        <figure class="hp-shot"><span class="hp-n">4</span><img src="assets/images/firmware/fw-04-system-settings.jpg" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c4">System Settings → Device Information</figcaption></figure>
+        <figure class="hp-shot"><span class="hp-n">5</span><img src="assets/images/firmware/fw-05-basic-info.jpg" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c5">Basic Information — firmware version</figcaption></figure>
+        <figure class="hp-shot"><span class="hp-n">6</span><img src="assets/images/firmware/fw-06-google-search.png" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c6">Search the model on Google</figcaption></figure>
+        <figure class="hp-shot"><span class="hp-n">7</span><img src="assets/images/firmware/fw-07-hikvision-firmware.png" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c7">Hikvision site → Resources → Firmware</figcaption></figure>
+        <figure class="hp-shot"><span class="hp-n">8</span><img src="assets/images/firmware/fw-08-offline-update.png" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c8">Web UI — Offline Update</figcaption></figure>
+      </div>
     </section>
 
     <section class="anchor" id="wifi">

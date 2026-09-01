@@ -1,4 +1,4 @@
-const CACHE_NAME = "ap-guide-v6";
+const CACHE_NAME = "ap-guide-v7";
 const ASSETS = [
   "./",
   "./index.html",
@@ -28,6 +28,16 @@ const ASSETS = [
   "./assets/images/hikpartner/hp-06-wifi.png",
   "./assets/images/hikpartner/hp-07-add-site.png",
   "./assets/images/hikpartner/hp-08-done.png",
+  "./assets/images/activation/act-sadp.png",
+  "./assets/images/activation/act-web.png",
+  "./assets/images/firmware/fw-01-site-menu.jpg",
+  "./assets/images/firmware/fw-02-operation.jpg",
+  "./assets/images/firmware/fw-03-settings-list.jpg",
+  "./assets/images/firmware/fw-04-system-settings.jpg",
+  "./assets/images/firmware/fw-05-basic-info.jpg",
+  "./assets/images/firmware/fw-06-google-search.png",
+  "./assets/images/firmware/fw-07-hikvision-firmware.png",
+  "./assets/images/firmware/fw-08-offline-update.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/icon-maskable-512.png",
