@@ -1011,7 +1011,6 @@ section.block[id], .anchor {
   letter-spacing: -0.01em;
 }
 .su-sub {
-  margin-top: -8px;
   font-family: var(--font-sans);
   font-size: var(--text-xs);
   color: var(--ink-faint);

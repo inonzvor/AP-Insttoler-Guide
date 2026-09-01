@@ -22,6 +22,17 @@
 
   var state = { model: null, power: null, reach: null };
 
+  var PHOTO = {
+    "521":  "assets/images/DS-3WAP521-SI.jpg",
+    "621e": "assets/images/DS-3WAP621E-SI.jpg",
+    "522":  "assets/images/DS-3WAP522-SI.webp",
+    "622g": "assets/images/DS-3WAP622G-SI.jpg",
+    "6218": "assets/images/DS-3WAP6218-EI.png",
+    "622e": "assets/images/DS-3WAP622E-SI.jpg",
+    "5312": "assets/images/DS-3WAP5312-EI.png",
+    "623e": "assets/images/DS-3WAP623E-SI.jpg"
+  };
+
   function t(key, fallback) {
     try {
       var lang = document.documentElement.getAttribute("lang") || "en";
@@ -62,6 +73,12 @@
       '<div class="hp-gallery">' + shots + "</div>";
   }
 
+  function singleShot(src, capKey) {
+    return '<div class="hp-gallery"><figure class="hp-shot" style="width:150px">' +
+      '<img src="' + src + '" alt="" loading="lazy">' +
+      '<figcaption class="hp-cap">' + esc(t(capKey, "")) + "</figcaption></figure></div>";
+  }
+
   function build(m) {
     var pwr, notes1 = [];
     if (state.power === "switch") {
@@ -79,6 +96,13 @@
     if (state.model === "623e")                        notes1.push(t("su.note.623ewind", ""));
 
     var wifiNote = m.wpa3 ? t("su.note.wpa3", "") : t("su.note.nowpa3", "");
+
+    var actShot = "";
+    if (state.reach === "sadp") {
+      actShot = singleShot("assets/images/activation/act-sadp.png", "act.c1");
+    } else if (state.reach === "dhcp" || state.reach === "direct") {
+      actShot = singleShot("assets/images/activation/act-web.png", "act.c2");
+    }
 
     var chips = [
       t("su.sub." + m.mount, m.mount),
@@ -110,12 +134,17 @@
         '<svg class="ui-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg> ' +
         esc(t("su.result.tag", "Manual for this install")) +
       "</div>" +
-      '<div class="su-model mono">' + esc(m.name) + "</div>" +
-      '<div class="su-sub">' + esc(chips.join(" · ")) + "</div>" +
+      '<div class="wr-top">' +
+        '<img class="wr-photo" src="' + PHOTO[state.model] + '" alt="" loading="lazy">' +
+        '<div class="wr-top-text">' +
+          '<div class="su-model mono">' + esc(m.name) + "</div>" +
+          '<div class="su-sub">' + esc(chips.join(" · ")) + "</div>" +
+        "</div>" +
+      "</div>" +
       '<ol class="su-steps">' +
         step(t("su.s1.h", ""), pwr, notes1) +
         step(t("su.s2.h", ""), t("su.reach." + state.reach, ""), [], state.reach === "hikpartner" ? hpGallery() : "") +
-        step(t("su.s3.h", ""), t("su.s3.p", ""), []) +
+        step(t("su.s3.h", ""), t("su.s3.p", ""), [], actShot) +
         step(t("su.s4.h", ""), t("su.s4.p", ""), [wifiNote]) +
         step(t("su.s5.h", ""), t("su.s5.p", ""), []) +
       "</ol>" +
