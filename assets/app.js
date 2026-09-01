@@ -83,6 +83,43 @@
     });
   }
 
+  /* ---------- lightbox (click a .hp-shot screenshot to view it full size) ----------
+     Delegated on document so it also covers galleries the tailored install
+     guide (setup.js) injects into the page after this script has run. */
+  (function () {
+    var overlay = null;
+    function ensureOverlay() {
+      if (overlay) return overlay;
+      overlay = document.createElement("div");
+      overlay.className = "lightbox-overlay";
+      overlay.innerHTML =
+        '<button type="button" class="lightbox-close" aria-label="Close">&times;</button>' +
+        '<img class="lightbox-img" alt="">';
+      document.body.appendChild(overlay);
+      overlay.addEventListener("click", function (e) {
+        if (e.target === overlay || e.target.classList.contains("lightbox-close")) closeLightbox();
+      });
+      return overlay;
+    }
+    function openLightbox(src, alt) {
+      var box = ensureOverlay();
+      var img = box.querySelector(".lightbox-img");
+      img.src = src;
+      img.alt = alt || "";
+      box.classList.add("open");
+    }
+    function closeLightbox() {
+      if (overlay) overlay.classList.remove("open");
+    }
+    document.addEventListener("click", function (e) {
+      var img = e.target.closest(".hp-shot img");
+      if (img) openLightbox(img.currentSrc || img.getAttribute("src"), img.getAttribute("alt"));
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeLightbox();
+    });
+  })();
+
   /* ---------- active nav tab ---------- */
   var here = location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll("nav.sitenav a").forEach(function (a) {

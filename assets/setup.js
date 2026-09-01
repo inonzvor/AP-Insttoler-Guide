@@ -44,8 +44,8 @@
 
   var HP_SHOTS = [
     ["hp-01-sites.png",        "hp.c1"],
-    ["hp-02-find-devices.png", "hp.c2"],
-    ["hp-03-new-device.png",   "hp.c3"],
+    ["hp-02-new-device.png",   "hp.c2"],
+    ["hp-03-find-devices.png", "hp.c3"],
     ["hp-04-activate.png",     "hp.c4"],
     ["hp-05-init.png",         "hp.c5"],
     ["hp-06-wifi.png",         "hp.c6"],
