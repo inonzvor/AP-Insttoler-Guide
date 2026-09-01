@@ -1,4 +1,4 @@
-const CACHE_NAME = "ap-guide-v8";
+const CACHE_NAME = "ap-guide-v15";
 const ASSETS = [
   "./",
   "./index.html",

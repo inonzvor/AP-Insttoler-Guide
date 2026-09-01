@@ -74,7 +74,7 @@
   }
 
   function singleShot(src, capKey) {
-    return '<div class="hp-gallery"><figure class="hp-shot" style="width:150px">' +
+    return '<div class="hp-gallery hp-gallery-single"><figure class="hp-shot hp-shot-single">' +
       '<img src="' + src + '" alt="" loading="lazy">' +
       '<figcaption class="hp-cap">' + esc(t(capKey, "")) + "</figcaption></figure></div>";
   }

@@ -83,17 +83,22 @@
     });
   }
 
-  /* ---------- lightbox (click a .hp-shot screenshot to view it full size) ----------
-     Delegated on document so it also covers galleries the tailored install
-     guide (setup.js) injects into the page after this script has run. */
+  /* ---------- lightbox (click any guide or model photo to view it full size) ----------
+     Delegated on document so it covers static images as well as dynamically
+     injected content from wizard/setup.js. */
   (function () {
     var overlay = null;
+    var lastFocusedEl = null;
+
     function ensureOverlay() {
       if (overlay) return overlay;
       overlay = document.createElement("div");
       overlay.className = "lightbox-overlay";
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+      overlay.setAttribute("aria-label", "Image preview");
       overlay.innerHTML =
-        '<button type="button" class="lightbox-close" aria-label="Close">&times;</button>' +
+        '<button type="button" class="lightbox-close" aria-label="Close image preview">&times;</button>' +
         '<img class="lightbox-img" alt="">';
       document.body.appendChild(overlay);
       overlay.addEventListener("click", function (e) {
@@ -101,22 +106,54 @@
       });
       return overlay;
     }
+
     function openLightbox(src, alt) {
+      if (!src) return;
+      lastFocusedEl = document.activeElement;
       var box = ensureOverlay();
       var img = box.querySelector(".lightbox-img");
       img.src = src;
       img.alt = alt || "";
       box.classList.add("open");
+      var closeBtn = box.querySelector(".lightbox-close");
+      if (closeBtn) {
+        setTimeout(function () { closeBtn.focus(); }, 50);
+      }
     }
+
     function closeLightbox() {
-      if (overlay) overlay.classList.remove("open");
+      if (overlay && overlay.classList.contains("open")) {
+        overlay.classList.remove("open");
+        if (lastFocusedEl && typeof lastFocusedEl.focus === "function") {
+          lastFocusedEl.focus();
+        }
+      }
     }
+
     document.addEventListener("click", function (e) {
-      var img = e.target.closest(".hp-shot img");
-      if (img) openLightbox(img.currentSrc || img.getAttribute("src"), img.getAttribute("alt"));
+      var img = e.target.closest(".hp-shot img, .figure img, .prose img:not(.no-zoom), .device-visual img, .wr-photo, [data-zoomable]");
+      if (img) {
+        openLightbox(img.currentSrc || img.getAttribute("src"), img.getAttribute("alt"));
+      }
     });
+
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeLightbox();
+      if (!overlay || !overlay.classList.contains("open")) return;
+      if (e.key === "Escape") {
+        closeLightbox();
+      } else if (e.key === "Tab") {
+        var focusables = overlay.querySelectorAll("button, [tabindex]:not([tabindex='-1'])");
+        if (!focusables.length) return;
+        var first = focusables[0];
+        var last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     });
   })();
 
@@ -228,4 +265,70 @@
       deferredPrompt = null;
     });
   }
+
+  /* ---------- Interactive Click Wi-Fi Wave Waves ---------- */
+  (function initClickWifiRipples() {
+    var container = null;
+    var lastSpawnTime = 0;
+
+    function getContainer() {
+      if (container && document.body.contains(container)) return container;
+      container = document.createElement("div");
+      container.className = "click-wifi-canvas";
+      container.setAttribute("aria-hidden", "true");
+      document.body.appendChild(container);
+      return container;
+    }
+
+    function createWifiPulse(x, y) {
+      var c = getContainer();
+      if (!c) return;
+
+      var core = document.createElement("div");
+      core.className = "click-wifi-core";
+      core.style.left = x + "px";
+      core.style.top = y + "px";
+
+      var ring1 = document.createElement("div");
+      ring1.className = "click-wifi-ripple ring-1";
+      ring1.style.left = x + "px";
+      ring1.style.top = y + "px";
+
+      var ring2 = document.createElement("div");
+      ring2.className = "click-wifi-ripple ring-2";
+      ring2.style.left = x + "px";
+      ring2.style.top = y + "px";
+
+      var ring3 = document.createElement("div");
+      ring3.className = "click-wifi-ripple ring-3";
+      ring3.style.left = x + "px";
+      ring3.style.top = y + "px";
+
+      c.appendChild(core);
+      c.appendChild(ring1);
+      c.appendChild(ring2);
+      c.appendChild(ring3);
+
+      setTimeout(function () {
+        if (core.parentNode) core.parentNode.removeChild(core);
+        if (ring1.parentNode) ring1.parentNode.removeChild(ring1);
+        if (ring2.parentNode) ring2.parentNode.removeChild(ring2);
+        if (ring3.parentNode) ring3.parentNode.removeChild(ring3);
+      }, 1600);
+    }
+
+    window.addEventListener("pointerdown", function (e) {
+      // Throttle rapid clicks to prevent DOM flooding (min 70ms apart)
+      var now = Date.now();
+      if (now - lastSpawnTime < 70) return;
+      lastSpawnTime = now;
+
+      // Don't animate if user prefers reduced motion
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
+
+      createWifiPulse(e.clientX, e.clientY);
+    }, { passive: true });
+  })();
 })();
