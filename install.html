@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>DS‑3WAP Installer Manual</title>
 <meta name="description" content="Step‑by‑step installation and configuration of Hikvision DS‑3WAP access points for a first‑time installer: powering by PoE or a DC adapter, finding the unit on the network, activation, and the ways to configure it (web UI, Hik‑Partner Pro, wireless controller).">
 
@@ -429,15 +429,35 @@
         <span data-i18n="in.s5.fw.warn">Don't power off the AP during the update. If it's controller‑managed (FIT), update firmware from the controller instead of per‑device.</span>
       </div>
       <p class="hp-gallery-h" data-i18n="fw.h">Screens, step by step:</p>
-      <div class="hp-gallery">
-        <figure class="hp-shot"><span class="hp-n">1</span><img src="assets/images/firmware/fw-01-site-menu.jpg" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c1">Site → ⋯ on the device</figcaption></figure>
-        <figure class="hp-shot"><span class="hp-n">2</span><img src="assets/images/firmware/fw-02-operation.jpg" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c2">Operation → More Settings</figcaption></figure>
-        <figure class="hp-shot"><span class="hp-n">3</span><img src="assets/images/firmware/fw-03-settings-list.jpg" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c3">Device settings → System Settings</figcaption></figure>
-        <figure class="hp-shot"><span class="hp-n">4</span><img src="assets/images/firmware/fw-04-system-settings.jpg" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c4">System Settings → Device Information</figcaption></figure>
-        <figure class="hp-shot"><span class="hp-n">5</span><img src="assets/images/firmware/fw-05-basic-info.jpg" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c5">Basic Information — firmware version</figcaption></figure>
-        <figure class="hp-shot"><span class="hp-n">6</span><img src="assets/images/firmware/fw-06-google-search.png" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c6">Search the model on Google</figcaption></figure>
-        <figure class="hp-shot"><span class="hp-n">7</span><img src="assets/images/firmware/fw-07-hikvision-firmware.png" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c7">Hikvision site → Resources → Firmware</figcaption></figure>
-        <figure class="hp-shot"><span class="hp-n">8</span><img src="assets/images/firmware/fw-08-offline-update.png" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c8">Web UI — Offline Update</figcaption></figure>
+
+      <div class="fw-split-section">
+        <div class="fw-part-block">
+          <h4 class="fw-part-title">
+            <span class="fw-part-badge">1–5</span>
+            <span data-i18n="fw.part1.h">1–5: Check version in app (Hik‑Connect / Hik‑Partner Pro)</span>
+          </h4>
+          <p class="fw-part-sub" data-i18n="fw.part1.sub">Screenshots 1–5: checking the current firmware version in the mobile app:</p>
+          <div class="hp-gallery hp-gallery-split">
+            <figure class="hp-shot"><span class="hp-n">1</span><img src="assets/images/firmware/fw-01-site-menu.jpg" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c1">Site → ⋯ on the device</figcaption></figure>
+            <figure class="hp-shot"><span class="hp-n">2</span><img src="assets/images/firmware/fw-02-operation.jpg" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c2">Operation → More Settings</figcaption></figure>
+            <figure class="hp-shot"><span class="hp-n">3</span><img src="assets/images/firmware/fw-03-settings-list.jpg" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c3">Device settings → System Settings</figcaption></figure>
+            <figure class="hp-shot"><span class="hp-n">4</span><img src="assets/images/firmware/fw-04-system-settings.jpg" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c4">System Settings → Device Information</figcaption></figure>
+            <figure class="hp-shot"><span class="hp-n">5</span><img src="assets/images/firmware/fw-05-basic-info.jpg" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c5">Basic Information — firmware version</figcaption></figure>
+          </div>
+        </div>
+
+        <div class="fw-part-block">
+          <h4 class="fw-part-title">
+            <span class="fw-part-badge">6–8</span>
+            <span data-i18n="fw.part2.h">6–8: Find firmware &amp; update via Web UI</span>
+          </h4>
+          <p class="fw-part-sub" data-i18n="fw.part2.sub">Screenshots 6–8: finding the firmware file on Hikvision site and updating via Web UI:</p>
+          <div class="hp-gallery hp-gallery-split">
+            <figure class="hp-shot"><span class="hp-n">6</span><img src="assets/images/firmware/fw-06-google-search.png" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c6">Search the model on Google</figcaption></figure>
+            <figure class="hp-shot"><span class="hp-n">7</span><img src="assets/images/firmware/fw-07-hikvision-firmware.png" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c7">Hikvision site → Resources → Firmware</figcaption></figure>
+            <figure class="hp-shot"><span class="hp-n">8</span><img src="assets/images/firmware/fw-08-offline-update.png" alt="" loading="lazy"><figcaption class="hp-cap" data-i18n="fw.c8">Web UI — Offline Update</figcaption></figure>
+          </div>
+        </div>
       </div>
     </section>
 
