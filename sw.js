@@ -1,4 +1,4 @@
-const CACHE_NAME = "ap-guide-v23";
+const CACHE_NAME = "ap-guide-v24";
 const ASSETS = [
   "./",
   "./index.html",
@@ -11,6 +11,24 @@ const ASSETS = [
   "./assets/app.js",
   "./assets/picker.js",
   "./assets/setup.js",
+  "./assets/fonts/fonts.css",
+  "./assets/fonts/plus-jakarta-sans-latin.woff2",
+  "./assets/fonts/inter-latin.woff2",
+  "./assets/fonts/inter-cyrillic.woff2",
+  "./assets/fonts/ibm-plex-sans-hebrew-hebrew-400.woff2",
+  "./assets/fonts/ibm-plex-sans-hebrew-hebrew-500.woff2",
+  "./assets/fonts/ibm-plex-sans-hebrew-hebrew-600.woff2",
+  "./assets/fonts/ibm-plex-sans-hebrew-hebrew-700.woff2",
+  "./assets/fonts/ibm-plex-sans-hebrew-latin-400.woff2",
+  "./assets/fonts/ibm-plex-sans-hebrew-latin-500.woff2",
+  "./assets/fonts/ibm-plex-sans-hebrew-latin-600.woff2",
+  "./assets/fonts/ibm-plex-sans-hebrew-latin-700.woff2",
+  "./assets/fonts/ibm-plex-mono-latin-400.woff2",
+  "./assets/fonts/ibm-plex-mono-latin-500.woff2",
+  "./assets/fonts/ibm-plex-mono-latin-600.woff2",
+  "./assets/fonts/ibm-plex-mono-cyrillic-400.woff2",
+  "./assets/fonts/ibm-plex-mono-cyrillic-500.woff2",
+  "./assets/fonts/ibm-plex-mono-cyrillic-600.woff2",
   "./assets/images/hik-partner-pro.png",
   "./assets/images/DS-3WAP521-SI.jpg",
   "./assets/images/DS-3WAP621E-SI.jpg",
@@ -65,27 +83,13 @@ self.addEventListener("fetch", (event) => {
   const req = event.request;
   if (req.method !== "GET") return;
 
-  const isFont = req.url.indexOf("fonts.googleapis.com") !== -1 || req.url.indexOf("fonts.gstatic.com") !== -1;
-
-  if (isFont) {
-    event.respondWith(
-      caches.open(CACHE_NAME).then((cache) =>
-        cache.match(req).then((cached) => {
-          const network = fetch(req).then((res) => {
-            cache.put(req, res.clone());
-            return res;
-          }).catch(() => cached);
-          return cached || network;
-        })
-      )
-    );
-    return;
-  }
-
+  // Cache-first for everything (all assets, incl. self-hosted fonts, are same-origin
+  // and precached). Only successful same-origin responses are written back, so a
+  // transient error can never poison the cache.
   event.respondWith(
     caches.match(req).then((cached) => {
       const network = fetch(req).then((res) => {
-        if (res && res.status === 200 && res.type === "basic") {
+        if (res && res.ok && res.status === 200 && res.type === "basic") {
           const copy = res.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
         }

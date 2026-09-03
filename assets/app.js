@@ -1,4 +1,4 @@
-/* Shared chrome: theme toggle, language switch (English-first with fallback),
+/* Shared chrome: theme toggle, language switch (Hebrew default, English fallback),
    service-worker registration, PWA install button, active nav tab, scroll effects.
    Loaded on every page. */
 (function () {
@@ -54,16 +54,23 @@
     document.querySelectorAll(".langbtn").forEach(function (b) {
       b.classList.toggle("active", b.getAttribute("data-lang") === lang);
     });
-    try { localStorage.setItem("hikvision-ap-lang", lang); } catch (e) {}
+    try { localStorage.setItem("hikvision-ap-lang-v2", lang); } catch (e) {}
   }
 
   document.querySelectorAll(".langbtn").forEach(function (btn) {
     btn.addEventListener("click", function () { applyLanguage(btn.getAttribute("data-lang")); });
   });
 
-  var initialLang = "en";
+  // First run defaults to Hebrew. Older builds auto-saved "en" even when the
+  // visitor never picked a language, so a legacy "en" is treated as "no choice";
+  // a deliberate "ru"/"he" from the old key is carried over once.
+  var initialLang = "he";
   try {
-    var savedLang = localStorage.getItem("hikvision-ap-lang");
+    var savedLang = localStorage.getItem("hikvision-ap-lang-v2");
+    if (savedLang === null) {
+      var legacyLang = localStorage.getItem("hikvision-ap-lang");
+      if (legacyLang === "ru" || legacyLang === "he") savedLang = legacyLang;
+    }
     if (savedLang === "ru" || savedLang === "en" || savedLang === "he") initialLang = savedLang;
   } catch (e) {}
   applyLanguage(initialLang);

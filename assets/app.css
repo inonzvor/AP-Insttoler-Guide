@@ -574,7 +574,12 @@ header.app-bar {
   position: sticky;
   top: 0;
   z-index: 100;
-  height: var(--app-bar-h);
+  /* Keep the bar's usable area at --app-bar-h and let the iOS status bar /
+     notch inset sit above it (0 in normal standalone, non-zero only when the
+     webview draws under the status bar). border-box keeps the inner row at
+     --app-bar-h so it isn't clipped. */
+  height: calc(var(--app-bar-h) + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
   background: var(--surface-glass);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(20px);
