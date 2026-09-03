@@ -217,11 +217,33 @@
    without modifying dark theme behavior or HTML structures.
    -------------------------------------------------------------------------- */
 
-/* Pure, quiet canvas in light mode — eliminates triangular moiré mesh & blue top smudge */
+/* Pure, quiet canvas in light mode on mobile/tablets (< 1024px) */
 :root:not([data-theme="dark"]) body::before,
-body:not([data-theme="dark"])::before {
+body:not([data-theme="dark"])::before,
+:root[data-theme="light"] body::before,
+body[data-theme="light"]::before {
   display: none;
 }
+
+/* PC / Computer version only (min-width: 1024px): enable technical blueprint grid in light theme like in dark theme */
+@media (min-width: 1024px) {
+  :root:not([data-theme="dark"]),
+  :root[data-theme="light"],
+  body:not([data-theme="dark"]),
+  body[data-theme="light"] {
+    --grid-line: rgba(15, 23, 42, 0.052);
+    --grid-line-major: rgba(2, 132, 199, 0.13);
+    --crosshair: rgba(2, 132, 199, 0.25);
+  }
+
+  :root:not([data-theme="dark"]) body::before,
+  body:not([data-theme="dark"])::before,
+  :root[data-theme="light"] body::before,
+  body[data-theme="light"]::before {
+    display: block;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) body::before,
   body:not([data-theme="light"])::before {
