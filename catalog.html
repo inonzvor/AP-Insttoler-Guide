@@ -84,23 +84,37 @@
     </div>
   </div>
 
-  <section class="block">
+  <section class="block" id="line-overview">
     <div class="section-head"><h2 data-i18n="line.h2">About the DS‑3WAP line</h2><span class="count" data-i18n="line.count">orientation for a first‑timer</span></div>
     <div class="prose">
-      <p data-i18n-html="line.p1"><strong>DS‑3WAP</strong> is Hikvision's family of small‑business Wi‑Fi <em>access points</em> (AP) — devices that add Wi‑Fi to a wired network. They are not routers: they have no WAN port and do no NAT or DHCP of their own. Upstream you need a switch (ideally PoE) and a router that already hands out addresses.</p>
-      <p data-i18n-html="line.p2"><strong>Reading the model number</strong> (rough guide — always confirm on the datasheet): a leading <code>5xxx</code> is Wi‑Fi 5, <code>6xxx</code> is Wi‑Fi 6. Trailing letters mark the variant — <code>‑SI</code> / <code>‑EI</code> are hardware/regional variants, <code>E</code> tends to mean the higher‑tier radio, <code>G</code> a lower‑tier Wi‑Fi 6.</p>
-      <p data-i18n-html="line.p3"><strong>Three form factors:</strong> <em>in‑wall</em> (fits an 86 mm back‑box, replaces a wall data outlet), <em>ceiling</em> (a flat disc for offices and halls), and <em>outdoor</em> (IP65/IP68 sealed, external or high‑gain antennas, for walls and poles).</p>
-      <p data-i18n-html="line.p4"><strong>Wi‑Fi 5 vs Wi‑Fi 6, in practice:</strong> Wi‑Fi 6 handles more devices at once, holds up better in congested RF, and supports WPA3. Wi‑Fi 5 is cheaper and perfectly fine for a lightly used room.</p>
-      <p data-i18n-html="line.p5"><strong>Two ways any of these run:</strong></p>
-      <ul>
-        <li data-i18n-html="line.li1"><strong>Standalone (FAT):</strong> you configure each AP on the AP itself through its web interface. Fine for one to a few units.</li>
-        <li data-i18n-html="line.li2"><strong>Controller‑managed (FIT / AC):</strong> a Hikvision wireless controller pushes one config to many APs and enables seamless roaming between them. Use this once you have several APs on a site.</li>
-      </ul>
-      <p data-i18n-html="line.p6"><strong>The tools you'll meet</strong> (details on the <a href="install.html">Install &amp; set up</a> page): <strong>SADP</strong> finds and activates units on the LAN; the <strong>web UI</strong> configures one AP; <strong>Hik‑Partner Pro</strong> is the installer cloud for remote config and customer handover; <strong>HikCentral Professional</strong> is the enterprise platform; <strong>Hik‑Connect</strong> is the end‑customer app.</p>
-      <div class="callout qsg">
-        <span class="clabel" data-i18n="line.qsg.label">Check the QSG</span>
-        <span data-i18n="line.qsg.text">Model tiers, suffixes, port counts and box contents change between batches and regions. Treat this page as orientation and confirm every figure against the datasheet and Quick Start Guide (QSG) for the exact unit you hold.</span>
+      <div class="step-summary-card">
+        <p class="step-summary-text" data-i18n-html="line.summary">DS‑3WAP is Hikvision's series of commercial Wi‑Fi access points. They connect to an existing wired network and require an upstream router and PoE power.</p>
       </div>
+      <details class="step-accordion" id="acc-line">
+        <summary class="step-accordion-summary">
+          <span class="acc-summary-left">
+            <span class="acc-chevron" aria-hidden="true">▸</span>
+            <span class="acc-title" data-i18n="line.acc.title">Detailed line overview</span>
+          </span>
+          <span class="acc-badge" data-i18n="line.acc.badge">Model numbering, form factors, Wi‑Fi 5 vs 6, FAT/FIT modes &amp; tools</span>
+        </summary>
+        <div class="step-accordion-content">
+          <p data-i18n-html="line.p1"><strong>DS‑3WAP</strong> is Hikvision's family of small‑business Wi‑Fi <em>access points</em> (AP) — devices that add Wi‑Fi to a wired network. They are not routers: they have no WAN port and do no NAT or DHCP of their own. Upstream you need a switch (ideally PoE) and a router that already hands out addresses.</p>
+          <p data-i18n-html="line.p2"><strong>Reading the model number</strong> (rough guide — always confirm on the datasheet): a leading <code>5xxx</code> is Wi‑Fi 5, <code>6xxx</code> is Wi‑Fi 6. Trailing letters mark the variant — <code>‑SI</code> / <code>‑EI</code> are hardware/regional variants, <code>E</code> tends to mean the higher‑tier radio, <code>G</code> a lower‑tier Wi‑Fi 6.</p>
+          <p data-i18n-html="line.p3"><strong>Three form factors:</strong> <em>in‑wall</em> (fits an 86 mm back‑box, replaces a wall data outlet), <em>ceiling</em> (a flat disc for offices and halls), and <em>outdoor</em> (IP65/IP68 sealed, external or high‑gain antennas, for walls and poles).</p>
+          <p data-i18n-html="line.p4"><strong>Wi‑Fi 5 vs Wi‑Fi 6, in practice:</strong> Wi‑Fi 6 handles more devices at once, holds up better in congested RF, and supports WPA3. Wi‑Fi 5 is cheaper and perfectly fine for a lightly used room.</p>
+          <p data-i18n-html="line.p5"><strong>Two ways any of these run:</strong></p>
+          <ul>
+            <li data-i18n-html="line.li1"><strong>Standalone (FAT):</strong> you configure each AP on the AP itself through its web interface. Fine for one to a few units.</li>
+            <li data-i18n-html="line.li2"><strong>Controller‑managed (FIT / AC):</strong> a Hikvision wireless controller pushes one config to many APs and enables seamless roaming between them. Use this once you have several APs on a site.</li>
+          </ul>
+          <p data-i18n-html="line.p6"><strong>The tools you'll meet</strong> (details on the <a href="install.html">Install &amp; set up</a> page): <strong>SADP</strong> finds and activates units on the LAN; the <strong>web UI</strong> configures one AP; <strong>Hik‑Partner Pro</strong> is the installer cloud for remote config and customer handover; <strong>HikCentral Professional</strong> is the enterprise platform; <strong>Hik‑Connect</strong> is the end‑customer app.</p>
+          <div class="callout qsg">
+            <span class="clabel" data-i18n="line.qsg.label">Check the QSG</span>
+            <span data-i18n="line.qsg.text">Model tiers, suffixes, port counts and box contents change between batches and regions. Treat this page as orientation and confirm every figure against the datasheet and Quick Start Guide (QSG) for the exact unit you hold.</span>
+          </div>
+        </div>
+      </details>
     </div>
   </section>
 

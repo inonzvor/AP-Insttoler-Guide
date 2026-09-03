@@ -331,4 +331,51 @@
       createWifiPulse(e.clientX, e.clientY);
     }, { passive: true });
   })();
+
+  /* ---------- accordion controls & hash deep-link ---------- */
+  var expandAllBtn = document.getElementById("expandAllSteps");
+  var collapseAllBtn = document.getElementById("collapseAllSteps");
+  if (expandAllBtn) {
+    expandAllBtn.addEventListener("click", function () {
+      document.querySelectorAll(".step-accordion").forEach(function (acc) {
+        acc.open = true;
+      });
+    });
+  }
+  if (collapseAllBtn) {
+    collapseAllBtn.addEventListener("click", function () {
+      document.querySelectorAll(".step-accordion").forEach(function (acc) {
+        acc.open = false;
+      });
+    });
+  }
+
+  function openAccordionForHash() {
+    var hash = window.location.hash;
+    if (!hash) return;
+    try {
+      var target = document.querySelector(hash);
+      if (target) {
+        var acc = target.classList.contains("step-accordion") ? target : target.querySelector(".step-accordion");
+        if (acc) {
+          acc.open = true;
+        }
+        var parentAcc = target.closest(".step-accordion");
+        if (parentAcc) {
+          parentAcc.open = true;
+        }
+      }
+    } catch (e) {}
+  }
+  window.addEventListener("hashchange", openAccordionForHash);
+  openAccordionForHash();
+
+  document.querySelectorAll(".toc a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      var href = link.getAttribute("href");
+      if (href && href.startsWith("#")) {
+        setTimeout(openAccordionForHash, 50);
+      }
+    });
+  });
 })();
