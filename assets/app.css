@@ -39,16 +39,17 @@
   --r-xl: 22px;
   --r-full: 999px;
 
-  --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
-  --shadow-2: 0 10px 25px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.03);
-  --shadow-overlay: 0 20px 40px -6px rgba(15, 23, 42, 0.16);
+  /* Shape & Elevation Tokens — Clean, Soft & Architectural (No Muddy Wide Blurs) */
+  --shadow-1: 0 1px 2px 0 rgba(15, 23, 42, 0.04), 0 1px 3px 0 rgba(15, 23, 42, 0.03);
+  --shadow-2: 0 4px 14px -2px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.03);
+  --shadow-overlay: 0 16px 36px -4px rgba(15, 23, 42, 0.12);
 
-  /* Color Palette — Light Neutral & Accent */
+  /* Color Palette — Serene Crisp Canvas & Pure Surfaces */
   --bg: #f8fafc;
   --surface: #ffffff;
-  --surface-glass: rgba(255, 255, 255, 0.82);
+  --surface-glass: rgba(255, 255, 255, 0.88);
   --surface-2: #f1f5f9;
-  --surface-3: #e2e8f0;
+  --surface-3: #e8eef5;
   --line: #e2e8f0;
   --line-strong: #cbd5e1;
 
@@ -59,37 +60,44 @@
   --accent: #0284c7;
   --accent-hover: #0369a1;
   --accent-ink: #ffffff;
-  --accent-soft: rgba(2, 132, 199, 0.08);
-  --accent-glow: rgba(2, 132, 199, 0.18);
-  --accent-gradient: linear-gradient(135deg, #0284c7 0%, #3b82f6 100%);
-  --wifi-wave-opacity: 0.30;
+  --accent-soft: rgba(2, 132, 199, 0.06);
+  --accent-glow: rgba(15, 23, 42, 0.06);
+  --accent-gradient: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+  --wifi-wave-opacity: 0.10;
 
-  /* Technical Blueprint Grid line colors */
-  --grid-line: rgba(15, 23, 42, 0.055);
-  --grid-line-major: rgba(2, 132, 199, 0.11);
-  --crosshair: rgba(2, 132, 199, 0.25);
+  /* Technical Blueprint Grid line colors — Muted in light theme for pure calm canvas */
+  --grid-line: transparent;
+  --grid-line-major: transparent;
+  --crosshair: transparent;
 
-  /* Category Markers */
-  --wall: #d97706;
-  --wall-soft: #fef3c7;
-  --ceiling: #0d9488;
-  --ceiling-soft: #ccfbf1;
-  --outdoor: #4f46e5;
-  --outdoor-soft: #e0e7ff;
+  /* Category Markers — Rich, Deeper Tones for WCAG AA (4.5+:1) with Whisper-Soft Tints */
+  --wall: #b45309;
+  --wall-soft: rgba(180, 83, 9, 0.06);
+  --ceiling: #0f766e;
+  --ceiling-soft: rgba(15, 118, 110, 0.06);
+  --outdoor: #4338ca;
+  --outdoor-soft: rgba(67, 56, 202, 0.06);
 
-  /* Wi-Fi Generations */
-  --wifi6: #0284c7;
-  --wifi6-soft: #e0f2fe;
-  --wifi5: #64748b;
-  --wifi5-soft: #f1f5f9;
+  /* Wi-Fi Generations — Harmonized, Non-Clashing */
+  --wifi6: #0369a1;
+  --wifi6-soft: rgba(3, 105, 161, 0.07);
+  --wifi5: #475569;
+  --wifi5-soft: rgba(71, 85, 105, 0.06);
 
   /* Signals & Bands */
-  --band24: #d97706;
-  --band5: #2563eb;
-  --good: #16a34a;
-  --good-soft: #dcfce7;
-  --warn: #d97706;
-  --warn-soft: #fef3c7;
+  --band24: #b45309;
+  --band5: #1d4ed8;
+  --good: #15803d;
+  --good-soft: rgba(21, 128, 61, 0.08);
+  --warn: #b45309;
+  --warn-soft: rgba(180, 83, 9, 0.07);
+
+  /* Turquoise Ambient Fade on Background */
+  --bg-turquoise-fade:
+    radial-gradient(ellipse 90% 680px at 50% -60px, rgba(13, 148, 136, 0.22) 0%, rgba(20, 184, 166, 0.13) 35%, rgba(6, 182, 212, 0.05) 65%, transparent 100%),
+    radial-gradient(circle 540px at 15% -40px, rgba(45, 212, 191, 0.14) 0%, transparent 70%),
+    radial-gradient(circle 540px at 85% -40px, rgba(6, 182, 212, 0.12) 0%, transparent 70%),
+    linear-gradient(180deg, rgba(20, 184, 166, 0.09) 0%, rgba(13, 148, 136, 0.03) 240px, transparent 560px);
 
   --app-bar-h: 60px;
 }
@@ -145,6 +153,9 @@
     --grid-line: rgba(255, 255, 255, 0.045);
     --grid-line-major: rgba(56, 189, 248, 0.12);
     --crosshair: rgba(56, 189, 248, 0.3);
+
+    /* No turquoise fade in dark theme */
+    --bg-turquoise-fade: none;
   }
 }
 
@@ -195,6 +206,258 @@
   --grid-line: rgba(255, 255, 255, 0.045);
   --grid-line-major: rgba(56, 189, 248, 0.12);
   --crosshair: rgba(56, 189, 248, 0.3);
+
+  /* No turquoise fade in dark theme */
+  --bg-turquoise-fade: none;
+}
+
+/* --------------------------------------------------------------------------
+   Light Theme Architectural Serenity (De-noising Component Refinements)
+   Ensures the light theme feels as calm, balanced, and serene as the dark theme
+   without modifying dark theme behavior or HTML structures.
+   -------------------------------------------------------------------------- */
+
+/* Pure, quiet canvas in light mode — eliminates triangular moiré mesh & blue top smudge */
+:root:not([data-theme="dark"]) body::before,
+body:not([data-theme="dark"])::before {
+  display: none;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body::before,
+  body:not([data-theme="light"])::before {
+    display: block;
+  }
+}
+:root[data-theme="dark"] body::before,
+body[data-theme="dark"]::before {
+  display: block;
+}
+
+/* Subtle Wi-Fi wave pulse in light mode — reduced opacity and lower pulse frequency */
+:root:not([data-theme="dark"]) .wifi-origin-glow,
+body:not([data-theme="dark"]) .wifi-origin-glow {
+  opacity: 0.06;
+  filter: blur(24px);
+  animation-duration: 9s;
+}
+
+:root:not([data-theme="dark"]) .wifi-wave-pulse,
+body:not([data-theme="dark"]) .wifi-wave-pulse {
+  border-top-width: 1px;
+  border-top-color: rgba(2, 132, 199, 0.42);
+  animation-duration: 12s;
+  box-shadow: none;
+}
+
+:root:not([data-theme="dark"]) .wifi-wave-pulse.wave-1,
+body:not([data-theme="dark"]) .wifi-wave-pulse.wave-1 {
+  animation-delay: 0s;
+}
+:root:not([data-theme="dark"]) .wifi-wave-pulse.wave-2,
+body:not([data-theme="dark"]) .wifi-wave-pulse.wave-2 {
+  animation-delay: 3s;
+}
+:root:not([data-theme="dark"]) .wifi-wave-pulse.wave-3,
+body:not([data-theme="dark"]) .wifi-wave-pulse.wave-3 {
+  animation-delay: 6s;
+}
+:root:not([data-theme="dark"]) .wifi-wave-pulse.wave-4,
+body:not([data-theme="dark"]) .wifi-wave-pulse.wave-4 {
+  animation-delay: 9s;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .wifi-origin-glow,
+  body:not([data-theme="light"]) .wifi-origin-glow {
+    opacity: 0.2;
+    filter: blur(20px);
+    animation-duration: 4.5s;
+  }
+  :root:not([data-theme="light"]) .wifi-wave-pulse,
+  body:not([data-theme="light"]) .wifi-wave-pulse {
+    border-top-width: 1.5px;
+    border-top-color: var(--accent);
+    animation-duration: 6.4s;
+  }
+  :root:not([data-theme="light"]) .wifi-wave-pulse.wave-1,
+  body:not([data-theme="light"]) .wifi-wave-pulse.wave-1 { animation-delay: 0s; }
+  :root:not([data-theme="light"]) .wifi-wave-pulse.wave-2,
+  body:not([data-theme="light"]) .wifi-wave-pulse.wave-2 { animation-delay: 1.6s; }
+  :root:not([data-theme="light"]) .wifi-wave-pulse.wave-3,
+  body:not([data-theme="light"]) .wifi-wave-pulse.wave-3 { animation-delay: 3.2s; }
+  :root:not([data-theme="light"]) .wifi-wave-pulse.wave-4,
+  body:not([data-theme="light"]) .wifi-wave-pulse.wave-4 { animation-delay: 4.8s; }
+}
+
+:root[data-theme="dark"] .wifi-origin-glow,
+body[data-theme="dark"] .wifi-origin-glow {
+  opacity: 0.2;
+  filter: blur(20px);
+  animation-duration: 4.5s;
+}
+:root[data-theme="dark"] .wifi-wave-pulse,
+body[data-theme="dark"] .wifi-wave-pulse {
+  border-top-width: 1.5px;
+  border-top-color: var(--accent);
+  animation-duration: 6.4s;
+}
+:root[data-theme="dark"] .wifi-wave-pulse.wave-1,
+body[data-theme="dark"] .wifi-wave-pulse.wave-1 { animation-delay: 0s; }
+:root[data-theme="dark"] .wifi-wave-pulse.wave-2,
+body[data-theme="dark"] .wifi-wave-pulse.wave-2 { animation-delay: 1.6s; }
+:root[data-theme="dark"] .wifi-wave-pulse.wave-3,
+body[data-theme="dark"] .wifi-wave-pulse.wave-3 { animation-delay: 3.2s; }
+:root[data-theme="dark"] .wifi-wave-pulse.wave-4,
+body[data-theme="dark"] .wifi-wave-pulse.wave-4 { animation-delay: 4.8s; }
+
+/* Eliminate decorative corner crosshair brackets in light mode */
+:root:not([data-theme="dark"]) .figure::after,
+body:not([data-theme="dark"]) .figure::after,
+:root:not([data-theme="dark"]) .diagram::after,
+body:not([data-theme="dark"]) .diagram::after,
+:root:not([data-theme="dark"]) .callout::before,
+body:not([data-theme="dark"]) .callout::before,
+:root:not([data-theme="dark"]) .callout.qsg::before,
+body:not([data-theme="dark"]) .callout.qsg::before {
+  display: none;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .figure::after,
+  body:not([data-theme="light"]) .figure::after,
+  :root:not([data-theme="light"]) .diagram::after,
+  body:not([data-theme="light"]) .diagram::after,
+  :root:not([data-theme="light"]) .callout::before,
+  body:not([data-theme="light"]) .callout::before,
+  :root:not([data-theme="light"]) .callout.qsg::before,
+  body:not([data-theme="light"]) .callout.qsg::before {
+    display: block;
+  }
+}
+:root[data-theme="dark"] .figure::after,
+body[data-theme="dark"] .figure::after,
+:root[data-theme="dark"] .diagram::after,
+body[data-theme="dark"] .diagram::after,
+:root[data-theme="dark"] .callout::before,
+body[data-theme="dark"] .callout::before,
+:root[data-theme="dark"] .callout.qsg::before,
+body[data-theme="dark"] .callout.qsg::before {
+  display: block;
+}
+
+/* Eyebrow: tranquil typographic badge without neon point glow */
+:root:not([data-theme="dark"]) .eyebrow,
+body:not([data-theme="dark"]) .eyebrow {
+  border-color: rgba(2, 132, 199, 0.14);
+}
+:root:not([data-theme="dark"]) .eyebrow::before,
+body:not([data-theme="dark"]) .eyebrow::before {
+  box-shadow: none;
+}
+
+/* Page Hero top accent line: refined 2px precision rule in light mode */
+:root:not([data-theme="dark"]) .page-hero::before,
+body:not([data-theme="dark"]) .page-hero::before {
+  height: 2px;
+}
+
+/* Stepper connector line: calm architectural ruler in light mode */
+:root:not([data-theme="dark"]) .stepper-wrap::before,
+body:not([data-theme="dark"]) .stepper-wrap::before {
+  background: linear-gradient(90deg, var(--line-strong) 0%, var(--line) 100%);
+  opacity: 0.75;
+}
+:root:not([data-theme="dark"]) .stepper-item:hover,
+body:not([data-theme="dark"]) .stepper-item:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-1px);
+}
+
+/* Catalog Card: refined 2px top border and graceful hover */
+:root:not([data-theme="dark"]) .card,
+body:not([data-theme="dark"]) .card {
+  border-top-width: 2px;
+}
+:root:not([data-theme="dark"]) .card:hover,
+body:not([data-theme="dark"]) .card:hover {
+  border-color: var(--line-strong);
+  border-top-color: var(--cat-color, var(--accent));
+  transform: translateY(-1px);
+}
+
+/* Device Visual hardware showcase in light mode */
+:root:not([data-theme="dark"]) .device-visual,
+body:not([data-theme="dark"]) .device-visual {
+  background: linear-gradient(180deg, #ffffff 0%, #f4f6f9 100%);
+  border-color: var(--line);
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.02);
+}
+:root:not([data-theme="dark"]) .device-visual img,
+body:not([data-theme="dark"]) .device-visual img {
+  filter: drop-shadow(0 6px 14px rgba(15, 23, 42, 0.07)) drop-shadow(0 1px 3px rgba(15, 23, 42, 0.03));
+}
+:root:not([data-theme="dark"]) .card:hover .device-visual img,
+body:not([data-theme="dark"]) .card:hover .device-visual img {
+  transform: scale(1.02);
+  filter: drop-shadow(0 8px 18px rgba(15, 23, 42, 0.09)) drop-shadow(0 2px 4px rgba(15, 23, 42, 0.04));
+}
+
+/* Interactive elements: crisp elevation without blurry cyan halos */
+:root:not([data-theme="dark"]) .theme-toggle:hover,
+body:not([data-theme="dark"]) .theme-toggle:hover {
+  box-shadow: var(--shadow-1);
+}
+:root:not([data-theme="dark"]) .install-btn,
+body:not([data-theme="dark"]) .install-btn {
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.18);
+}
+:root:not([data-theme="dark"]) .install-btn:hover,
+body:not([data-theme="dark"]) .install-btn:hover {
+  box-shadow: 0 3px 10px rgba(2, 132, 199, 0.25);
+  transform: translateY(-1px);
+}
+:root:not([data-theme="dark"]) .jump-chip:hover,
+body:not([data-theme="dark"]) .jump-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-1);
+  border-color: var(--line-strong);
+  color: var(--accent);
+}
+:root:not([data-theme="dark"]) .filters input:checked + .pill,
+body:not([data-theme="dark"]) .filters input:checked + .pill {
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.18);
+}
+:root:not([data-theme="dark"]) .wopt.on,
+body:not([data-theme="dark"]) .wopt.on {
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.18);
+}
+:root:not([data-theme="dark"]) .toc a.active,
+body:not([data-theme="dark"]) .toc a.active {
+  box-shadow: 0 1px 4px rgba(2, 132, 199, 0.2);
+}
+
+/* Click ripples: delicate touch feedback without neon aura */
+:root:not([data-theme="dark"]) .click-wifi-ripple,
+body:not([data-theme="dark"]) .click-wifi-ripple {
+  box-shadow: none;
+}
+:root:not([data-theme="dark"]) .click-wifi-ripple.ring-1,
+body:not([data-theme="dark"]) .click-wifi-ripple.ring-1 {
+  border-color: rgba(2, 132, 199, 0.28);
+  box-shadow: none;
+}
+:root:not([data-theme="dark"]) .click-wifi-ripple.ring-2,
+body:not([data-theme="dark"]) .click-wifi-ripple.ring-2 {
+  border-color: rgba(2, 132, 199, 0.18);
+  box-shadow: none;
+}
+:root:not([data-theme="dark"]) .click-wifi-ripple.ring-3,
+body:not([data-theme="dark"]) .click-wifi-ripple.ring-3 {
+  border-color: rgba(2, 132, 199, 0.12);
+}
+:root:not([data-theme="dark"]) .click-wifi-core,
+body:not([data-theme="dark"]) .click-wifi-core {
+  box-shadow: none;
+  opacity: 0.35;
 }
 
 /* --------------------------------------------------------------------------
@@ -214,6 +477,11 @@ html {
 body {
   margin: 0;
   background-color: var(--bg);
+  background-image: var(--bg-turquoise-fade);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% 700px;
+  background-attachment: scroll;
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: var(--text-base);
@@ -232,15 +500,12 @@ body::before {
   pointer-events: none;
   z-index: 0;
   background-image:
-    /* Top subtle radiance */
-    radial-gradient(ellipse 80% 450px at 50% -80px, var(--accent-glow), transparent 75%),
     /* Triangular grid at 0°, 60°, 120° (step 68px, 1px lines) */
     repeating-linear-gradient(0deg, var(--grid-line) 0, var(--grid-line) 1px, transparent 1px, transparent 68px),
     repeating-linear-gradient(60deg, var(--grid-line) 0, var(--grid-line) 1px, transparent 1px, transparent 68px),
     repeating-linear-gradient(120deg, var(--grid-line-major) 0, var(--grid-line-major) 1px, transparent 1px, transparent 68px);
-  background-repeat: no-repeat, repeat, repeat, repeat;
-  background-position: center top, 0 0, 0 0, 0 0;
-  background-attachment: fixed;
+  background-repeat: repeat, repeat, repeat;
+  background-position: 0 0, 0 0, 0 0;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 33%, rgba(0, 0, 0, 0) 100%);
   -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 33%, rgba(0, 0, 0, 0) 100%);
 }
